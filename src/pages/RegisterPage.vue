@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Register</h1>
-    <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
+    <b-form @submit.prevent="onRegister" @reset.prevent="onReset" class="form">
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
@@ -22,6 +22,47 @@
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
           Username alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+  <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="firstName"
+          :state="validateState('firstName')"
+        ></b-form-input>
+          <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First Name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.firstName.length">
+         First Name length should be at least 2 characters
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+
+  <b-form-group
+        id="input-group-lastName"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="lastName"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last Name is required
+        </b-form-invalid-feedback>
+          <b-form-invalid-feedback v-else-if="!$v.form.lastName.length">
+           Last Name length should be at least 2 characters
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -90,12 +131,31 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-button type="reset" variant="danger">Reset</b-button>
+  <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="email"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          email is required
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+
+      <b-button type="reset" variant="danger" class="reset" >Reset</b-button>
       <b-button
         type="submit"
         variant="primary"
         style="width:250px;"
         class="ml-5 w-75"
+        id="reg"
         >Register</b-button
       >
       <div class="mt-2">
@@ -142,7 +202,7 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
-        submitError: undefined
+        submitError: undefined,
       },
       countries: [{ value: null, text: "", disabled: true }],
       errors: [],
@@ -156,6 +216,14 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
       },
+      firstName:{
+        required,
+         length: (f) => minLength(2)(f) && maxLength(40)(f)
+      },
+      lastName:{
+        required,
+         length: (l) => minLength(2)(l) && maxLength(40)(l)
+      },
       country: {
         required
       },
@@ -166,6 +234,10 @@ export default {
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
+      },
+      email:{
+        required,
+        email,
       }
     }
   },
@@ -188,7 +260,7 @@ export default {
             password: this.form.password
           }
         );
-        this.$router.push("/login");
+        this.$router.push("/Login");
         // console.log(response);
       } catch (err) {
         console.log(err.response);
@@ -212,7 +284,7 @@ export default {
         country: null,
         password: "",
         confirmedPassword: "",
-        email: ""
+        email: "",
       };
       this.$nextTick(() => {
         this.$v.$reset();
@@ -224,5 +296,30 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 500px;
+}
+h1{
+  color: #7BB257;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+}
+form{
+  color: #7BB257;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+   font-weight: bold;
+}
+button.reset{
+  color: #ffffff;
+  background: #7BB257;
+  border: #e1b4fc;
+}
+#reg{
+   color: #ffffff;
+  background: #7BB257;
+  border: #e1b4fc;
+}
+.container{
+  background:rgba(255, 255, 255, 0.75);
 }
 </style>

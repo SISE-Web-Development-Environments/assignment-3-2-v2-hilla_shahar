@@ -40,12 +40,21 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #A16E53;
+  background-image: url("../Resources/back.jpg");
+     background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   min-height: 100vh;
 }
 
 #nav {
   padding: 30px;
+}
+
+#nav {
+  background:  #d8a631;
 }
 
 #nav a {
@@ -54,6 +63,6 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #F70102;
 }
 </style>

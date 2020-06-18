@@ -8,12 +8,12 @@ const routes = [
     component: Main,
   },
   {
-    path: "/register",
+    path: "/Register",
     name: "register",
     component: () => import("./pages/RegisterPage"),
   },
   {
-    path: "/login",
+    path: "/Login",
     name: "login",
     component: () => import("./pages/LoginPage"),
   },
@@ -23,7 +23,10 @@ const routes = [
     component: () => import("./pages/SearchPage"),
   },
   {
-    path: "/recipe/:recipeId",
+    // path: "/recipe/:recipeId",
+    // name: "recipe",
+    // component: () => import("./pages/RecipeViewPage"),
+    path: "/recipe/showRecipe/recipeId/:recipe_id",
     name: "recipe",
     component: () => import("./pages/RecipeViewPage"),
   },

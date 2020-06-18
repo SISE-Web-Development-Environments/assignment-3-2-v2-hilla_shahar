@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Login</h1>
-    <b-form @submit.prevent="onLogin">
+    <b-form @submit.prevent="onLogin" class="form">
       <b-form-group
         id="input-group-Username"
         label-cols-sm="3"
@@ -41,6 +41,7 @@
         variant="primary"
         style="width:100px;display:block;"
         class="mx-auto w-100"
+        id="logInButton"
         >Login</b-button
       >
       <div class="mt-2">
@@ -127,5 +128,25 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 400px;
+}
+form{
+  color: #7BB257;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+   font-weight: bold;
+}
+h1{
+  color: #7BB257;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  font-weight: bold;
+}
+#logInButton{
+    color: #ffffff;
+  background: #7BB257;
+  border: #e1b4fc;
+}
+.container{
+  background:rgba(255, 255, 255, 0.75);
 }
 </style>

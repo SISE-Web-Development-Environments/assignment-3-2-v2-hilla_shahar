@@ -54,14 +54,16 @@ export default {
       // response = this.$route.params.response;
 
       try {
-        response = await this.axios.get(
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe",
+          console.log("Hilla");
+          response = await this.axios.get(
+            
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/recipeId/",
           {
-            params: { id: this.$route.params.recipeId }
+            params: { id: this.$route.params.recipe_id }
           }
         );
 
-        // console.log("response.status", response.status);
+        console.log("response");
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
