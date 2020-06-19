@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
+    <h1 class="title">Shahar & Hilla Recipe site</h1>
     <RecipePreviewList title="Random Recipes" class="RandomRecipes center" />
     <p v-if="!$root.store.username">
       <router-link to="/Login" tag="button">You need to Login to vue this</router-link>
@@ -48,5 +48,11 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+h1{
+    color: #ffffff;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+   font-weight: bold;
 }
 </style>

@@ -14,19 +14,17 @@
             </div>
             Ingredients:
             <ul>
-              <li
-                v-for="(r, index) in recipe.extendedIngredients"
-                :key="index + '_' + r.id"
+              <li v-for="r in recipe.extendedIngredients" :key="'_' + r.name"
               >
-                {{ r.original }}
+                {{ r.name}}:  {{r.amount}} {{r.unit}}
               </li>
             </ul>
           </div>
           <div class="wrapped">
             Instructions:
             <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
-                {{ s.step }}
+              <li v-for="s in recipe.instructions" :key="s.number">
+              {{s}}
               </li>
             </ol>
           </div>
@@ -45,7 +43,7 @@
 export default {
   data() {
     return {
-      recipe: null
+      recipe: null,
     };
   },
   async created() {
@@ -54,16 +52,14 @@ export default {
       // response = this.$route.params.response;
 
       try {
-          console.log("Hilla");
           response = await this.axios.get(
-            
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe",
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/657917",
           {
-            params: { id: this.$route.query.recipe_id }
+            params: { recipe_id: this.$route.params.recipeId }
           }
         );
 
-        console.log("response");
+        console.log(response);
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
@@ -71,33 +67,40 @@ export default {
         return;
       }
 
-      let {
-        analyzedInstructions,
-        instructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title
-      } = response.data.recipe;
+      let info=response.data[0];
+      
+  
+      let allIngrediants=info.extendedIngredients.extendedIngredients;
+    
+      let arrayInfo = [];
+      let newInstructions=info.instructions.replace(/<\/?[^>]+(>|$)/g, "").split(".");
+     
+     //remove if there is blank word after last instruction
+     let last=newInstructions[newInstructions.length-1];
+     if(!last || last==="" || last===" "){
+      newInstructions.splice(newInstructions.indexOf(last), 1);
+     }
+     
+        let _recipe={
 
-      let _instructions = analyzedInstructions
-        .map((fstep) => {
-          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-          return fstep.steps;
-        })
-        .reduce((a, b) => [...a, ...b], []);
-
-      let _recipe = {
-        instructions,
-        _instructions,
-        analyzedInstructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title
+       instructions: newInstructions,
+        extendedIngredients:
+      allIngrediants.map((ingr)=>{
+      let data ={
+        name: ingr.name,
+        unit: ingr.unit,
+        amount: ingr.amount,
+       }
+       arrayInfo.push(data);
+      
+     }),
+     extendedIngredients:arrayInfo,
+        aggregateLikes: info.aggregateLikes,
+        readyInMinutes: info.readyInMinutes,
+        image: info.image,
+        title: info.title
       };
+      //  console.log(_recipe);
 
       this.recipe = _recipe;
     } catch (error) {
@@ -120,7 +123,26 @@ export default {
   margin-right: auto;
   width: 50%;
 }
-/* .recipe-header{
+.container{
+  background:rgba(255, 255, 255, 0.75);
+}
+h1{
+  color: #7BB257;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+.wrapper{
+  color: #7BB257;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: left;
+    font-weight: bold;
+}
+li{
+    color: #7a512f;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: left;
+   font-weight: 100;
+}
 
-} */
 </style>

@@ -23,6 +23,8 @@ export default {
   mounted() {
     this.axios.get(this.recipe.image).then((i) => {
       this.image_load = true;
+      // console.log("hla");
+      //  console.log(this.recipe.image);
     });
   },
   data() {
@@ -72,12 +74,14 @@ export default {
   margin: 10px 10px;
 }
 .recipe-preview > .recipe-body {
+   background:rgba(255, 255, 255, 0.75);
   width: 100%;
   height: 200px;
   position: relative;
 }
 
 .recipe-preview .recipe-body .recipe-image {
+   background:rgba(255, 255, 255, 0.75);
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -97,6 +101,7 @@ export default {
 }
 
 .recipe-preview .recipe-footer .recipe-title {
+   background:rgba(255, 255, 255, 0.75);
   padding: 10px 10px;
   width: 100%;
   font-size: 12pt;
@@ -108,6 +113,7 @@ export default {
 }
 
 .recipe-preview .recipe-footer ul.recipe-overview {
+   background:rgba(255, 255, 255, 0.75);
   padding: 5px 10px;
   width: 100%;
   display: -webkit-box;

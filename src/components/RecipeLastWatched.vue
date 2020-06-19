@@ -39,14 +39,12 @@ export default {
         const response = await this.axios.get(
           //"https://test-for-3-2.herokuapp.com/recipes/random"
           "https://assignment3-2hilla-shahar.herokuapp.com/user/lastWatched"
-        //   {
-        //     params: { username: this.$root.username}
-        //   }
+        
         );
 
-        // console.log(response);
+        console.log(response);
         const recipes = response.data;
-        // console.log(response);
+      
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);

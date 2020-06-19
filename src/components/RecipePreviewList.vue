@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      recipes: []
+      recipes:[]
     };
   },
   mounted() {
@@ -41,13 +41,12 @@ export default {
           "https://assignment3-2hilla-shahar.herokuapp.com/recipe/random"
         );
 
-        // console.log(response);
         const recipes = response.data;
-        // console.log(response);
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);
-        console.log(this.recipes);
+
+       // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
