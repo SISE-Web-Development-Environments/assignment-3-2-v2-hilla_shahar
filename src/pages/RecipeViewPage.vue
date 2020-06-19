@@ -57,9 +57,9 @@ export default {
           console.log("Hilla");
           response = await this.axios.get(
             
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/recipeId/",
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe",
           {
-            params: { id: this.$route.params.recipe_id }
+            params: { id: this.$route.query.recipe_id }
           }
         );
 

@@ -187,7 +187,8 @@ import {
   maxLength,
   alpha,
   sameAs,
-  email
+  email,
+  regex
 } from "vuelidate/lib/validators";
 
 export default {
@@ -229,7 +230,8 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        //regex: "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]$"
       },
       confirmedPassword: {
         required,
