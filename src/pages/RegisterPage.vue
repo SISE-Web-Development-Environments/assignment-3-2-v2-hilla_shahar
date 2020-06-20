@@ -314,12 +314,12 @@ form{
 button.reset{
   color: #ffffff;
   background: #7BB257;
-  border: #e1b4fc;
+  border: #7BB257;
 }
 #reg{
    color: #ffffff;
   background: #7BB257;
-  border: #e1b4fc;
+  border: #7BB257;
 }
 .container{
   background:rgba(255, 255, 255, 0.75);

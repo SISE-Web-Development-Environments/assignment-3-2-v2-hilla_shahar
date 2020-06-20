@@ -5,8 +5,16 @@
     <br>
     <b-form-input v-model="searchQuery" placeholder="Search">
   </b-form-input>
-  <br><br>Cuisine: 
-<select v-model="cuisine">
+
+<br><br>
+  <b-table>
+      <b-row>
+          <b-col id="col">Cuisine:</b-col>
+          <b-col id="col">Diet:</b-col>
+          <b-col id="col">Intolerances:</b-col>
+      </b-row>
+      <b-row>
+         <b-col><select v-model="cuisine">
     <option>African</option>
     <option>American</option>
     <option>British</option>
@@ -33,10 +41,9 @@
     <option>Spanish</option>
     <option>Thai</option>
     <option>Vietnamese</option>                                                           <option>Japanese</option>
-</select>
-<br>
-Diet: 
-<select v-model="diet">
+</select></b-col>
+      
+            <b-col><select v-model="diet">
     <option>Gluten Free</option>
     <option>Ketogenic</option>
     <option>Vegetarian</option>
@@ -47,10 +54,8 @@ Diet:
     <option>Paleo</option>
     <option>Primal</option>
     <option>Whole30</option>                                                      <option>Japanese</option>
-</select>
-<br>
-Intolerances:
-<select v-model="intolerance">
+</select></b-col>
+ <b-col><select v-model="intolerance">
     <option>Dairy</option>
     <option>Egg</option>
     <option>Gluten</option>
@@ -63,18 +68,41 @@ Intolerances:
     <option>Sulfite</option>
     <option>Tree Nut</option>
     <option>Wheat</option>                                                          <option>Japanese</option>
-</select>
-<br><br>
-<p>Please choose num of results:</p>
+</select></b-col>
+      </b-row>
+ <b-row> </b-row><br>
+<b-row >
+ 
+  <b-col colspan="3" align-self="center">
+<p align="center">Please choose num of results:</p>
+  </b-col>
+</b-row>
+
+<b-row>
+  <b-col><br></b-col>
+  <b-col><input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
+  <label for="five">5</label><br> <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
+  <label for="ten">10</label><br><input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
+  <label for="fifth">15</label><br></b-col>
+</b-row>
+<b-row>
+  <b-col><br></b-col>
+  <b-col >
+    <b-button id="searchButton" type="submit" size="med" @click="pushedSearch=!pushedSearch">Search</b-button>
+  </b-col>
+</b-row>
+  </b-table>
+  <br><br>
+<!-- <p>Please choose num of results:</p>
   <input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
   <label for="five">5</label><br>
   <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
   <label for="ten">10</label><br>
   <input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
   <label for="fifth">15</label>
-<br>
+<br> -->
 
- <b-button id="searchButton" type="submit" size="sm" @click="pushedSearch=!pushedSearch">Search</b-button>
+ 
   <template v-if="!pushedSearch">
     
     <b-row>
@@ -85,8 +113,6 @@ Intolerances:
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
-
-  <!-- <RecipePreview title="Search results" class="RecipePreview center"/> -->
   </template>
    </b-form>
   </div>
@@ -160,5 +186,9 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+}
+#searchButton{
+  background: #7BB257;
+  border: #7BB257;
 }
 </style>
