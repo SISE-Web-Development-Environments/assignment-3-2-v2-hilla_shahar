@@ -31,9 +31,9 @@
        
           <b-button id="logOut" size="sm" @click="Logout">Logout</b-button>
         <b-nav-item-dropdown text="Personal" right>
-          <b-dropdown-item href="#">Favorites &#10084;</b-dropdown-item>
-          <b-dropdown-item href="#">Private</b-dropdown-item>
-          <b-dropdown-item href="#">La Familia</b-dropdown-item>
+          <b-dropdown-item :to="{ name: 'favorites' }">Favorites &#10084;</b-dropdown-item>
+          <b-dropdown-item :to="{ name: 'private' }">Private</b-dropdown-item>
+          <b-dropdown-item :to="{ name: 'family' }">La Familia</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <!-- <b-nav-item-dropdown right> -->

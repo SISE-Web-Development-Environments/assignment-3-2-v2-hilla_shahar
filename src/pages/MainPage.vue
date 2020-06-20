@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <h1 class="title">Shahar & Hilla Recipe site</h1>
+   
     <RecipePreviewList title="Random Recipes" class="RandomRecipes center" />
+    
     <p v-if="!$root.store.username">
       <router-link to="/Login" tag="button">You need to Login to vue this</router-link>
       {{ !$root.store.username }}
@@ -11,7 +13,8 @@
         :class="{
           RandomRecipes: true,
           blur: !$root.store.username,
-          center: true
+          center: true,
+          display: inline
         }"
         disabled
       ></RecipePreviewList>

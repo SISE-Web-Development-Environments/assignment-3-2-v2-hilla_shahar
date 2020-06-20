@@ -74,10 +74,11 @@ export default {
   margin: 10px 10px;
 }
 .recipe-preview > .recipe-body {
-   background:rgba(255, 255, 255, 0.75);
+  background:rgba(255, 255, 255, 0.75);
   width: 100%;
-  height: 200px;
+  height: 150px;
   position: relative;
+
 }
 
 .recipe-preview .recipe-body .recipe-image {
@@ -97,7 +98,13 @@ export default {
 .recipe-preview .recipe-footer {
   width: 100%;
   height: 50%;
-  overflow: hidden;
+  overflow:auto;
+  color: #7a512f;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+   font-weight: bold;
+   font-size: 30px;
+   display: block;
 }
 
 .recipe-preview .recipe-footer .recipe-title {
@@ -143,5 +150,9 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
+  font-size: 15px;
+    color: #7BB257;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
 }
 </style>

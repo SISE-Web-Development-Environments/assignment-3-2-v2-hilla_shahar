@@ -1,7 +1,7 @@
 <template>
   <div class="container">
      <b-form @submit.prevent="searchRecipe" class="form">
-    <h1 class="title">Search Page</h1>
+    <h1 id="title" class="title">Search &#128270; </h1>
     <br>
     <b-form-input v-model="searchQuery" placeholder="Search">
   </b-form-input>
@@ -74,35 +74,46 @@
 <b-row >
  
   <b-col colspan="3" align-self="center">
-<p align="center">Please choose num of results:</p>
+<p align="center">Choose num of results:</p>
   </b-col>
 </b-row>
 
 <b-row>
-  <b-col><br></b-col>
+  <!-- <b-col><br></b-col> -->
   <b-col><input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
   <label for="five">5</label><br> <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
   <label for="ten">10</label><br><input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
   <label for="fifth">15</label><br></b-col>
 </b-row>
+
+ <b-row> </b-row><br>
+<b-row >
+  <b-col colspan="3" align-self="center">
+<p align="center">Sorting results by:</p>
+  </b-col>
+</b-row>
+
 <b-row>
-  <b-col><br></b-col>
+  <!-- <b-col><br></b-col> -->
+  <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder">
+  <label for="none">none</label><br> 
+  <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder">
+  <label for="time">Time preperation</label><br>
+  <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder">
+  <label for="popular">Popularity</label><br></b-col>
+</b-row>
+
+
+
+<b-row>
+  
   <b-col >
-    <b-button id="searchButton" type="submit" size="med" @click="pushedSearch=!pushedSearch">Search</b-button>
+    <b-button id="searchButton" type="submit" size="lg" @click="pushedSearch=!pushedSearch">Search</b-button>
   </b-col>
 </b-row>
   </b-table>
   <br><br>
-<!-- <p>Please choose num of results:</p>
-  <input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
-  <label for="five">5</label><br>
-  <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
-  <label for="ten">10</label><br>
-  <input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
-  <label for="fifth">15</label>
-<br> -->
 
- 
   <template v-if="!pushedSearch">
     <b-row>
       <b-row v-for="(r,index) in recipes" :key="index">
@@ -137,11 +148,12 @@ export default {
     return {
       recipes: [],
       pushedSearch: false,
-      numResults: "",
+      numResults: 5,
       cuisine: "",
       diet: "",
       intolerance: "",
       searchQuery: "",
+      searchOrder: "none",
     };
   },
   mounted() {
@@ -151,7 +163,7 @@ export default {
     async searchRecipe() {
       try {
        // this.pushedSearch = true;
-        console.log(this.numResults);
+        console.log(this.searchOrder);
 
         const response = await this.axios.get(
           //"https://test-for-3-2.herokuapp.com/recipes/random"
@@ -171,7 +183,10 @@ export default {
 
         console.log(response);
         const recipes = response.data;
+
         // console.log(recipes);
+
+
         this.recipes = [];
         let arr = [];
         let len = Math.ceil(recipes.length/5);
@@ -199,9 +214,26 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+  background:rgba(255, 255, 255, 0.75);
+   color:  #7a512f;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+    font-weight: bold;
 }
 #searchButton{
   background: #7BB257;
   border: #7BB257;
+}
+#ccol{
+    color: #7a512f;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+}
+#title{
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+     font-weight: bold;
+      color:  #7BB257;
 }
 </style>

@@ -31,15 +31,30 @@ const routes = [
     component: () => import("./pages/RecipeViewPage"),
   },
   {
+    path: "/about",
+    name: "about",
+    component: () => import("./pages/AboutPage"),
+  },
+  {
+    path: "/favorites",
+    name: "favorites",
+    component: () => import("./pages/FavoritePage"),
+  },
+  {
+    path: "/private",
+    name: "private",
+    component: () => import("./pages/PrivatePage"),
+  },
+  {
+    path: "/family",
+    name: "family",
+    component: () => import("./pages/FamilyPage"),
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound,
   },
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   component: () => import("./pages/aboutPage"),
-  // },
 ];
 
 export default routes;
