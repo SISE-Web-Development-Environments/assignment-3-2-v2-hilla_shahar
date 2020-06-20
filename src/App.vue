@@ -10,6 +10,9 @@
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
       </b-navbar-nav>
+       <b-navbar-nav>
+        <b-nav-item :to="{ name: 'about' }">About</b-nav-item>
+      </b-navbar-nav>
       
         <template v-if="!$root.store.username"> Hello Guest
            <b-navbar-nav>
@@ -24,7 +27,7 @@
   
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <template id="userName" center> {{ $root.store.username }} </template>
+        <template id="userName" center> {{ $root.store.username }}&nbsp;</template>
        
           <b-button id="logOut" size="sm" @click="Logout">Logout</b-button>
         <b-nav-item-dropdown text="Personal" right>

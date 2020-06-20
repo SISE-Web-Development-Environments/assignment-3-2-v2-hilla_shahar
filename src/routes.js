@@ -26,7 +26,7 @@ const routes = [
     // path: "/recipe/:recipeId",
     // name: "recipe",
     // component: () => import("./pages/RecipeViewPage"),
-    path: "/recipe/showRecipe",
+    path: "/recipe/showRecipe/recipeId/:recipe_id",
     name: "recipe",
     component: () => import("./pages/RecipeViewPage"),
   },
@@ -35,6 +35,11 @@ const routes = [
     name: "notFound",
     component: NotFound,
   },
+  // {
+  //   path: "/about",
+  //   name: "about",
+  //   component: () => import("./pages/aboutPage"),
+  // },
 ];
 
 export default routes;

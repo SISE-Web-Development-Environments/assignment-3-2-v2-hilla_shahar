@@ -11,6 +11,7 @@
             <div class="mb-3">
               <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
               <div>Likes: {{ recipe.aggregateLikes }} likes</div>
+              <div>Num Of Servings: {{ recipe.servings }}</div>
             </div>
             Ingredients:
             <ul>
@@ -50,12 +51,16 @@ export default {
     try {
       let response;
       // response = this.$route.params.response;
-
+      console.log(this);
+         //console.log(this.recipe_id);
+      console.log(this.$route);
+       console.log( this.$route.params.recipe_id );
+     
       try {
           response = await this.axios.get(
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/657917",
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/recipeId/:recipe_id",
           {
-            params: { recipe_id: this.$route.params.recipeId }
+            params: { recipe_id: this.$route.params.recipe_id }
           }
         );
 
