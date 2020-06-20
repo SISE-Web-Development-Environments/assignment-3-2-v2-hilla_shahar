@@ -18,7 +18,7 @@ const routes = [
     component: () => import("./pages/LoginPage"),
   },
   {
-    path: "/search",
+    path: "/search/query",
     name: "search",
     component: () => import("./pages/SearchPage"),
   },

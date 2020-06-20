@@ -53,7 +53,7 @@
     <option>Pescetarian</option>
     <option>Paleo</option>
     <option>Primal</option>
-    <option>Whole30</option>                                                      <option>Japanese</option>
+    <option>Whole30</option>
 </select></b-col>
  <b-col><select v-model="intolerance">
     <option>Dairy</option>
@@ -67,7 +67,7 @@
     <option>Soy</option>
     <option>Sulfite</option>
     <option>Tree Nut</option>
-    <option>Wheat</option>                                                          <option>Japanese</option>
+    <option>Wheat</option>
 </select></b-col>
       </b-row>
  <b-row> </b-row><br>
@@ -104,15 +104,16 @@
 
  
   <template v-if="!pushedSearch">
-    
     <b-row>
-      <b-col v-for="(r,index) in recipes" :key="index+'_'+r.id">
-        <template v-if="index%3==0">
-          <br>
-        </template>
-        <RecipePreview class="recipePreview" :recipe="r" />
+      <b-row v-for="(r,index) in recipes" :key="index">
+        <b-col v-for="x in r" :key="x.id">
+        <!-- <template v-if="index%3==0">
+          {{index}}
+        </template> -->
+        <RecipePreview class="recipePreview" :recipe="x" />
       </b-col>
-    </b-row>
+      </b-row>
+      </b-row>
   </template>
    </b-form>
   </div>
@@ -154,17 +155,17 @@ export default {
 
         const response = await this.axios.get(
           //"https://test-for-3-2.herokuapp.com/recipes/random"
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
-           {
-            params: { 
-              query: this.searchQuery,
-              cuisine: this.cuisine,
-              diet: this.diet,
-              intolerances: this.intolerance,
-              number: this.numResults,
-              instructionsRequired: true,
-               }
-          }
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search/query"
+          //  {
+          //   params: { 
+          //     query: this.searchQuery,
+          //     cuisine: this.cuisine,
+          //     diet: this.diet,
+          //     intolerances: this.intolerance,
+          //     number: this.numResults,
+          //     instructionsRequired: true,
+          //      }
+          // }
         
         );
 
@@ -172,7 +173,19 @@ export default {
         const recipes = response.data;
         // console.log(recipes);
         this.recipes = [];
-        this.recipes.push(...recipes);
+        let arr = [];
+        let len = Math.ceil(recipes.length/5);
+
+        for(let i = 0; i < len; i++) {
+          for(let j = 0; recipes.length > 0 && j < 5; j++) {
+            arr.push(recipes.pop());
+          }
+          this.recipes.push(arr);
+          arr = [];
+        }
+
+
+        //this.recipes.push(...recipes);
         console.log(this.recipes);
         this.pushedSearch=false;
       } catch (error) {
