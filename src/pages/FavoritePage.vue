@@ -1,78 +1,60 @@
 <template>
     <div  class="container">
         <h1 id="title" class="title">Favorite Page</h1>
-    
+      <b-row>
+      <b-col v-for="r in recipes" :key="r.id">
+        <RecipePreviewDb class="recipePreview" :recipe="r" />
+      </b-col>
+    </b-row>
     </div>
 </template>
 
 
+
 <script>
+import RecipePreviewDb from "../components/RecipePreviewDb.vue";
 export default {
+  name: "RecipePreviewDb",
+  components: {
+    RecipePreviewDb
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      recipe: null,
+      recipes: []
     };
   },
-  async created() {
-    try {
-      let response;
-      // response = this.$route.params.response;
-      console.log(this);
-         //console.log(this.recipe_id);
-      console.log(this.$route);
-
+  mounted() {
+    this.updateRecipes();
+  },
+  methods: {
+    async updateRecipes() {
       try {
-          response = await this.axios.get(
+        const response = await this.axios.get(
+          //"https://test-for-3-2.herokuapp.com/recipes/random"
           "https://assignment3-2hilla-shahar.herokuapp.com/user/favoritesRecipes"
-
+        
         );
 
         console.log(response);
-        if (response.status !== 200) this.$router.replace("/NotFound");
+        const recipes = response.data;
+      
+        console.log(recipes);
+        this.recipes = [];
+        this.recipes.push(...recipes);
+        console.log(this.recipes);
+
+        if(this.recipes.length===0){
+          this.recipes.push("You don't have favorites yet.");
+        }
       } catch (error) {
-        console.log("error.response.status", error.response.status);
-        this.$router.replace("/NotFound");
-        return;
+        console.log(error);
       }
-
-      let info=response.data[0];
-      
-  
-      let allIngrediants=info.extendedIngredients.extendedIngredients;
-    
-      let arrayInfo = [];
-      let newInstructions=info.instructions.replace(/<\/?[^>]+(>|$)/g, "").split(".");
-     
-     //remove if there is blank word after last instruction
-     let last=newInstructions[newInstructions.length-1];
-     if(!last || last==="" || last===" "){
-      newInstructions.splice(newInstructions.indexOf(last), 1);
-     }
-     
-        let _recipe={
-
-       instructions: newInstructions,
-        extendedIngredients:
-      allIngrediants.map((ingr)=>{
-      let data ={
-        name: ingr.name,
-        unit: ingr.unit,
-        amount: ingr.amount,
-       }
-       arrayInfo.push(data);
-      
-     }),
-     extendedIngredients:arrayInfo,
-        aggregateLikes: info.aggregateLikes,
-        readyInMinutes: info.readyInMinutes,
-        image: info.image,
-        title: info.title
-      };
-      //  console.log(_recipe);
-
-      this.recipe = _recipe;
-    } catch (error) {
-      console.log(error);
     }
   }
 };

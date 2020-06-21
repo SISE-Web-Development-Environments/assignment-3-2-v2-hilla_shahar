@@ -215,6 +215,10 @@ export default {
 
         //this.recipes.push(...recipes);
         console.log(this.recipes);
+
+        if(this.recipes.length===0){
+          this.recipes.push("There is no results for your search");
+        }
         // this.pushedSearch=false;
 
       } catch (error) {
