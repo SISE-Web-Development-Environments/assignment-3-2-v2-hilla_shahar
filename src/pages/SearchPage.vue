@@ -108,13 +108,13 @@
 <b-row>
   
   <b-col >
-    <b-button id="searchButton" type="submit" size="lg" @click="pushedSearch=!pushedSearch">Search</b-button>
+    <b-button id="searchButton" type="submit" size="lg" v-on:click="pushedSearch=true">Search</b-button>
   </b-col>
 </b-row>
   </b-table>
   <br><br>
 
-  <template v-if="!pushedSearch">
+  <template v-if="pushedSearch">
     <b-row>
       <b-row v-for="(r,index) in recipes" :key="index">
         <b-col v-for="x in r" :key="x.id">
@@ -160,6 +160,12 @@ export default {
     this.searchRecipe();
   },
   methods: {
+    // isPushed(){
+    //     this.pushedSearch=!this.pushedSearch;
+    // },
+    //  isNotPushed(){
+    //     this.pushedSearch=!this.pushedSearch;
+    // },
     async searchRecipe() {
       try {
        // this.pushedSearch = true;
@@ -167,25 +173,32 @@ export default {
 
         const response = await this.axios.get(
           //"https://test-for-3-2.herokuapp.com/recipes/random"
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search/query"
-          //  {
-          //   params: { 
-          //     query: this.searchQuery,
-          //     cuisine: this.cuisine,
-          //     diet: this.diet,
-          //     intolerances: this.intolerance,
-          //     number: this.numResults,
-          //     instructionsRequired: true,
-          //      }
-          // }
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
+           {
+            params: { 
+              query: this.searchQuery,
+              cuisine: this.cuisine,
+              diet: this.diet,
+              intolerances: this.intolerance,
+              number: this.numResults,
+              instructionsRequired: true,
+               }
+          }
         
         );
 
-        console.log(response);
+      console.log(response);
         const recipes = response.data;
 
-        // console.log(recipes);
-
+        // sort by time/popularity
+        if(this.searchOrder==="time"){
+            recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
+        }
+        if(this.searchOrder==="popular"){
+            recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
+        }
+        
+       console.log(recipes);
 
         this.recipes = [];
         let arr = [];
@@ -202,7 +215,8 @@ export default {
 
         //this.recipes.push(...recipes);
         console.log(this.recipes);
-        this.pushedSearch=false;
+        // this.pushedSearch=false;
+
       } catch (error) {
         console.log(error);
       }

@@ -41,11 +41,18 @@ export default {
           "https://assignment3-2hilla-shahar.herokuapp.com/recipe/random"
         );
 
-        const recipes = response.data;
-        console.log(recipes);
-        this.recipes = [];
-        this.recipes.push(...recipes);
+             const recipes = response.data;
 
+        let data=[];
+        for(let i=0;i<3;i++){
+          data.push(recipes.pop());
+        }
+       
+        this.recipes = [];
+        // this.recipes.push(...recipes);
+        this.recipes.push(...data);
+        console.log(this.recipes);
+       
        // console.log(this.recipes);
       } catch (error) {
         console.log(error);

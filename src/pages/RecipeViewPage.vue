@@ -50,17 +50,17 @@ export default {
   async created() {
     try {
       let response;
-      // response = this.$route.params.response;
-      console.log(this);
-         //console.log(this.recipe_id);
-      console.log(this.$route);
-       console.log( this.$route.params.recipe_id );
-     
+      
+      console.log( this.$route.params.recipe_id );
+    
       try {
           response = await this.axios.get(
           "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/recipeId/:recipe_id",
           {
-            params: { recipe_id: this.$route.params.recipe_id }
+            params: { recipe_id: 
+          //  "657917"
+            this.$route.params.recipe_id
+            }
           }
         );
 
@@ -103,7 +103,8 @@ export default {
         aggregateLikes: info.aggregateLikes,
         readyInMinutes: info.readyInMinutes,
         image: info.image,
-        title: info.title
+        title: info.title,
+        servings: info.servings,
       };
       //  console.log(_recipe);
 
