@@ -9,9 +9,9 @@
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
-              <div>Num Of Servings: {{ recipe.servings }}</div>
+              <div>Chef {{ recipe.chef }} </div>
+              <!-- <div>Likes: {{ recipe.aggregateLikes }} likes</div> -->
+              <div>Time to eat: {{ recipe.timeToEat }}</div>
             </div>
             Ingredients:
             <ul>
@@ -23,10 +23,10 @@
           </div>
           <div class="wrapped">
             Instructions:
-            <ol>
-              <li v-for="s in recipe.instructions" :key="s.number">
-              {{s}}
-              </li>
+            <ol id="text">
+              <!-- <li v-for="s in recipe.instructions" :key="s.number"> -->
+              {{ recipe.instructions}}
+              <!-- </li> -->
             </ol>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default {
     
       try {
           response = await this.axios.get(
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
+          "https://assignment3-2hilla-shahar.herokuapp.com/user/showFamilyRecipes/",
           {
             params: { recipe_id: this.$route.params.recipe_id
             }
@@ -72,36 +72,39 @@ export default {
 
       let info=response.data[0];
       
-  
-      let allIngrediants=info.extendedIngredients.extendedIngredients;
-    
+      console.log(info);
       let arrayInfo = [];
-      let newInstructions=info.instructions.replace(/<\/?[^>]+(>|$)/g, "").split(".");
-     
+    //  let newInstructions=info.instructions.replace(/<\/?[^>]+(>|$)/g, "").split(".");
+   //   console.log(newInstructions);
      //remove if there is blank word after last instruction
-     let last=newInstructions[newInstructions.length-1];
-     if(!last || last==="" || last===" "){
-      newInstructions.splice(newInstructions.indexOf(last), 1);
-     }
+   //  let last=newInstructions[newInstructions.length-1];
+    //  if(!last || last==="" || last===" "){
+    //   newInstructions.splice(newInstructions.indexOf(last), 1);
+    //  }
      
-        let _recipe={
+      let ingrediants=info.ingrediants;
+      console.log(ingrediants);
 
-       instructions: newInstructions,
-        extendedIngredients:
-      allIngrediants.map((ingr)=>{
+      ingrediants.map((ingr)=>{
       let data ={
-        name: ingr.name,
-        unit: ingr.unit,
-        amount: ingr.amount,
+        name: ingr.ingradient,
+        unit: ingr.unitType,
+        amount: ingr.quantity,
        }
        arrayInfo.push(data);
       
-     }),
-     extendedIngredients:arrayInfo,
-        aggregateLikes: info.aggregateLikes,
-        readyInMinutes: info.readyInMinutes,
+     });
+
+    console.log(arrayInfo);
+
+
+        let _recipe={
+        instructions: info.instructions,
+        extendedIngredients:arrayInfo,
         image: info.image,
         title: info.title,
+        chef: info.chef,
+        timeToEat: info.timeToEat,
         servings: info.servings,
       };
       //  console.log(_recipe);
@@ -148,5 +151,10 @@ li{
    text-align: left;
    font-weight: 100;
 }
-
+#text{
+   color: #7a512f;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: left;
+   font-weight: 100;
+}
 </style>

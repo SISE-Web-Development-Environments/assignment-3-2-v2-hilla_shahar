@@ -3,18 +3,18 @@
         <h1 id="title" class="title">Family Page</h1>
     <b-row>
       <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreviewDb class="recipePreview" :recipe="r" />
+        <RecipePreviewFamily class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
     </div>
 </template>
 
 <script>
-import RecipePreviewDb from "../components/RecipePreviewDb.vue";
+import RecipePreviewFamily from "../components/RecipePreviewFamily.vue";
 export default {
   name: "FamilyPage",
   components: {
-    RecipePreviewDb
+    RecipePreviewFamily
   },
   props: {
     title: {

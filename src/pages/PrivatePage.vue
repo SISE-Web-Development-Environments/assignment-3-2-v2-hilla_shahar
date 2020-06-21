@@ -3,18 +3,18 @@
         <h1 id="title" class="title">Private Page</h1>
       <b-row>
       <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreviewDb class="RecipePreviewDb" :recipe="r" />
+        <RecipePreviewPersonal class="RecipePreviewPersonal" :recipe="r" />
       </b-col>
     </b-row>
     </div>
 </template>
 
 <script>
-import RecipePreviewDb from "../components/RecipePreviewDb.vue";
+import RecipePreviewPersonal from "../components/RecipePreviewPersonal.vue";
 export default {
   name: "PrivatePage",
   components: {
-    RecipePreviewDb
+    RecipePreviewPersonal
   },
   props: {
     title: {

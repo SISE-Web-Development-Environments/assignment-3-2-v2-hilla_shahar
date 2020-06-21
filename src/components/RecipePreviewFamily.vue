@@ -1,18 +1,18 @@
 <template>
   <router-link
-    :to="{ name: 'showRecipe', params: { recipe_id: recipe.id } }"
+    :to="{ name: 'userRecipeFamily', params: { recipe_id: recipe.id } }"
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img  :src="recipe.image" class="recipe-image" />
+      <img  :src="recipe.image" height="50px" width="50px" class="recipe-image" />
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
       <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
+       
+        <li>{{ recipe.timeToEat }} </li>
       </ul>
     </div>
   </router-link>
