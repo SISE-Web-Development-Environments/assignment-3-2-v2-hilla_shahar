@@ -76,7 +76,7 @@ export default {
 .recipe-preview > .recipe-body {
   background:rgba(255, 255, 255, 0.75);
   width: 100%;
-  height: 120px;
+  height: 200px;
   position: relative;
 
 }

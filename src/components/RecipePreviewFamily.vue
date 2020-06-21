@@ -4,7 +4,7 @@
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img  :src="recipe.image" height="50px" width="50px" class="recipe-image" />
+      <img  :src="recipe.image" height="50" width="50" class="recipe-image" />
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
@@ -76,7 +76,7 @@ export default {
 .recipe-preview > .recipe-body {
   background:rgba(255, 255, 255, 0.75);
   width: 100%;
-  height: 120px;
+  height: 200px;
   position: relative;
 
 }
