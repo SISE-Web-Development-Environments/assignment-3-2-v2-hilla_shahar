@@ -26,6 +26,11 @@
            <div v-if="recipe.glutenFree">
                gluten free<br>
           </div>
+
+            <div v-if="!recipe.user">
+               loved: {{recipe.loved}}<br>
+                watched: {{recipe.watched}}<br>
+          </div>
   
       </div>
     </div>

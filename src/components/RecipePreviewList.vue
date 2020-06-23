@@ -82,7 +82,11 @@
                             image: info.image,
                             title: info.title,
                             watched: userData.watched,
-                            loved: userData.loved
+                            loved: userData.loved,
+                            vegan: info.vegan,
+                            vegetarian:info.vegetarian,
+                            glutenFree:info.glutenFree,
+                            user: true
                         };
                         allDetailsRecipes.push(_recipe);
                     } catch (error) {
@@ -94,6 +98,10 @@
                             readyInMinutes: allRecipesInfo[k].readyInMinutes,
                             image: allRecipesInfo[k].image,
                             title: allRecipesInfo[k].title,
+                            vegan: info.vegan,
+                            vegetarian:info.vegetarian,
+                            glutenFree:info.glutenFree,
+                            user: false
                         };
                         allDetailsRecipes.push(_recipe);
                           }

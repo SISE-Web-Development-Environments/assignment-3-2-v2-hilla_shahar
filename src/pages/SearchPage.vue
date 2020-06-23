@@ -206,7 +206,22 @@ export default {
 
         for(let i = 0; i < len; i++) {
           for(let j = 0; recipes.length > 0 && j < 5; j++) {
-            arr.push(recipes.pop());
+            let info=recipes.pop();
+            console.log(info);
+            let data={
+              title: info.title,
+              image: info.image,
+              vegan: info.vegan,
+              vegetarian:info.vegetarian,
+              glutenFree:info.glutenFree,
+              aggregateLikes: info.aggregateLikes,
+              readyInMinutes: info.readyInMinutes,
+              user:false,
+            };
+            
+          // console.log(data);
+          arr.push(data);
+          // console.log(arr);
           }
           this.recipes.push(arr);
           arr = [];
