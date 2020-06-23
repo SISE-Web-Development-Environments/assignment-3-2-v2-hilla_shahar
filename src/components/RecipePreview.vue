@@ -1,4 +1,5 @@
 <template>
+<div>
   <router-link
     :to="{ name: 'showRecipe', params: { recipe_id: recipe.id } }"
     class="recipe-preview"
@@ -6,16 +7,29 @@
     <div class="recipe-body">
       <img  :src="recipe.image" class="recipe-image" />
     </div>
+ </router-link>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
-      <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
-      </ul>
+      <div id="values" class="recipe-overview">
+        {{ recipe.readyInMinutes }} minutes<br>
+        {{ recipe.aggregateLikes }} likes <br>
+          <div v-if="recipe.vegan">
+                vegan<br>
+          </div>
+         
+       <div v-if="recipe.vegetarian">
+              vegetarian<br>
+          </div>
+    
+           <div v-if="recipe.glutenFree">
+               gluten free<br>
+          </div>
+  
+      </div>
     </div>
-  </router-link>
+ </div>
 </template>
 
 <script>
@@ -28,9 +42,9 @@ export default {
   //   });
   // },
   data() {
-    return {
-      // image_load: false
-    };
+    // return {
+    //   // image_load: false
+    // };
   },
   props: {
     recipe: {
@@ -69,15 +83,18 @@ export default {
 .recipe-preview {
   display: inline-block;
   width: 90%;
+   word-break: break-all;
   height: 100%;
   position: relative;
   margin: 10px 10px;
+  
 }
 .recipe-preview > .recipe-body {
   background:rgba(255, 255, 255, 0.75);
   width: 100%;
-  height: 120px;
-  position: relative;
+   word-break: break-all;
+  height: 150px;
+  /* position: relative; */
 
 }
 
@@ -89,6 +106,7 @@ export default {
   margin-bottom: auto;
   display: block;
   width: 98%;
+  word-break: break-all;
   height: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -96,33 +114,42 @@ export default {
 }
 
 .recipe-preview .recipe-footer {
-  width: 100%;
-  height: 50%;
+  background:rgba(255, 255, 255, 0.75);
+ 
+  height: 60%;
   overflow:auto;
-  color: #7a512f;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-   text-align: center;
-   font-weight: bold;
-   font-size: 30px;
-   display: block;
+
+  /* font-size: 40px; */
+  width: 100%;
+  display: inline-block;
+  word-break: break-all;
+ 
 }
 
 .recipe-preview .recipe-footer .recipe-title {
-   background:rgba(255, 255, 255, 0.75);
+  /* background:rgba(255, 255, 255, 0.75); */
   padding: 10px 10px;
   width: 100%;
+    color: #7a512f;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-weight: bold;
   font-size: 12pt;
+  display: inline-block;
+  word-break: break-all;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+   word-break: break-all;
 }
 
 .recipe-preview .recipe-footer ul.recipe-overview {
-   background:rgba(255, 255, 255, 0.75);
+
   padding: 5px 10px;
   width: 100%;
+   word-break: break-all;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -148,11 +175,15 @@ export default {
   -webkit-flex-grow: 1;
   flex-grow: 1;
   width: 90px;
+   word-break: break-all;
   display: table-cell;
-  text-align: center;
+
+}
+
+#values{
+   text-align: center;
   font-size: 15px;
     color: #7BB257;
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-   text-align: center;
 }
 </style>

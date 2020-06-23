@@ -51,8 +51,22 @@
 export default {
   name: "App",
   methods: {
-    Logout() {
+    async Logout() {
       this.$root.store.logout();
+      let response;
+      try {
+          response = await this.axios.get(
+          "https://assignment3-2hilla-shahar.herokuapp.com/Logout");
+
+        console.log(response);
+
+        if (response.status !== 200) this.$router.replace("/NotFound");
+      } catch (error) {
+        console.log("error.response.status", error.response.status);
+        this.$router.replace("/NotFound");
+        return;
+      }
+      
       this.$root.toast("Logout", "User logged out successfully", "success");
 
       this.$router.push("/").catch(() => {

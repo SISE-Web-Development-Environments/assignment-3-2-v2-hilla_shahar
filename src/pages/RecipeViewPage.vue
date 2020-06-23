@@ -51,11 +51,11 @@ export default {
     try {
       let response;
       
-      console.log( this.$route.params.recipe_id );
-    
+    //   console.log( this.$route);
+    // console.log($root);
       try {
           response = await this.axios.get(
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe",
           {
             params: { recipe_id: this.$route.params.recipe_id
             }
@@ -72,7 +72,9 @@ export default {
 
       let info=response.data[0];
       
-  
+      let user_response;
+
+
       let allIngrediants=info.extendedIngredients.extendedIngredients;
     
       let arrayInfo = [];
@@ -83,12 +85,12 @@ export default {
      if(!last || last==="" || last===" "){
       newInstructions.splice(newInstructions.indexOf(last), 1);
      }
-     
-        let _recipe={
+
+      let _recipe={
 
        instructions: newInstructions,
         extendedIngredients:
-      allIngrediants.map((ingr)=>{
+        allIngrediants.map((ingr)=>{
       let data ={
         name: ingr.name,
         unit: ingr.unit,
@@ -104,9 +106,10 @@ export default {
         title: info.title,
         servings: info.servings,
       };
-      //  console.log(_recipe);
-
       this.recipe = _recipe;
+      
+      console.log(this.recipe);
+
     } catch (error) {
       console.log(error);
     }
