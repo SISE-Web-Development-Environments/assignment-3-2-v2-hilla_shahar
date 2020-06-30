@@ -42,6 +42,7 @@ export default {
 .RandomRecipes {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin: 10px 0 10px;
+  
 }
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */

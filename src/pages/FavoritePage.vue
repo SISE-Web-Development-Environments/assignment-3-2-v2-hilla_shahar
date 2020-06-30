@@ -3,7 +3,7 @@
         <h1 id="title" class="title">Favorite Page</h1>
       <b-row>
       <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreviewPersonal class="RecipePreviewPersonal" :recipe="r" />
+        <RecipePreviewPersonal class="RecipePreviewPersonal" :recipe="r"/>
       </b-col>
     </b-row>
     </div>
