@@ -86,8 +86,9 @@
                             vegan: info.vegan,
                             vegetarian:info.vegetarian,
                             glutenFree:info.glutenFree,
-                            user: true
+                            // user: true
                         };
+
                         allDetailsRecipes.push(_recipe);
                     } catch (error) {
                       //moving on array of all recipes data, looking for the recipe with same id to get it details
@@ -98,10 +99,10 @@
                             readyInMinutes: allRecipesInfo[k].readyInMinutes,
                             image: allRecipesInfo[k].image,
                             title: allRecipesInfo[k].title,
-                            vegan: info.vegan,
-                            vegetarian:info.vegetarian,
-                            glutenFree:info.glutenFree,
-                            user: false
+                            vegan: allRecipesInfo[k].vegan,
+                            vegetarian:allRecipesInfo[k].vegetarian,
+                            glutenFree:allRecipesInfo[k].glutenFree,
+                            // user: false
                         };
                         allDetailsRecipes.push(_recipe);
                           }

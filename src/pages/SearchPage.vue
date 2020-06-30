@@ -156,90 +156,131 @@ export default {
       searchOrder: "none",
     };
   },
-  mounted() {
-    this.searchRecipe();
-  },
   methods: {
-    // isPushed(){
-    //     this.pushedSearch=!this.pushedSearch;
-    // },
-    //  isNotPushed(){
-    //     this.pushedSearch=!this.pushedSearch;
-    // },
     async searchRecipe() {
-      try {
-       // this.pushedSearch = true;
-        console.log(this.searchOrder);
+                let recipesId = []; //recipeID list
+                let allRecipesInfo = []; //get recipes array from apispooncular to be recognize after try catch block
+                try {
 
-        const response = await this.axios.get(
-          //"https://test-for-3-2.herokuapp.com/recipes/random"
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
-           {
-            params: { 
-              query: this.searchQuery,
-              cuisine: this.cuisine,
-              diet: this.diet,
-              intolerances: this.intolerance,
-              number: this.numResults,
-              instructionsRequired: true,
-               }
-          }
-        
-        );
+                    const response = await this.axios.get(
+                        //"https://test-for-3-2.herokuapp.com/recipes/random"
+                        "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
+                        {
+                            params: {
+                                query: this.searchQuery,
+                                cuisine: this.cuisine,
+                                diet: this.diet,
+                                intolerances: this.intolerance,
+                                number: this.numResults,
+                                instructionsRequired: true,
+                            }
+                        }
+                    );
 
-      console.log(response);
-        const recipes = response.data;
+                    //console.log(response);
+                    const recipes = response.data;
 
-        // sort by time/popularity
-        if(this.searchOrder==="time"){
-            recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
-        }
-        if(this.searchOrder==="popular"){
-            recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
-        }
-        
-       console.log(recipes);
+                    //pushing all recipes data into array
+                    allRecipesInfo.push(...recipes);
+                    //pushing all Ids into array
+                    recipes.map((recipe) => {
+                        recipesId.push(recipe.id);
+                    });
 
-        this.recipes = [];
-        let arr = [];
-        let len = Math.ceil(recipes.length/5);
+                } catch (error) {
+                    console.log(error);
+                }
 
-        for(let i = 0; i < len; i++) {
-          for(let j = 0; recipes.length > 0 && j < 5; j++) {
-            let info=recipes.pop();
-            console.log(info);
-            let data={
-              title: info.title,
-              image: info.image,
-              vegan: info.vegan,
-              vegetarian:info.vegetarian,
-              glutenFree:info.glutenFree,
-              aggregateLikes: info.aggregateLikes,
-              readyInMinutes: info.readyInMinutes,
-              user:false,
-            };
-            
-          // console.log(data);
-          arr.push(data);
-          // console.log(arr);
-          }
-          this.recipes.push(arr);
-          arr = [];
-        }
+                let allDetailsRecipes = [];
+                //if there is username
+                if(this.$root.store.username){
+                    for (let i = 0; i < recipesId.length; i++) {
+                        let idR = recipesId[i];
+                        try {
+                            const user_response = await this.axios.get(
+                                "https://assignment3-2hilla-shahar.herokuapp.com/user/showRecipe",
+                                {
+                                    params: {
+                                        recipe_id: idR
+                                    }
+                                }
+                            );
+
+                            //user data-loved, watched
+                            let userData = user_response.data[0].user_info[0];
+                            //all other information from apispooncular
+                            let info = user_response.data[0].recipe[0];
+                            console.log(info);
+                            console.log(userData);
+                            let _recipe = {
+                                id: idR,
+                                aggregateLikes: info.aggregateLikes,
+                                readyInMinutes: info.readyInMinutes,
+                                image: info.image,
+                                title: info.title,
+                                watched: userData.watched,
+                                loved: userData.loved,
+                                vegan: info.vegan,
+                                vegetarian: info.vegetarian,
+                                glutenFree: info.glutenFree,
+
+                            };
+                            // this.isUserConnection=true;
+                            allDetailsRecipes.push(_recipe);
+                            console.log(allDetailsRecipes);
+
+                            let arr = [];
+                            let len = Math.ceil((allDetailsRecipes.length)/5);
+
+                            for(let i = 0; i < len; i++) {
+                                for(let j = 0;allDetailsRecipes.length>0 &&  j < 5; j++) {
+                                    arr.push(allDetailsRecipes.pop());
+                                }
+                                this.recipes.push(arr);
+                                arr = [];
+                            }
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }//for
+                    //no user-guest
+                }else if(!this.$root.store.username){
+                    let arr = [];
+                    let len = Math.ceil(allRecipesInfo.length/5);
+
+                    for(let i = 0; i < len; i++) {
+                        for(let j = 0; allRecipesInfo.length > 0 && j < 5; j++) {
+                            let info=allRecipesInfo.pop();
+                            console.log(info);
+                            let data={
+                                id: info.id,
+                                title: info.title,
+                                image: info.image,
+                                vegan: info.vegan,
+                                vegetarian:info.vegetarian,
+                                glutenFree:info.glutenFree,
+                                aggregateLikes: info.aggregateLikes,
+                                readyInMinutes: info.readyInMinutes,
+                            };
+
+                             //console.log(data);
+                            arr.push(data);
+                             //console.log(arr);
+                             console.log("i: " , i);
+                             console.log("j: " , j);
+                        }
+                        this.recipes.push(arr);
+                        console.log(arr);
+                        arr = [];
+                    }
 
 
-        //this.recipes.push(...recipes);
-        console.log(this.recipes);
+                }
 
-        if(this.recipes.length===0){
-          this.recipes.push("There is no results for your search");
-        }
-        // this.pushedSearch=false;
 
-      } catch (error) {
-        console.log(error);
-      }
-    }
+                console.log(this.recipes);
+            }
   }
 };
 </script>
