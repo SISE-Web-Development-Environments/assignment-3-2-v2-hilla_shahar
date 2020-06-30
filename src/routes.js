@@ -26,9 +26,39 @@ const routes = [
     // path: "/recipe/:recipeId",
     // name: "recipe",
     // component: () => import("./pages/RecipeViewPage"),
-    path: "/recipe/showRecipe/recipeId/:recipe_id",
-    name: "recipe",
+    path: "/showRecipe",
+    name: "showRecipe",
     component: () => import("./pages/RecipeViewPage"),
+  },
+  {
+    path: "/showPersonalRecipes",
+    name: "userRecipe",
+    component: () => import("./pages/PrivateRecipeViewPage"),
+  },
+  {
+    path: "/showFamilyRecipes",
+    name: "userRecipeFamily",
+    component: () => import("./pages/FamilyRecipeViewPage"),
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("./pages/AboutPage"),
+  },
+  {
+    path: "/favorites",
+    name: "favorites",
+    component: () => import("./pages/FavoritePage"),
+  },
+  {
+    path: "/private",
+    name: "private",
+    component: () => import("./pages/PrivatePage"),
+  },
+  {
+    path: "/family",
+    name: "family",
+    component: () => import("./pages/FamilyPage"),
   },
   {
     path: "*",

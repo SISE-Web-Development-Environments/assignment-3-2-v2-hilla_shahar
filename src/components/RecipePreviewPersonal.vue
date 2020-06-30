@@ -1,36 +1,19 @@
 <template>
   <router-link
-    :to="{ name: 'showRecipe', params: { recipeId: recipe.id } }"
+    :to="{ name: 'userRecipe', params: { recipe_id: recipe.id } }"
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img :src="recipe.image" class="recipe-image" />
+      <img  :src="recipe.image" height="50px" width="50px" class="recipe-image" />
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
-      <div id="values" class="recipe-overview">
-        {{ recipe.readyInMinutes }} minutes<br>
-        {{ recipe.aggregateLikes }} likes <br>
-          <div v-if="recipe.vegan">
-                vegan<br>
-          </div>
-         
-       <div v-if="recipe.vegetarian">
-              vegetarian<br>
-          </div>
-    
-           <div v-if="recipe.glutenFree">
-               gluten free<br>
-          </div>
-
-            <!-- <div v-if="!recipe.user">
-               loved: {{recipe.loved}}<br>
-                watched: {{recipe.watched}}<br>
-          </div> -->
-  
-      </div>
+      <ul class="recipe-overview">
+        <li>{{ recipe.readyInMinutes }} minutes</li>
+        <li>{{ recipe.aggregateLikes }} likes</li>
+      </ul>
     </div>
   </router-link>
 </template>
@@ -40,6 +23,8 @@ export default {
   // mounted() {
   //   this.axios.get(this.recipe.image).then((i) => {
   //     this.image_load = true;
+  //     // console.log("hla");
+  //     //  console.log(this.recipe.image);
   //   });
   // },
   data() {
@@ -84,19 +69,18 @@ export default {
 .recipe-preview {
   display: inline-block;
   width: 90%;
-   word-break: break-all;
   height: 100%;
   position: relative;
   margin: 10px 10px;
-  
 }
 .recipe-preview > .recipe-body {
   background:rgba(255, 255, 255, 0.75);
   width: 100%;
-   word-break: break-all;
-  height: 150px;
-  /* position: relative; */
+  height: 200px;
+  position: relative;
+
 }
+
 .recipe-preview .recipe-body .recipe-image {
    background:rgba(255, 255, 255, 0.75);
   margin-left: auto;
@@ -105,45 +89,40 @@ export default {
   margin-bottom: auto;
   display: block;
   width: 98%;
-  word-break: break-all;
   height: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
 }
+
 .recipe-preview .recipe-footer {
-  background:rgba(255, 255, 255, 0.75);
- 
-  height: 60%;
-  overflow:auto;
-  /* font-size: 40px; */
   width: 100%;
-  display: inline-block;
-  word-break: break-all;
- 
+  height: 50%;
+  overflow:auto;
+  color: #7a512f;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
+   font-weight: bold;
+   font-size: 30px;
+   display: block;
 }
+
 .recipe-preview .recipe-footer .recipe-title {
-  /* background:rgba(255, 255, 255, 0.75); */
+   background:rgba(255, 255, 255, 0.75);
   padding: 10px 10px;
   width: 100%;
-    color: #7a512f;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  text-align: center;
-  font-weight: bold;
   font-size: 12pt;
-  display: inline-block;
-  word-break: break-all;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-   word-break: break-all;
 }
+
 .recipe-preview .recipe-footer ul.recipe-overview {
+   background:rgba(255, 255, 255, 0.75);
   padding: 5px 10px;
   width: 100%;
-   word-break: break-all;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -159,6 +138,7 @@ export default {
   table-layout: fixed;
   margin-bottom: 0px;
 }
+
 .recipe-preview .recipe-footer ul.recipe-overview li {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -168,13 +148,11 @@ export default {
   -webkit-flex-grow: 1;
   flex-grow: 1;
   width: 90px;
-   word-break: break-all;
   display: table-cell;
-}
-#values{
-   text-align: center;
+  text-align: center;
   font-size: 15px;
     color: #7BB257;
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   text-align: center;
 }
 </style>
