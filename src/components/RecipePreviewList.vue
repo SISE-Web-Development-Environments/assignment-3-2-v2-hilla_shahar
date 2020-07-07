@@ -75,8 +75,9 @@
                         let userData = user_response.data[0].user_info[0];
                         //all other information from apispooncular
                         let info = user_response.data[0].recipe[0];
-                        // console.log(userData);
+                        console.log(info);
                         let _recipe = {
+                            id: info.id,
                             aggregateLikes: info.aggregateLikes,
                             readyInMinutes: info.readyInMinutes,
                             image: info.image,
@@ -95,6 +96,7 @@
                         for(let k=0;k<allRecipesInfo.length;k++){
                           if(allRecipesInfo[k].id==id){
                             let _recipe = {
+                            id: allRecipesInfo[k].id,
                             aggregateLikes: allRecipesInfo[k].aggregateLikes,
                             readyInMinutes: allRecipesInfo[k].readyInMinutes,
                             image: allRecipesInfo[k].image,

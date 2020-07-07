@@ -32,11 +32,12 @@ export default {
   },
   methods: {
     async updateRecipes() {
+      console.log("1");
+      console.log(this);
       try {
         const response = await this.axios.get(
           //"https://test-for-3-2.herokuapp.com/recipes/random"
           "https://assignment3-2hilla-shahar.herokuapp.com/user/personalRecipes"
-        
         );
 
         console.log(response);

@@ -246,6 +246,8 @@ export default {
           }//for
           //no user-guest
       }else if(!this.$root.store.username){
+        console.log(allRecipesInfo);
+
           let arr = [];
           let len = Math.ceil(allRecipesInfo.length/5);
           for(let i = 0; i < len; i++) {

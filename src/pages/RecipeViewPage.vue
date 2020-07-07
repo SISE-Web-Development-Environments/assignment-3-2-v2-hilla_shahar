@@ -2,32 +2,33 @@
   <div class="container">
     <div v-if="recipe">
       <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
+        <h1 id="head">{{ recipe.title }}</h1>
         <img :src="recipe.image" class="center" />
       </div>
       <div class="recipe-body">
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
+              <div id="smallTitle" >Ready in {{ recipe.readyInMinutes }} minutes</div>
+              <div id="smallTitle">Likes: {{ recipe.aggregateLikes }} likes</div>
             </div>
-            Ingredients:
+             <div id="smallTitle" >Ingredients:</div>
             <ul>
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
-                :key="index + '_' + r.id"
+                :key="index + '_' + r.name"
               >
-                {{ r.original }}
+               {{ r.amount }} {{ r.unit }} {{ r.name }}
               </li>
             </ul>
           </div>
           <div class="wrapped">
-            Instructions:
+             <div id="smallTitle" >Instructions:</div>
             <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
+              <!-- <li v-for="s in recipe.instructions" :key="s.number">
                 {{ s.step }}
-              </li>
+              </li> -->
+              {{ recipe.instructions }} 
             </ol>
           </div>
         </div>
@@ -55,15 +56,19 @@ export default {
 
       try {
           console.log("Hilla");
+           console.log(this);
+            console.log(this.$route);
+          console.log(this.$route.params.recipe_id);
           response = await this.axios.get(
             
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/recipeId/",
+          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
           {
-            params: { id: this.$route.params.recipe_id }
+            params: { recipe_id: this.$route.params.recipeId }
           }
         );
 
-        console.log("response");
+        console.log(response);
+
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
@@ -71,32 +76,37 @@ export default {
         return;
       }
 
-      let {
-        analyzedInstructions,
-        instructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title
-      } = response.data.recipe;
+      // let {
+      //   // analyzedInstructions,
+      //   instructions,
+      //   extendedIngredients.extendedIngredients,
+      //   aggregateLikes,
+      //   readyInMinutes,
+      //   image,
+      //   title
+      // } = response.data[0];
 
-      let _instructions = analyzedInstructions
-        .map((fstep) => {
-          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-          return fstep.steps;
-        })
-        .reduce((a, b) => [...a, ...b], []);
+        console.log(response.data[0]);
+        console.log(response.data[0].extendedIngredients.extendedIngredients);
+
+
+
+      // let _instructions = analyzedInstructions
+      //   .map((fstep) => {
+      //     fstep.steps[0].step = fstep.name + fstep.steps[0].step;
+      //     return fstep.steps;
+      //   })
+      //   .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
-        instructions,
-        _instructions,
-        analyzedInstructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title
+        instructions:  response.data[0].instructions,
+        // _instructions,
+        // analyzedInstructions,
+        extendedIngredients: response.data[0].extendedIngredients.extendedIngredients,
+        aggregateLikes: response.data[0].aggregateLikes,
+        readyInMinutes: response.data[0].readyInMinutes,
+        image: response.data[0].image,
+        title: response.data[0].title
       };
 
       this.recipe = _recipe;
@@ -113,6 +123,25 @@ export default {
 }
 .wrapped {
   width: 50%;
+}
+#smallTitle{
+  align-items: center;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-weight: bold;
+  color:  #7BB257;
+}
+#head{
+ align-items: center;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ text-align: center;
+font-weight: bold;
+  color:  #7BB257;
+}
+.container{
+  background:rgba(255, 255, 255, 0.75);
+  color:  #7a512f;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
 }
 .center {
   display: block;

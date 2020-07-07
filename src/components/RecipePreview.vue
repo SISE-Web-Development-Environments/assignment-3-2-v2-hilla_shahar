@@ -127,7 +127,10 @@ export default {
   /* background:rgba(255, 255, 255, 0.75); */
   padding: 10px 10px;
   width: 180px;
-  overflow: hidden;
+
+  word-wrap: break-word;
+
+ /* white-space: pre-wrap; */
   /* TODO: text in new line ???? how??? */
   /* text-overflow: ellipsis; */
   /* overflow:initial; */
@@ -138,9 +141,9 @@ export default {
   text-align: center;
   font-weight: bold;
   font-size: 12pt;
-  
+/*   
   text-align: left;
-  white-space: nowrap;
+  white-space: nowrap; */
 
 }
 .recipe-preview .recipe-footer ul.recipe-overview {
