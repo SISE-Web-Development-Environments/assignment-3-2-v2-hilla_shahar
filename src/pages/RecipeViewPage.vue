@@ -110,6 +110,11 @@ export default {
       };
 
       this.recipe = _recipe;
+
+      //TODO: if enter into recipe need to add to last
+      if(this.$root.store.username){
+
+      }
     } catch (error) {
       console.log(error);
     }

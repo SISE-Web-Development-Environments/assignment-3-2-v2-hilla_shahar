@@ -2,18 +2,21 @@
   <div class="container">
     <h1 class="title">Shahar & Hilla Recipes site</h1>
   <b-row>
-   <b-col>
-    <RecipePreviewList title="Random Recipes" class="RandomRecipes center" />
+   <b-col  >
+    <RecipePreviewList id="wid" title="Random Recipes" class="RandomRecipes center" />
      </b-col>
-      <b-col>
+     <!-- <b-col>
+       .
+     </b-col> -->
+      <b-col  >
     <p v-if="!$root.store.username">
       <br><br>
       <!-- <router-link id="logIn" to="/Login" tag="button">You need to Login to vue this</router-link> -->
-      <LoginPage title="LoginPages" class="LoginPages"/>
+      <LoginPage id="wid" title="LoginPages" class="LoginPages"/>
     </p>
     <p v-else-if="$root.store.username">
       
-      <RecipeLastWatched title="Last Viewed Recipes" class="LastViewedRecipes center"/>
+      <RecipeLastWatched id="wid" title="Last Viewed Recipes" class="LastViewedRecipes center"/>
     </p>
      </b-col>
       </b-row>
@@ -51,6 +54,10 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+#wid{
+  width: 550px;
+  padding: 10px;
 }
 h1{
     color: #ffffff;

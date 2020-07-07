@@ -176,7 +176,7 @@ export default {
                   }
               }
           );
-          //console.log(response);
+          console.log(response);
           const recipes = response.data;
 
           // sort by time/popularity
@@ -199,6 +199,7 @@ export default {
       let allDetailsRecipes = [];
       //if there is username
       if(this.$root.store.username){
+        console.log(this.$root.store.username);
           for (let i = 0; i < recipesId.length; i++) {
               let idR = recipesId[i];
               try {
@@ -214,8 +215,8 @@ export default {
                   let userData = user_response.data[0].user_info[0];
                   //all other information from apispooncular
                   let info = user_response.data[0].recipe[0];
-                  // console.log(info);
-                  // console.log(userData);
+                  console.log(info);
+                  console.log(userData);
                   let _recipe = {
                       id: idR,
                       aggregateLikes: info.aggregateLikes,
@@ -241,7 +242,30 @@ export default {
                       arr = [];
                   }
               } catch (error) {
-                  console.log(error);
+                   console.log(allRecipesInfo);
+
+          let arr = [];
+          let len = Math.ceil(allRecipesInfo.length/5);
+          for(let i = 0; i < len; i++) {
+              for(let j = 0; allRecipesInfo.length > 0 && j < 5; j++) {
+                  let info=allRecipesInfo.pop();
+                  // console.log(info);
+                  let data={
+                      id: info.id,
+                      title: info.title,
+                      image: info.image,
+                      vegan: info.vegan,
+                      vegetarian:info.vegetarian,
+                      glutenFree:info.glutenFree,
+                      aggregateLikes: info.aggregateLikes,
+                      readyInMinutes: info.readyInMinutes,
+                  };
+                  arr.push(data);
+              }
+              this.recipes.push(arr);
+              console.log(arr);
+              arr = [];
+          }
               }
           }//for
           //no user-guest

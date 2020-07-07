@@ -32,14 +32,16 @@ export default {
   },
   mounted() {
     this.updateRecipes();
+    
   },
   methods: {
     async updateRecipes() {
       try {
+        console.log(this.$cookies);
         const response = await this.axios.get(
           //"https://test-for-3-2.herokuapp.com/recipes/random"
           "https://assignment3-2hilla-shahar.herokuapp.com/user/lastWatched"
-        
+          , {withCredentials: true }
         );
 
         console.log(response);
