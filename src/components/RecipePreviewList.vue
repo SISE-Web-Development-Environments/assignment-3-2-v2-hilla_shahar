@@ -62,6 +62,7 @@
                 for (let i = 0; i < recipesId.length; i++) {
                     let id = recipesId[i];
                     try {
+                        console.log("hello user");
                         const user_response = await this.axios.get(
                             "https://assignment3-2hilla-shahar.herokuapp.com/user/showRecipe",
                             {
@@ -70,6 +71,7 @@
                                 }
                             }
                         );
+                        console.log("in recipe preview list for login user");
 
                         //user data-loved, watched
                         let userData = user_response.data[0].user_info[0];
@@ -92,6 +94,7 @@
 
                         allDetailsRecipes.push(_recipe);
                     } catch (error) {
+                        console.log("catch error");
                       //moving on array of all recipes data, looking for the recipe with same id to get it details
                         for(let k=0;k<allRecipesInfo.length;k++){
                           if(allRecipesInfo[k].id==id){

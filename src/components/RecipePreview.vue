@@ -25,10 +25,16 @@
            <div v-if="recipe.glutenFree">
                gluten free<br>
           </div>
-            <!-- <div v-if="!recipe.user">
-               loved: {{recipe.loved}}<br>
-                watched: {{recipe.watched}}<br>
-          </div> -->
+          {{ $root.store.username }}
+          <div v-if="$root.store.username">
+            {{ recipe.watched }}
+            <div v-if="recipe.watched">
+              watched
+            </div>
+            <div v-if="recipe.loved">
+              loved
+            </div>
+          </div>
   
       </div>
     </div>

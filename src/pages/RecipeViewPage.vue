@@ -55,28 +55,53 @@ export default {
       // response = this.$route.params.response;
 
       try {
-          console.log("Hilla");
-           console.log(this);
-            console.log(this.$route);
-          console.log(this.$route.params.recipe_id);
-          response = await this.axios.get(
-            
-          "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
-          {
-            params: { recipe_id: this.$route.params.recipeId }
+          //console.log("Hilla");
+          console.log(this);
+          console.log(this.$route);
+          console.log(this.$route.params.recipeId);
+          if (this.$root.store.username) {
+            console.log("hello" , this.$root.store.username);
+            response = await this.axios.get(
+              "https://assignment3-2hilla-shahar.herokuapp.com/user/showRecipe/",
+              {
+                params: {
+                  recipe_id: this.$route.params.recipeId
+                }
+              }
+            );
+            console.log(response);
+            console.log(response.data[0].recipe[0]);
+            console.log(response.data[0].recipe[0].extendedIngredients.extendedIngredients);
+            let _recipe = {
+              instructions: response.data[0].recipe[0].instructions,
+              loved: response.data[0].user_info[0].loved,
+              watched: response.data[0].user_info[0].watched,
+              extendedIngredients: response.data[0].recipe[0].extendedIngredients.extendedIngredients,
+              aggregateLikes: response.data[0].recipe[0].aggregateLikes,
+              readyInMinutes: response.data[0].recipe[0].readyInMinutes,
+              image: response.data[0].recipe[0].image,
+              title: response.data[0].recipe[0].title
+            };
+
+          this.recipe = _recipe;
+          console.log(this.recipe);
+
           }
-        );
+          else {
+            console.log("hello guest");
+            response = await this.axios.get(
+              "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
+              {
+                params: { recipe_id: this.$route.params.recipeId }
+              }
+            );
+          
+          
 
         console.log(response);
 
         if (response.status !== 200) this.$router.replace("/NotFound");
-      } catch (error) {
-        console.log("error.response.status", error.response.status);
-        this.$router.replace("/NotFound");
-        return;
-      }
-
-      // let {
+        // let {
       //   // analyzedInstructions,
       //   instructions,
       //   extendedIngredients.extendedIngredients,
@@ -110,11 +135,16 @@ export default {
       };
 
       this.recipe = _recipe;
-
-      //TODO: if enter into recipe need to add to last
-      if(this.$root.store.username){
-
+        }
+      } catch (error) {
+        console.log("error.response.status", error.response.status);
+        this.$router.replace("/NotFound");
+        return;
       }
+
+      
+
+      
     } catch (error) {
       console.log(error);
     }

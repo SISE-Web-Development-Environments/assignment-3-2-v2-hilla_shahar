@@ -232,15 +232,39 @@ export default {
                   // this.isUserConnection=true;
                   allDetailsRecipes.push(_recipe);
                   console.log(allDetailsRecipes);
-                  let arr = [];
-                  let len = Math.ceil((allDetailsRecipes.length)/5);
-                  for(let i = 0; i < len; i++) {
-                      for(let j = 0;allDetailsRecipes.length>0 &&  j < 5; j++) {
-                          arr.push(allDetailsRecipes.pop());
-                      }
-                      this.recipes.push(arr);
-                      arr = [];
-                  }
+                  // let arr = [];
+                  // let len = Math.ceil((allDetailsRecipes.length)/5);
+                  // for(let i = 0; i < len; i++) {
+                  //     for(let j = 0;allDetailsRecipes.length>0 &&  j < 5; j++) {
+                  //         arr.push(allDetailsRecipes.pop());
+                  //     }
+                  //     this.recipes.push(arr);
+                  //     arr = [];
+                  // }
+          let arr = [];
+          let len = Math.ceil(allRecipesInfo.length/5);
+          for(let i = 0; i < len; i++) {
+              for(let j = 0; allRecipesInfo.length > 0 && j < 5; j++) {
+                  let info=allRecipesInfo.pop();
+                  // console.log(info);
+                  let data={
+                      id: info.id,
+                      title: info.title,
+                      image: info.image,
+                      vegan: info.vegan,
+                      watched: userData.watched,
+                      loved: userData.loved,
+                      vegetarian:info.vegetarian,
+                      glutenFree:info.glutenFree,
+                      aggregateLikes: info.aggregateLikes,
+                      readyInMinutes: info.readyInMinutes,
+                  };            
+                  arr.push(data);
+              }
+              this.recipes.push(arr);
+              console.log(arr);
+              arr = [];
+          }
               } catch (error) {
                    console.log(allRecipesInfo);
 
