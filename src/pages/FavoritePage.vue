@@ -3,7 +3,8 @@
         <h1 id="title" class="title">Favorite Page</h1>
       <b-row>
       <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreviewPersonal class="RecipePreviewPersonal" :recipe="r"/>
+        hello
+        <RecipePreview class="RecipePreview" :recipe="r"/>
       </b-col>
     </b-row>
     </div>
@@ -12,11 +13,11 @@
 
 
 <script>
-import RecipePreviewPersonal from "../components/RecipePreviewPersonal.vue";
+import RecipePreview from "../components/RecipePreview.vue";
 export default {
-  name: "RecipePreviewDb",
+  name: "favoritePage",
   components: {
-    RecipePreviewPersonal
+    RecipePreview
   },
   props: {
     title: {
