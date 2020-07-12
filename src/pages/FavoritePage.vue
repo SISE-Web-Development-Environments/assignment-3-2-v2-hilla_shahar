@@ -1,12 +1,20 @@
 <template>
     <div  class="container">
         <h1 id="title" class="title">Favorite Page</h1>
+        <div v-if="have">
       <b-row>
       <b-col v-for="r in recipes" :key="r.id">
-        hello
         <RecipePreview class="RecipePreview" :recipe="r"/>
       </b-col>
     </b-row>
+    </div>
+      <div v-if="!have">
+            <b-row>
+                <b-col >
+                    <p>There is no favorites recipes yet</p>
+                </b-col>
+            </b-row>
+        </div>
     </div>
 </template>
 
@@ -27,7 +35,8 @@ export default {
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
+      have: true,
     };
   },
   mounted() {
@@ -37,21 +46,15 @@ export default {
     async updateRecipes() {
       try {
         const response = await this.axios.get(
-          //"https://test-for-3-2.herokuapp.com/recipes/random"
           "https://assignment3-2hilla-shahar.herokuapp.com/user/favoritesRecipes"
-        
         );
 
-        console.log(response);
         const recipes = response.data;
-      
-        console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);
-        console.log(this.recipes);
 
         if(this.recipes.length===0){
-          this.recipes.push("You don't have favorites yet.");
+          this.have=false;
         }
       } catch (error) {
         console.log(error);

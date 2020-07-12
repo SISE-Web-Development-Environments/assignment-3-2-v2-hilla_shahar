@@ -62,7 +62,6 @@
                 for (let i = 0; i < recipesId.length; i++) {
                     let id = recipesId[i];
                     try {
-                        console.log("hello user");
                         const user_response = await this.axios.get(
                             "https://assignment3-2hilla-shahar.herokuapp.com/user/showRecipe",
                             {
@@ -71,13 +70,12 @@
                                 }
                             }
                         );
-                        console.log("in recipe preview list for login user");
 
                         //user data-loved, watched
                         let userData = user_response.data[0].user_info[0];
                         //all other information from apispooncular
                         let info = user_response.data[0].recipe[0];
-                        console.log(info);
+                        // console.log(info);
                         let _recipe = {
                             id: info.id,
                             aggregateLikes: info.aggregateLikes,
@@ -94,23 +92,22 @@
 
                         allDetailsRecipes.push(_recipe);
                     } catch (error) {
-                        console.log("catch error");
-                      //moving on array of all recipes data, looking for the recipe with same id to get it details
+                        //moving on array of all recipes data, looking for the recipe with same id to get it details
                         for(let k=0;k<allRecipesInfo.length;k++){
-                          if(allRecipesInfo[k].id==id){
-                            let _recipe = {
-                            id: allRecipesInfo[k].id,
-                            aggregateLikes: allRecipesInfo[k].aggregateLikes,
-                            readyInMinutes: allRecipesInfo[k].readyInMinutes,
-                            image: allRecipesInfo[k].image,
-                            title: allRecipesInfo[k].title,
-                            vegan: allRecipesInfo[k].vegan,
-                            vegetarian:allRecipesInfo[k].vegetarian,
-                            glutenFree:allRecipesInfo[k].glutenFree,
-                            // user: false
-                        };
-                        allDetailsRecipes.push(_recipe);
-                          }
+                            if(allRecipesInfo[k].id==id){
+                                let _recipe = {
+                                    id: allRecipesInfo[k].id,
+                                    aggregateLikes: allRecipesInfo[k].aggregateLikes,
+                                    readyInMinutes: allRecipesInfo[k].readyInMinutes,
+                                    image: allRecipesInfo[k].image,
+                                    title: allRecipesInfo[k].title,
+                                    vegan: allRecipesInfo[k].vegan,
+                                    vegetarian:allRecipesInfo[k].vegetarian,
+                                    glutenFree:allRecipesInfo[k].glutenFree,
+                                    // user: false
+                                };
+                                allDetailsRecipes.push(_recipe);
+                            }
                         }
                     }
                 }//for
@@ -123,7 +120,6 @@
                 }
 
                 this.recipes = [];
-                // this.recipes.push(...recipes);
                 this.recipes.push(...data);
                 console.log(this.recipes);
             }
@@ -136,5 +132,4 @@
         min-height: 300px;
         width: 600px;
     }
-  
 </style>

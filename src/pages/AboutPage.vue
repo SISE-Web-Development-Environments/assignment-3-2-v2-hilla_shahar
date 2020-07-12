@@ -12,27 +12,24 @@
             Our previous projects at this course:
             <br>
             <a href="https://sise-web-development-environments.github.io/208243220_307885236/">Pacman Game</a>
-
-            </p>
-
-            
+        </p>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.container {
-    background:rgba(255, 255, 255, 0.75);
-  min-height: 400px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  text-align: center;
-  color:  #7a512f;
-  font-weight: bold;
-}
-#title{
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: center;
-     font-weight: bold;
-      color:  #7BB257;
-}
+    .container {
+        background:rgba(255, 255, 255, 0.75);
+        min-height: 400px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-align: center;
+        color:  #7a512f;
+        font-weight: bold;
+    }
+    #title{
+        align-items: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-align: center;
+        font-weight: bold;
+        color:  #7BB257;
+    }
 </style>

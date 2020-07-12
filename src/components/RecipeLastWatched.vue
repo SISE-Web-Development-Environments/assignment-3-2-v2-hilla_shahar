@@ -39,18 +39,14 @@ export default {
       try {
         console.log(this.$cookies);
         const response = await this.axios.get(
-          //"https://test-for-3-2.herokuapp.com/recipes/random"
           "https://assignment3-2hilla-shahar.herokuapp.com/user/lastWatched"
-          , {withCredentials: true }
         );
 
-        console.log(response);
         const recipes = response.data;
-      
-        console.log(recipes);
+
         this.recipes = [];
         this.recipes.push(...recipes);
-        console.log(this.recipes);
+
       } catch (error) {
         console.log(error);
       }
