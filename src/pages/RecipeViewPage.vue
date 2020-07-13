@@ -11,13 +11,18 @@
                         <div class="mb-3">
                             <div id="smallTitle" >Ready in {{ recipe.readyInMinutes }} minutes</div>
                             <div id="smallTitle">Likes: {{ recipe.aggregateLikes }} likes</div>
+                            <div v-if="this.$root.store.username">
+                                <div v-if="!favorite">
+                                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">&#9825;</button>
+                                </div>
+                                <div v-if="favorite">
+                                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')">&#10084;</button>
+                                </div>
+                            </div>
                         </div>
                         <div id="smallTitle" >Ingredients:</div>
                         <ul>
-                            <li
-                                    v-for="(r, index) in recipe.extendedIngredients"
-                                    :key="index + '_' + r.name"
-                            >
+                            <li v-for="(r, index) in recipe.extendedIngredients" :key="index + '_' + r.name">
                                 {{ r.amount }} {{ r.unit }} {{ r.name }}
                             </li>
                         </ul>
@@ -38,11 +43,14 @@
     export default {
         data() {
             return {
-                recipe: null
+                recipe: null,
+                favorite: false,
+                button:{ 
+                    text: "&#9825;"
+                    }
             };
         },
         async created() {
-
             let response;
             try {
                 //username exists
@@ -67,6 +75,28 @@
                     };
 
                     this.recipe = _recipe;
+                    
+
+                    await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/watchedRecipe/",{
+                            params: { 
+                                recipe_id: this.$route.params.recipeId 
+                                }
+                        });
+
+
+                    //check if the recipe is already in favorites for this user
+                    let responseFavorite= await this.axios.get(
+                        "https://assignment3-2hilla-shahar.herokuapp.com/user/checkIfLoved/",
+                        {
+                            params: { recipe_id: this.$route.params.recipeId }
+                        }
+                    );
+                    if(responseFavorite.data){
+                        this.favorite=true;
+                    }else{
+                        this.favorite=false;
+                    }
+
                 }
                 else { //guest
                     response = await this.axios.get(
@@ -95,7 +125,36 @@
             }
 
 
-        }
+        },
+        methods: {
+            async addToFavorite(value){
+                let responseFavorites;
+                try{
+                    responseFavorites = await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/addToFavorites/",
+                         {
+                            params: {
+                                recipe_id: this.$route.params.recipeId,
+                                isLoved: value
+                            }
+                        }
+                     );
+                    this.value=!(this.value);
+                    this.favorite=!(this.favorite);
+
+                    //  if(this.value){
+                    //     this.button.text="tr";
+                    // }else{
+                    //     this.button.text="tfa";
+                    // }
+                     res.send(200); 
+                }catch(error){
+                    console.log("error.response.status", error.response.status);
+                    this.$router.replace("/NotFound");
+                    return;
+                }
+                
+            }
+        },
     };
 </script>
 
@@ -130,6 +189,12 @@
         margin-left: auto;
         margin-right: auto;
         width: 50%;
+    }
+    #buttonFavorites{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        background: #7BB257;
+        border: #2c3e50;
+        align-content: center;        
     }
 
 </style>

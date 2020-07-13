@@ -39,7 +39,7 @@ export default {
       try {
         console.log(this.$cookies);
         const response = await this.axios.get(
-          "https://assignment3-2hilla-shahar.herokuapp.com/user/lastWatched"
+          "https://assignment3-2hilla-shahar.herokuapp.com/user/lastWatched/"
         );
 
         const recipes = response.data;

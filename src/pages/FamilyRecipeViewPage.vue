@@ -15,7 +15,7 @@
                         Ingredients:
                         <ul>
                             <li v-for="r in recipe.extendedIngredients" :key="'_' + r.name">
-                                {{ r.name}} {{r.amount}} {{r.unit}}
+                                {{r.amount}} {{r.unit}} {{ r.name}} 
                             </li>
                         </ul>
                     </div>

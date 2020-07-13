@@ -92,9 +92,7 @@
                         <p align="center">Sorting results by:</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
-                    <!-- <b-col><br></b-col> -->
                     <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder">
                         <label for="none">none</label><br>
                         <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder">
@@ -102,11 +100,7 @@
                         <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder">
                         <label for="popular">Popularity</label><br></b-col>
                 </b-row>
-
-
-
                 <b-row>
-
                     <b-col >
                         <b-button id="searchButton" type="submit" size="lg" v-on:click="pushedSearch=true">Search</b-button>
                     </b-col>
@@ -167,7 +161,6 @@
                 let allRecipesInfo = []; //get recipes array from apispooncular to be recognize after try catch block
                 try {
                     const response = await this.axios.get(
-                        //"https://test-for-3-2.herokuapp.com/recipes/random"
                         "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
                         {
                             params: {
