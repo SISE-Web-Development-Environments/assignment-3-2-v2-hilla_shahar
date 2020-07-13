@@ -175,7 +175,7 @@
                     );
 
                     //no results in query
-                    if(response.length==0){
+                    if(response.length===0){
                         this.have=false;
                     }
 
@@ -240,18 +240,23 @@
                             for(let i = 0; i < len; i++) {
                                 for(let j = 0; allDetailsRecipes.length > 0 && j < 5; j++) {
                                     let info=allDetailsRecipes.pop();
-           
+
                                     arr.push(info);
                                 }
                                 this.recipes.push(arr);
-  
+
                                 arr = [];
                             }
-                            
+
                         } catch (error) {
                             console.log(allRecipesInfo);
                         }
                         console.log(this.recipes);
+
+                        if(this.recipes.length==0){
+                            this.have=false;
+                        }
+
                     }//for
                     //no user-guest
                 }else{
@@ -278,6 +283,9 @@
                     }
                 }
                 console.log(this.recipes);
+                if(this.recipes.length==0){
+                    this.have=false;
+                }
             }
         }
     };
