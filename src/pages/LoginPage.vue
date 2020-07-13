@@ -99,17 +99,15 @@ export default {
           {
             username: this.form.username,
             password: this.form.password
-          },
-          {withCredentials: true }
+          }
         );
-        // console.log(response);
-        // this.$root.loggedIn = true;
+
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
         this.$router.push("/");
       } catch (err) {
         console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        this.form.submitError = err.response.statusText;
       }
     },
     onLogin() {
@@ -127,6 +125,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 400px;
+  height: 300px;
 }
 form{
   color: #7BB257;

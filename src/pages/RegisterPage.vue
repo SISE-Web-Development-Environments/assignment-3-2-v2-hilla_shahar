@@ -148,6 +148,22 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+<b-form-group
+        id="input-group-urlImage"
+        label-cols-sm="3"
+        label="Image url:"
+        label-for="urlImage"
+      >
+        <b-form-input
+          id="urlImage"
+          v-model="$v.form.urlImage.$model"
+          type="urlImage"
+          :state="validateState('urlImage')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.urlImage.required">
+          image is required
+        </b-form-invalid-feedback>
+      </b-form-group>
 
       <b-button type="reset" variant="danger" class="reset" >Reset</b-button>
       <b-button
@@ -183,7 +199,8 @@ import {
   maxLength,
   alpha,
   sameAs,
-  email
+  email,
+  url,
 } from "vuelidate/lib/validators";
 
 export default {
@@ -199,6 +216,7 @@ export default {
         confirmedPassword: "",
         email: "",
         submitError: undefined,
+        urlImage: ""
       },
       countries: [{ value: null, text: "", disabled: true }],
       errors: [],
@@ -234,6 +252,10 @@ export default {
       email:{
         required,
         email,
+      },
+      urlImage:{
+        required,
+        url
       }
     }
   },
@@ -289,7 +311,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
-  max-width: 500px;
+  max-width: 700px;
+  background:rgba(255, 255, 255, 0.75);
 }
 h1{
   color: #7BB257;
@@ -298,7 +321,7 @@ h1{
   font-weight: bold;
 }
 form{
-  color: #7BB257;
+  color: #7a512f;
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    text-align: center;
    font-weight: bold;
@@ -313,7 +336,6 @@ button.reset{
   background: #7BB257;
   border: #e1b4fc;
 }
-.container{
-  background:rgba(255, 255, 255, 0.75);
-}
+
+
 </style>

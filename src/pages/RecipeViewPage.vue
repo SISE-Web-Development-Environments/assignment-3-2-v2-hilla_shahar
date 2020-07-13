@@ -32,7 +32,12 @@
                         <ol>
                             {{ recipe.instructions }}
                         </ol>
+
+                        <router-link id="routerLink" :to="{ name: 'prepareRecipe', params: { recipeId: recipe.id } }"  >
+                                Click here to Prepare Recipe 
+                            </router-link>
                     </div>
+                     
                 </div>
             </div>
         </div>
@@ -141,11 +146,6 @@
                     this.value=!(this.value);
                     this.favorite=!(this.favorite);
 
-                    //  if(this.value){
-                    //     this.button.text="tr";
-                    // }else{
-                    //     this.button.text="tfa";
-                    // }
                      res.send(200); 
                 }catch(error){
                     console.log("error.response.status", error.response.status);
@@ -195,6 +195,11 @@
         background: #7BB257;
         border: #2c3e50;
         align-content: center;        
+    }
+    #routerLink{
+        color: #F70102;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bold;
     }
 
 </style>

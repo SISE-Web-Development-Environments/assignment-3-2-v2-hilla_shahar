@@ -1,26 +1,21 @@
 <template>
     <div class="container">
         <h1 class="title">Shahar & Hilla Recipes site</h1>
+        <br>
         <b-row>
             <b-col>
-                <br>
-                <p>
-                    <RecipePreviewList id="wid" title="Explore these Recipes" class="RandomRecipes center" />
-                </p>
+                <RecipePreviewList id="wid" title="Explore these Recipes" class="RandomRecipes center" />
             </b-col>
-            <b-col>
-                <br>
-                <p v-if="!$root.store.username">
-                    <LoginPage id="wid" title="LoginPages" class="LoginPages"/>
-                </p>
-                <p v-else-if="$root.store.username">
-                    <RecipeLastWatched id="wid" title="Last Watched Recipes" class="LastViewedRecipes center"/>
-                </p>
+            <b-col v-if="!$root.store.username">
+               <LoginPage id="wid" title="LoginPages" class="LoginPages"/>
+            </b-col>
+            <b-col  v-else-if="$root.store.username">
+                <RecipeLastWatched id="wid" title="Last Watched Recipes" class="LastViewedRecipes center"/>
             </b-col>
         </b-row>
         <b-row>
             <b-col>
-                <button id="random"> Random</button>
+                <button id="random" > Random</button>
             </b-col>
         </b-row>
     </div>
