@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <br>
         <h1 class="title">Shahar & Hilla Recipes site</h1>
         <br>
         <b-row>
@@ -11,11 +12,6 @@
             </b-col>
             <b-col  v-else-if="$root.store.username">
                 <RecipeLastWatched id="wid" title="Last Watched Recipes" class="LastViewedRecipes center"/>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <button id="random" > Random</button>
             </b-col>
         </b-row>
     </div>
@@ -51,23 +47,23 @@
     #wid{
         width: 550px;
         padding: 10px;
+        align-content: center;
+        align-items: center;
     }
     h1{
         color: #ffffff;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         text-align: center;
         font-weight: bold;
+        font-size: 70px;
+        // text-shadow: 2px 2px 5px #d8a631;
+        text-shadow: 1px 1px 2px #d8a631, 0 0 25px #d8a631, 0 0 5px #d8a631;
     }
     #logIn{
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         background: #7BB257;
         border: #2c3e50;
     }
-    #random{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        background: #7BB257;
-        border: #2c3e50;
-        align-content: center;
-    }
+  
 
 </style>

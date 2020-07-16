@@ -4,20 +4,20 @@
       {{ title }}:
       <slot></slot>
     </h3>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
-    </b-row>
+    <b-col>
+      <b-row v-for="r in recipes" :key="r.id">
+        <RecipePreviewMain class="RecipePreviewMain" :recipe="r" />
+      </b-row>
+    </b-col>
   </b-container>
 </template>
 
 <script>
-import RecipePreview from "./RecipePreview.vue";
+import RecipePreviewMain from "./RecipePreviewMain.vue";
 export default {
   name: "RecipeLastWatched",
   components: {
-    RecipePreview
+    RecipePreviewMain
   },
   props: {
     title: {
@@ -90,5 +90,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+}
+h3{
+   text-shadow: 2px 2px 5px #d8a631;
 }
 </style>

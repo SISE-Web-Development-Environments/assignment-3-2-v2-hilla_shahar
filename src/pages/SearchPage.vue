@@ -7,109 +7,110 @@
             </b-form-input>
 
             <br><br>
-            <b-table>
-                <b-row>
-                    <b-col id="col">Cuisine:</b-col>
-                    <b-col id="col">Diet:</b-col>
-                    <b-col id="col">Intolerances:</b-col>
-                </b-row>
-                <b-row>
-                    <b-col><select v-model="cuisine">
-                        <option>African</option>
-                        <option>American</option>
-                        <option>British</option>
-                        <option>Cajun</option>
-                        <option>Caribbean</option>
-                        <option>Chinese</option>
-                        <option>Eastern European</option>
-                        <option>European</option>
-                        <option>French</option>
-                        <option>German</option>
-                        <option>Greek</option>
-                        <option>Indian</option>
-                        <option>Irish</option>
-                        <option>Italian</option>
-                        <option>Japanese</option>
-                        <option>Jewish</option>
-                        <option>Korean</option>
-                        <option>Latin American</option>
-                        <option>Mediterranean</option>
-                        <option>Mexican</option>
-                        <option>Middle Eastern</option>
-                        <option>Nordic</option>
-                        <option>Southern</option>
-                        <option>Spanish</option>
-                        <option>Thai</option>
-                        <option>Vietnamese</option>                                                           <option>Japanese</option>
-                    </select></b-col>
 
-                    <b-col><select v-model="diet">
-                        <option>Gluten Free</option>
-                        <option>Ketogenic</option>
-                        <option>Vegetarian</option>
-                        <option>Lacto-Vegetarian</option>
-                        <option>Ovo-Vegetarian</option>
-                        <option>Vegan</option>
-                        <option>Pescetarian</option>
-                        <option>Paleo</option>
-                        <option>Primal</option>
-                        <option>Whole30</option>
-                    </select></b-col>
-                    <b-col><select v-model="intolerance">
-                        <option>Dairy</option>
-                        <option>Egg</option>
-                        <option>Gluten</option>
-                        <option>Grain</option>
-                        <option>Peanut</option>
-                        <option>Seafood</option>
-                        <option>Sesame</option>
-                        <option>Shellfish</option>
-                        <option>Soy</option>
-                        <option>Sulfite</option>
-                        <option>Tree Nut</option>
-                        <option>Wheat</option>
-                    </select></b-col>
-                </b-row>
-                <b-row> </b-row><br>
-                <b-row >
+            <b-row>
+                <b-col id="col">Cuisine:</b-col>
+                <b-col id="col">Diet:</b-col>
+                <b-col id="col">Intolerances:</b-col>
+            </b-row>
+            <b-row>
+                <b-col><select v-model="cuisine">
+                    <option>African</option>
+                    <option>American</option>
+                    <option>British</option>
+                    <option>Cajun</option>
+                    <option>Caribbean</option>
+                    <option>Chinese</option>
+                    <option>Eastern European</option>
+                    <option>European</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Greek</option>
+                    <option>Indian</option>
+                    <option>Irish</option>
+                    <option>Italian</option>
+                    <option>Japanese</option>
+                    <option>Jewish</option>
+                    <option>Korean</option>
+                    <option>Latin American</option>
+                    <option>Mediterranean</option>
+                    <option>Mexican</option>
+                    <option>Middle Eastern</option>
+                    <option>Nordic</option>
+                    <option>Southern</option>
+                    <option>Spanish</option>
+                    <option>Thai</option>
+                    <option>Vietnamese</option>                                                           
+                </select></b-col>
 
-                    <b-col colspan="3" align-self="center">
-                        <p align="center">Choose num of results:</p>
-                    </b-col>
-                </b-row>
+                <b-col><select v-model="diet">
+                    <option>Gluten Free</option>
+                    <option>Ketogenic</option>
+                    <option>Vegetarian</option>
+                    <option>Lacto-Vegetarian</option>
+                    <option>Ovo-Vegetarian</option>
+                    <option>Vegan</option>
+                    <option>Pescetarian</option>
+                    <option>Paleo</option>
+                    <option>Primal</option>
+                    <option>Whole30</option>
+                </select></b-col>
+                <b-col><select v-model="intolerance">
+                    <option>Dairy</option>
+                    <option>Egg</option>
+                    <option>Gluten</option>
+                    <option>Grain</option>
+                    <option>Peanut</option>
+                    <option>Seafood</option>
+                    <option>Sesame</option>
+                    <option>Shellfish</option>
+                    <option>Soy</option>
+                    <option>Sulfite</option>
+                    <option>Tree Nut</option>
+                    <option>Wheat</option>
+                </select></b-col>
+            </b-row>
+            <b-row> </b-row><br>
+            <b-row >
 
-                <b-row>
-                    <!-- <b-col><br></b-col> -->
-                    <b-col><input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
-                        <label for="five">5</label><br> <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
-                        <label for="ten">10</label><br><input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
-                        <label for="fifth">15</label><br></b-col>
-                </b-row>
+                <b-col colspan="3" align-self="center">
+                    <p align="center">Choose num of results:</p>
+                </b-col>
+            </b-row>
 
-                <b-row> </b-row><br>
-                <b-row >
-                    <b-col colspan="3" align-self="center">
-                        <p align="center">Sorting results by:</p>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder">
-                        <label for="none">none</label><br>
-                        <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder">
-                        <label for="time">Time preperation</label><br>
-                        <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder">
-                        <label for="popular">Popularity</label><br></b-col>
-                </b-row>
-                <b-row>
-                    <b-col >
-                        <b-button id="searchButton" type="submit" size="lg" v-on:click="pushedSearch=true">Search</b-button>
-                    </b-col>
-                </b-row>
-            </b-table>
+            <b-row>
+                <!-- <b-col><br></b-col> -->
+                <b-col><input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
+                    <label for="five">5</label><br> <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
+                    <label for="ten">10</label><br><input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
+                    <label for="fifth">15</label><br></b-col>
+            </b-row>
+
+            <!-- <b-row> </b-row><br> -->
+            <!-- <b-row >
+                <b-col colspan="3" align-self="center">
+                    <p align="center">Sorting results by:</p>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder">
+                    <label for="none">none</label><br>
+                    <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder">
+                    <label for="time">Time preperation</label><br>
+                    <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder">
+                    <label for="popular">Popularity</label><br></b-col>
+            </b-row> -->
+            <b-row>
+                <b-col >
+                    <b-button id="searchButton" type="submit" size="lg" v-on:click="pushedSearch=true">Search</b-button>
+                </b-col>
+            </b-row>
+
             <br><br>
 
-            <template v-if="pushedSearch">
+            <template v-if="pushedSearch">  
                 <div v-if="have">
+                    
                     <b-row>
                         <b-row v-for="(r,index) in recipes" :key="index">
                             <b-col v-for="x in r" :key="x.id">
@@ -117,9 +118,33 @@
                             </b-col>
                         </b-row>
                     </b-row>
+
+                                                    <b-row >
+                <b-col colspan="3" align-self="center">
+                    <p align="center">Sorting results by:</p>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder" @change="searchRecipe()">
+                    <label for="none">none</label><br>
+                    <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder" @change="searchRecipe()">
+                    <label for="time">Time preperation</label><br>
+                    <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder" @change="searchRecipe()">
+                    <label for="popular">Popularity</label><br></b-col>
+            </b-row>
+
+
+                     Time in minutes:  &#9201; |
+                    Likes: &#10084; |
+                    Vegan :<img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> |
+                    Vegetarian: <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> |
+                    GF:  <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                    <br>
                 </div>
                 <div v-if="!have">
-                    <p>There was no recipes for your search, please try different query</p>
+                    <b-alert class="mt-2" v-if="!have" variant="warning" dismissible show>
+      There was no recipes for your search
+    </b-alert>
                 </div>
             </template>
         </b-form>
@@ -134,12 +159,12 @@
         components: {
             RecipePreview
         },
-        props: {
-            title: {
-                type: String,
-                required: true
-            }
-        },
+        // props: {
+        //     title: {
+        //         type: String,
+        //         required: true
+        //     }
+        // },
         data() {
             return {
                 recipes: [],
@@ -151,15 +176,20 @@
                 searchQuery: "",
                 searchOrder: "none",
                 have: false,
+                searchAlready: false,
             };
         },
+
         methods: {
             async searchRecipe() {
                 this.have=true;
-                this.recipes=[];
+                
                 let recipesId = []; //recipeID list
+                let recipes=[];
                 let allRecipesInfo = []; //get recipes array from apispooncular to be recognize after try catch block
                 try {
+                    if(!this.searchAlready){
+                    this.recipes=[];
                     const response = await this.axios.get(
                         "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
                         {
@@ -179,22 +209,39 @@
                         this.have=false;
                     }
 
-                    const recipes = response.data;
+                    recipes = response.data;
 
-                    // sort by time/popularity
+                    this.searchAlready=true;
+                    }else{
+                
+                        let allRecipesData=[];
+                        let arr= this.recipes;
+                  
+                        this.recipes=[];
+                        //tmp arr that moving on every recipe
+                        arr.map((rec)=>{
+                            allRecipesData.push(rec[0]);
+                        });
+
+                        recipes=allRecipesData;
+                    }
+                    
+
                     if(this.searchOrder==="time"){
-                        recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
+                       recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
                     }
                     if(this.searchOrder==="popular"){
-                        recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
+                       recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
                     }
-
+  
                     //pushing all recipes data into array
                     allRecipesInfo.push(...recipes);
                     //pushing all Ids into array
                     recipes.map((recipe) => {
                         recipesId.push(recipe.id);
                     });
+
+                    console.log(recipesId);
                 } catch (error) {
                     console.log(error);
                 }
@@ -218,7 +265,7 @@
                             let userData = user_response.data[0].user_info[0];
                             //all other information from apispooncular
                             let info = user_response.data[0].recipe[0];
-                            console.log(user_response.data[0]);
+                            // console.log(user_response.data[0]);
                             let _recipe = {
                                 id: idR,
                                 aggregateLikes: info.aggregateLikes,
@@ -249,8 +296,9 @@
                             }
 
                         } catch (error) {
-                            console.log(allRecipesInfo);
+                            console.log(error);
                         }
+
                         console.log(this.recipes);
 
                         if(this.recipes.length==0){
@@ -282,18 +330,19 @@
                         arr = [];
                     }
                 }
-                console.log(this.recipes);
+                // console.log(this.recipes);
                 if(this.recipes.length==0){
                     this.have=false;
                 }
-            }
+            },
+
         }
     };
 </script>
 
 <style lang="scss" scoped>
     .container {
-        width: 1400px;
+        width: 1200px;
         min-height: 400px;
         background:rgba(255, 255, 255, 0.75);
         color:  #7a512f;
@@ -317,4 +366,6 @@
         font-weight: bold;
         color:  #7BB257;
     }
+    
+    
 </style>

@@ -4,21 +4,26 @@
             {{ title }}:
             <slot></slot>
         </h3>
-        <b-row>
-            <b-col id="col" v-for="r in recipes" :key="r.id">
-                <RecipePreview class="recipePreview" :recipe="r"/>
-            </b-col>
-        </b-row>
+        <b-col>
+            <b-row id="col" v-for="r in recipes" :key="r.id">
+                <RecipePreviewMain class="RecipePreviewMain" :recipe="r"/>
+            </b-row>
+        </b-col>
+            <b-col>
+            <b-row>
+                <button id="random" v-on:click="updateRecipes" > Random</button>
+            </b-row>
+        </b-col>
     </b-container>
 </template>
 
 <script>
-    import RecipePreview from "./RecipePreview.vue";
+    import RecipePreviewMain from "./RecipePreviewMain.vue";
 
     export default {
         name: "RecipePreviewList",
         components: {
-            RecipePreview
+            RecipePreviewMain
         },
         props: {
             title: {
@@ -131,5 +136,15 @@
     .container {
         min-height: 300px;
         width: 600px;
+        align-content: center;
+    }
+    #random{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        background: #7BB257;
+        border: #2c3e50;
+        align-content: center;
+    }
+    h3{
+   text-shadow: 2px 2px 5px #d8a631;
     }
 </style>

@@ -13,30 +13,36 @@
                     {{ recipe.title }}
                 </div>
                 <div id="values" class="recipe-overview">
-                    <div v-if="!favorite">
-                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                <div v-if="!favorite">
+                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> 
+                        <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
                 </div>
                 <div v-if="favorite">
-                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')">
+                        <img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/>
+                        </button>
                 </div>
-                    {{ recipe.readyInMinutes }} &#9201;   
+                    {{ recipe.readyInMinutes }} &#9201;
                     {{ recipe.aggregateLikes }} &#10084; <br>
-                     <div v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
+
+                    <div v-if="recipe.vegan">
+                        <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
                     </div>
 
                     <div v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
                     </div>
 
                     <div v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     </div>
+
+
                 </div>
             </div>
         </div>
         <div class="recipe-preview-guest" v-else>
-           <router-link
+            <router-link
                     :to="{ name: 'showRecipe', params: { recipeId: recipe.id } }"
             >
                 <div class="recipe-body">
@@ -48,29 +54,29 @@
                     {{ recipe.title }}
                 </div>
                 <div id="values" class="recipe-overview">
-                     <div v-if="$root.store.username">
+                <div v-if="$root.store.username">
                     <div v-if="!favorite">
-                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">
-                            <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/>
-                        </button>
+                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
                     </div>
                     <div v-if="favorite">
                         <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
                     </div>
-                        </div>
-                    {{ recipe.readyInMinutes }} &#9201;   
+                </div>
+                    {{ recipe.readyInMinutes }} &#9201;
                     {{ recipe.aggregateLikes }} &#10084; <br>
+
                     <div v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
+                        <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
                     </div>
 
                     <div v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
                     </div>
 
                     <div v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -101,7 +107,7 @@
                         params: { recipe_id: this.recipe.id }
                     }
                 );
-                // console.log(responseFavorite);
+                console.log(responseFavorite);
 
                 if(responseFavorite.data){
                     this.favorite=true;
@@ -113,14 +119,14 @@
             }
 
         },
-         methods: {
+        methods: {
             async addToFavorite(value){
                 let responseFavorites;
                 try{
                     responseFavorites = await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/addToFavorites/",
                         {
                             params: {
-                                recipe_id:this.recipe.id,
+                                recipe_id: this.recipe.id,
                                 isLoved: value
                             }
                         }
@@ -128,7 +134,6 @@
                     this.value=!(this.value);
                     this.favorite=!(this.favorite);
 
-                    
                     res.send(200);
                 }catch(error){
                     console.log("error.response.status", error.response.status);
@@ -142,9 +147,12 @@
 </script>
 
 <style scoped>
+    .div{
+        overflow: hidden;
+    }
     .recipe-preview {
-        width: 200px;
-        height: 320px;
+        width: 300px;
+        height: 360px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
@@ -153,9 +161,9 @@
         border-style: solid ;
     }
 
-   .recipe-preview-guest {
-        width: 180px;
-        height: 320px;
+    .recipe-preview-guest {
+        width: 300px;
+        height: 360px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
@@ -169,32 +177,31 @@
         margin-top: auto;
         margin-bottom: auto;
         display: block;
-        width: 172px;
+        width: 290px;
     }
     .recipe-footer {
-
         height: 60%;
         overflow:auto;
-        width: 172px;
+        width: 300px;
         display: inline-block;
         word-break: break-all;
-
 
     }
     .recipe-title {
         padding: 10px 10px;
-        width: 172px;
+        width: 300px;
         word-wrap: break-word;
         color: #7a512f;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         text-align: center;
         font-weight: bold;
-        font-size: 12pt;
+        font-size: 20px;
     }
 
     #values{
         text-align: center;
-        font-size: 15px;
+        font-size: 14px;
+        font-weight: bold;
         color: #7BB257;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }

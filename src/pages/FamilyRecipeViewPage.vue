@@ -9,8 +9,9 @@
                 <div class="wrapper">
                     <div class="wrapped">
                         <div class="mb-3">
-                            <div>Chef {{ recipe.chef }} </div>
-                            <div>Time to eat: {{ recipe.timeToEat }}</div>
+                            <div>Chef: {{ recipe.chef }} </div>
+                            <div>Time to eat: {{ recipe.timeToEat }} </div>
+                            <div>Num Of Servings: {{ recipe.servings }}</div>
                         </div>
                         Ingredients:
                         <ul>

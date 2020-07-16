@@ -12,8 +12,11 @@ const router = new VueRouter({
   routes,
 });
 
-import VueCookies from "vue-cookies";
-Vue.use(VueCookies);
+// import VueCookies from "vue-cookies";
+// Vue.use(VueCookies);
+
+import { BProgress } from 'bootstrap-vue';
+Vue.component('b-progress', BProgress);
 
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";

@@ -107,6 +107,7 @@
         >
           Have length between 5-10 characters long
         </b-form-invalid-feedback>
+
       </b-form-group>
 
       <b-form-group
@@ -144,7 +145,7 @@
           :state="validateState('email')"
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.email.required">
-          email is required
+          Email is required
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -161,7 +162,7 @@
           :state="validateState('urlImage')"
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.urlImage.required">
-          image is required
+          Image is required- need to load to "Cloudinary.com"
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -243,7 +244,10 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        validPass: function(password){
+          return password.match(/[!"#$%&'()*+,-.:;<=>?@[\]^_`{|}~]/) && password.match(/\d/);
+        }
       },
       confirmedPassword: {
         required,
@@ -276,8 +280,9 @@ export default {
             password: this.form.password
           }
         );
+        console.log(response);
         this.$router.push("/Login");
-        // console.log(response);
+        console.log(response);
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
@@ -301,6 +306,7 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
+        urlImage: "",
       };
       this.$nextTick(() => {
         this.$v.$reset();

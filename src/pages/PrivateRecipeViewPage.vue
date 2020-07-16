@@ -9,7 +9,7 @@
                 <div class="wrapper">
                     <div class="wrapped">
                         <div class="mb-3">
-                            <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
+                            <div>&#9201; {{ recipe.readyInMinutes }} minutes</div>
                             <div>Num Of Servings: {{ recipe.servings }}</div>
                         </div>
                         Ingredients:

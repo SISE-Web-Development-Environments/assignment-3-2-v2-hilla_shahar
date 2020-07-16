@@ -60,7 +60,7 @@ const routes = [
   {
     path: "/prepareRecipe",
     name: "prepareRecipe",
-    component: () => import("./pages/prepareRecipePage"),
+    component: () => import("./pages/PrepareRecipePage"),
   },
   {
     path: "*",

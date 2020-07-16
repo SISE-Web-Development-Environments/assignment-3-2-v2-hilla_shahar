@@ -9,8 +9,10 @@
                 <div class="wrapper">
                     <div class="wrapped">
                         <div class="mb-3">
-                            <div id="smallTitle" >Ready in {{ recipe.readyInMinutes }} minutes</div>
-                            <div id="smallTitle">Likes: {{ recipe.aggregateLikes }} likes</div>
+                            <div id="smallTitle" >&#9201; {{ recipe.readyInMinutes }} minutes</div>
+                            <div id="smallTitle"> {{ recipe.aggregateLikes }} &#10084;</div>
+                            <div id="smallTitle"> Num of Servings: {{ recipe.servings }}</div>
+
                             <div v-if="this.$root.store.username">
                                 <div v-if="!favorite">
                                     <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">&#9825;</button>
@@ -33,7 +35,7 @@
                             {{ recipe.instructions }}
                         </ol>
 
-                        <router-link id="routerLink" :to="{ name: 'prepareRecipe', params: { recipeId: recipe.id } }"  >
+                        <router-link id="routerLink" :to="{ name: 'prepareRecipe', params: { recipe: recipe } }"  >
                                 Click here to Prepare Recipe 
                             </router-link>
                     </div>
@@ -69,6 +71,7 @@
                         }
                     );
                     let _recipe = {
+                        id: response.data[0].recipe[0].id,
                         instructions: response.data[0].recipe[0].instructions,
                         loved: response.data[0].user_info[0].loved,
                         watched: response.data[0].user_info[0].watched,
@@ -76,7 +79,8 @@
                         aggregateLikes: response.data[0].recipe[0].aggregateLikes,
                         readyInMinutes: response.data[0].recipe[0].readyInMinutes,
                         image: response.data[0].recipe[0].image,
-                        title: response.data[0].recipe[0].title
+                        title: response.data[0].recipe[0].title,
+                        servings: response.data[0].recipe[0].servings,
                     };
 
                     this.recipe = _recipe;
@@ -114,12 +118,14 @@
                     if (response.status !== 200) this.$router.replace("/NotFound");
 
                     let _recipe = {
+                        id: response.data[0].id,
                         instructions:  response.data[0].instructions,
                         extendedIngredients: response.data[0].extendedIngredients.extendedIngredients,
                         aggregateLikes: response.data[0].aggregateLikes,
                         readyInMinutes: response.data[0].readyInMinutes,
                         image: response.data[0].image,
-                        title: response.data[0].title
+                        title: response.data[0].title,
+                        servings: response.data[0].servings,
                     };
                     this.recipe = _recipe;
                 }
