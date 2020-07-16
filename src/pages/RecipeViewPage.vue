@@ -10,17 +10,11 @@
                     <div class="wrapped">
                         <div class="mb-3">
                             <div id="smallTitle" >&#9201; {{ recipe.readyInMinutes }} minutes</div>
-                            <div id="smallTitle"> {{ recipe.aggregateLikes }} &#10084;</div>
-                            <div id="smallTitle"> Num of Servings: {{ recipe.servings }}</div>
+                            <div id="smallTitle">&#10084; {{ recipe.aggregateLikes }} </div>
+                            <div id="smallTitle"> 
+                                <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/>
+                                 {{ recipe.servings }}</div>
 
-                            <div v-if="this.$root.store.username">
-                                <div v-if="!favorite">
-                                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">&#9825;</button>
-                                </div>
-                                <div v-if="favorite">
-                                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')">&#10084;</button>
-                                </div>
-                            </div>
                         </div>
                         <div id="smallTitle" >Ingredients:</div>
                         <ul>
@@ -35,9 +29,11 @@
                             {{ recipe.instructions }}
                         </ol>
 
+                        <div v-if="this.$root.store.username">
                         <router-link id="routerLink" :to="{ name: 'prepareRecipe', params: { recipe: recipe } }"  >
                                 Click here to Prepare Recipe 
                             </router-link>
+                        </div>
                     </div>
                      
                 </div>
@@ -50,11 +46,7 @@
     export default {
         data() {
             return {
-                recipe: null,
-                favorite: false,
-                button:{ 
-                    text: "&#9825;"
-                    }
+                recipe: null
             };
         },
         async created() {
@@ -70,6 +62,7 @@
                             }
                         }
                     );
+
                     let _recipe = {
                         id: response.data[0].recipe[0].id,
                         instructions: response.data[0].recipe[0].instructions,
@@ -84,27 +77,14 @@
                     };
 
                     this.recipe = _recipe;
-                    
-
+                    console.log(this.recipe);
+                    console.log(this.recipe.servings);
+                    //add to watch list
                     await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/watchedRecipe/",{
                             params: { 
                                 recipe_id: this.$route.params.recipeId 
                                 }
                         });
-
-
-                    //check if the recipe is already in favorites for this user
-                    let responseFavorite= await this.axios.get(
-                        "https://assignment3-2hilla-shahar.herokuapp.com/user/checkIfLoved/",
-                        {
-                            params: { recipe_id: this.$route.params.recipeId }
-                        }
-                    );
-                    if(responseFavorite.data){
-                        this.favorite=true;
-                    }else{
-                        this.favorite=false;
-                    }
 
                 }
                 else { //guest
@@ -136,30 +116,6 @@
             }
 
 
-        },
-        methods: {
-            async addToFavorite(value){
-                let responseFavorites;
-                try{
-                    responseFavorites = await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/addToFavorites/",
-                         {
-                            params: {
-                                recipe_id: this.$route.params.recipeId,
-                                isLoved: value
-                            }
-                        }
-                     );
-                    this.value=!(this.value);
-                    this.favorite=!(this.favorite);
-
-                     res.send(200); 
-                }catch(error){
-                    console.log("error.response.status", error.response.status);
-                    this.$router.replace("/NotFound");
-                    return;
-                }
-                
-            }
         },
     };
 </script>
@@ -195,12 +151,6 @@
         margin-left: auto;
         margin-right: auto;
         width: 50%;
-    }
-    #buttonFavorites{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        background: #7BB257;
-        border: #2c3e50;
-        align-content: center;        
     }
     #routerLink{
         color: #F70102;

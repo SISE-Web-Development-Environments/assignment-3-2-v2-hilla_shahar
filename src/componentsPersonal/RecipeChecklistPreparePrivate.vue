@@ -18,6 +18,7 @@
         },
         
         async created(){
+            console.log(this.step);
             this.step=this.step.step;
         },
 

@@ -1,26 +1,33 @@
 <template>
     <div>
         <div>
-            <input type="checkbox" id="jack" value="Jack" v-model="allSteps">
-            <label for="jack">{{step}}</label>
+            <input type="checkbox" id="jack" value="Jack" v-model="allIngrediants">
+            <label for="jack"> {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}}</label>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        
+        // data() {
+        //     return {
+        //         // ingerdients: "",
+        //     };
+        // },
         props: {
-            step: {
-                type: String,
+            ingredient: {
+                type: Object,
                 required: true
             }
         },
-        
-        async created(){
-            this.step=this.step.step;
-        },
+        // async created(){
+        //     console.log(this);
+        //     console.log(this.ingredient);
 
+        //     // if(allIngrediants){
+        //     //      text-decoration: line-through;
+        //     // }
+        // }
     };
 </script>
 
@@ -58,5 +65,10 @@
         font-size: 15px;
         color: #7BB257;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    input[type=checkbox]:checked:after {
+        background: #7BB257 !important;
+        color: black !important;
+        text-decoration: line-through;
     }
 </style>

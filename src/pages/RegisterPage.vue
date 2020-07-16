@@ -21,7 +21,7 @@
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          Username alpha
+          Username should be only letters
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -98,16 +98,18 @@
         <b-form-invalid-feedback v-if="!$v.form.password.required">
           Password is required
         </b-form-invalid-feedback>
-        <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
+
+        <!-- <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
           Your password should be <strong>strong</strong>. <br />
           For that, your password should be also:
-        </b-form-text>
-        <b-form-invalid-feedback
-          v-if="$v.form.password.required && !$v.form.password.length"
-        >
-          Have length between 5-10 characters long
-        </b-form-invalid-feedback>
+        </b-form-text> -->
 
+        <b-form-invalid-feedback v-else-if="!$v.form.password.length" >
+          Password length between 5-10 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.password.validPass($v.form.password)">
+          Password need to contain at least 1 special character and 1 number
+        </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
@@ -125,9 +127,7 @@
         <b-form-invalid-feedback v-if="!$v.form.confirmedPassword.required">
           Password confirmation is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback
-          v-else-if="!$v.form.confirmedPassword.sameAsPassword"
-        >
+        <b-form-invalid-feedback v-else-if="!$v.form.confirmedPassword.sameAsPassword" >
           The confirmed password is not equal to the original password
         </b-form-invalid-feedback>
       </b-form-group>
@@ -147,6 +147,9 @@
         <b-form-invalid-feedback v-if="!$v.form.email.required">
           Email is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          Email is not valid
+        </b-form-invalid-feedback>
       </b-form-group>
 
 <b-form-group
@@ -163,6 +166,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.urlImage.required">
           Image is required- need to load to "Cloudinary.com"
+        </b-form-invalid-feedback>
+         <b-form-invalid-feedback v-if="!$v.form.urlImage.url">
+          Image is not url
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -280,9 +286,9 @@ export default {
             password: this.form.password
           }
         );
-        console.log(response);
+        // console.log(response);
         this.$router.push("/Login");
-        console.log(response);
+        // console.log(response);
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;

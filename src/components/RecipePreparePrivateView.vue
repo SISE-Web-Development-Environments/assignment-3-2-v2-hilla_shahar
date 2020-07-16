@@ -10,7 +10,6 @@
         <!-- <b-col> -->
             <b-col>
                 &#9201; {{ recipe.readyInMinutes }}    
-                &#10084; {{ recipe.aggregateLikes }}  
                     <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{recipe.servings}}
                     <br>
                     <div v-if="recipe.vegan">
@@ -25,24 +24,19 @@
                       <img src="httpsa://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     </div>
 
-                    <div v-if="$root.store.username">
-                        <div v-if="recipe.loved">
-                            You &#10084; it
-                        </div>
-                    </div>
             </b-col>
         <b-col>
             <p id="header">Ingredients:</p>
             <b-row id="col" v-for="ingr in ingredients" :key="ingr.id">
-                <RecipeIngredientsPrepare class="RecipeIngredientsPrepare" :ingredient="ingr"/>
+                <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :ingredient="ingr"/>
             </b-row>
 
             <p id="header">Steps:</p>
             <b-row id="col" v-for="step in steps" :key="step.id">
-                <RecipeChecklistPrepare class="RecipeChecklistPrepare" :step="step"/>
+                <RecipeIngredientsPreparePrivate class="RecipeIngredientsPreparePrivate" :step="step"/>
             </b-row>
 
-            <p id="header">Progress Bar:</p>
+            <!-- <p id="header">Progress Bar:</p>
 
             <div>
 
@@ -52,19 +46,19 @@
                 </b-progress-bar>
 
                 <p id="header">until when pleae work</p>
-            </div>
+            </div> -->
         </b-col>
     </div>
 </template>
 
 <script>
-    import RecipeChecklistPrepare from "../components/RecipeChecklistPrepare.vue";
-    import RecipeIngredientsPrepare from "../components/RecipeIngredientsPrepare.vue";
+    import RecipeChecklistPreparePrivate from "../componentsPersonal/RecipeChecklistPreparePrivate.vue";
+    import RecipeIngredientsPreparePrivate from "../componentsPersonal/RecipeIngredientsPreparePrivate.vue";
     export default {
         name: "PreparePageView",
         components: {
-            RecipeChecklistPrepare,
-            RecipeIngredientsPrepare
+            RecipeChecklistPreparePrivate,
+            RecipeIngredientsPreparePrivate
         },
         data() {
             return {
@@ -86,13 +80,10 @@
             }
         },
         async created(){
-            // console.log("this.recipe");
-            // console.log(this.recipe);
             this.recipe=this.recipe[0];
-            console.log(this.recipe);
+ 
             this.steps=this.recipe.steps;
             this.ingredients=this.recipe.extendedIngredients;
-            // console.log(this.ingredients);
         },
 
     };

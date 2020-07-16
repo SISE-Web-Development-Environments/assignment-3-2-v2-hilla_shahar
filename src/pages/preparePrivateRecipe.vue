@@ -12,17 +12,17 @@
         </b-row>
         </div>
           <div v-if="insertQuantity">
-               <RecipePrepareView class="recipePreview" :recipe="recipe" />
+               <RecipePreparePrivateView class="recipePreview" :recipe="recipe" />
           </div>
     </div>
 </template>
 
 <script>
- import RecipePrepareView from "../components/RecipePrepareView.vue";
+ import RecipePreparePrivateView from "../components/RecipePreparePrivateView.vue";
     export default {
         name: "PreparePage",
         components: {
-            RecipePrepareView
+            RecipePreparePrivateView
         },
         data() {
             return {
@@ -37,68 +37,46 @@
                 required: true
             }
         },
-        async created() {
-            let response;
-            try {
-                //username exists
-                if (this.$root.store.username) {
-                    response = await this.axios.get(
-                        "https://assignment3-2hilla-shahar.herokuapp.com/user/showRecipe/",
-                        {
-                            params: {
-                                recipe_id: this.$route.params.recipe.id
-                            }
-                        }
-                    );
+        // async created() {
+        //     let response;
+        //     try {
+        //         //username exists
+        //         if (this.$root.store.username) {
+        //             response = await this.axios.get(
+        //                 "https://assignment3-2hilla-shahar.herokuapp.com/user/showRecipe/",
+        //                 {
+        //                     params: {
+        //                         recipe_id: this.$route.params.recipe.id
+        //                     }
+        //                 }
+        //             );
 
-                    let _recipe = {
-                        loved: response.data[0].user_info[0].loved,
-                        watched: response.data[0].user_info[0].watched,
-                        aggregateLikes: response.data[0].recipe[0].aggregateLikes,
-                        readyInMinutes: response.data[0].recipe[0].readyInMinutes,
-                        image: response.data[0].recipe[0].image,
-                        title: response.data[0].recipe[0].title,
-                        vegan: response.data[0].recipe[0].vegan,
-                        vegetarian:response.data[0].recipe[0].vegetarian,
-                        glutenFree:response.data[0].recipe[0].glutenFree,
-                        servings:response.data[0].recipe[0].servings,
-                    };
+        //             let _recipe = {
+        //                 loved: response.data[0].user_info[0].loved,
+        //                 watched: response.data[0].user_info[0].watched,
+        //                 aggregateLikes: response.data[0].recipe[0].aggregateLikes,
+        //                 readyInMinutes: response.data[0].recipe[0].readyInMinutes,
+        //                 image: response.data[0].recipe[0].image,
+        //                 title: response.data[0].recipe[0].title,
+        //                 vegan: response.data[0].recipe[0].vegan,
+        //                 vegetarian:response.data[0].recipe[0].vegetarian,
+        //                 glutenFree:response.data[0].recipe[0].glutenFree,
+        //                 servings:response.data[0].recipe[0].servings,
+        //             };
 
-                    this.recipeDetails = _recipe;
-                }
-                // else { //guest
-                //     response = await this.axios.get(
-                //         "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
-                //         {
-                //             params: { recipe_id: this.$route.params.recipe.id }
-                //         }
-                //     );
+        //             this.recipeDetails = _recipe;
+        //         }
 
-                //     // if (response.status !== 200) this.$router.replace("/NotFound");
-                //     console.log(response);
-
-                //     let _recipe = {
-                //         aggregateLikes: response.data[0].aggregateLikes,
-                //         readyInMinutes: response.data[0].readyInMinutes,
-                //         image: response.data[0].image,
-                //         title: response.data[0].title,
-                //         vegan: response.data[0].vegan,
-                //         vegetarian:response.data[0].vegetarian,
-                //         glutenFree:response.data[0].glutenFree,
-                //         servings:response.data[0].servings,
-                //     };
-                //     this.recipeDetails = _recipe;
-                //      console.log(this.recipeDetails);
-                // }
-            } catch (error) {
-                console.log("error.response.status", error.response.status);
-                // this.$router.replace("/NotFound");
-                return;
-            }
-        },
+        //     } catch (error) {
+        //         console.log("error.response.status", error.response.status);
+        //         // this.$router.replace("/NotFound");
+        //         return;
+        //     }
+        // },
         methods:{
             async updateQuantity(){
                 try{
+                    console.log(recipe);
                     //after we have all details about recipe we get the analyzed instructions
                     ///recipeInstructions
                     let responseInstruction=  await this.axios.get(

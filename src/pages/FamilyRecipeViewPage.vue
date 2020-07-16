@@ -11,7 +11,7 @@
                         <div class="mb-3">
                             <div>Chef: {{ recipe.chef }} </div>
                             <div>Time to eat: {{ recipe.timeToEat }} </div>
-                            <div>Num Of Servings: {{ recipe.servings }}</div>
+                            <div><img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{ recipe.servings }}</div>
                         </div>
                         Ingredients:
                         <ul>
