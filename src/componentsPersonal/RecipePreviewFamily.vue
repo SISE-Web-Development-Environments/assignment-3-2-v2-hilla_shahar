@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="all">
         <router-link
                 :to="{ name: 'userRecipeFamily', params: { recipe_id: recipe.id } }"
                 class="recipe-preview">
@@ -34,13 +34,16 @@
 </script>
 
 <style scoped>
-    .recipe-preview {
-        width: 180px;
-        height: 280px;
+    .all {
+ width: 200px;
+        height: 320px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
-    }
+        border-color:  #7BB257;
+        border-width: 4px;
+        border-style: solid ;
+}
 
     .recipe-body .recipe-image {
         margin-left: auto;
@@ -48,7 +51,7 @@
         margin-top: auto;
         margin-bottom: auto;
         display: block;
-        width: 200px;
+        width: 192px;
         height: 180px;
     }
     .recipe-footer {
@@ -65,7 +68,7 @@
         width: 180px;
         word-wrap: break-word;
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         font-size: 12pt;
@@ -74,6 +77,6 @@
         text-align: center;
         font-size: 15px;
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       font-family: 'Architects Daughter';
     }
 </style>

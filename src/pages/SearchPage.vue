@@ -86,20 +86,6 @@
                     <label for="fifth">15</label><br></b-col>
             </b-row>
 
-            <!-- <b-row> </b-row><br> -->
-            <!-- <b-row >
-                <b-col colspan="3" align-self="center">
-                    <p align="center">Sorting results by:</p>
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder">
-                    <label for="none">none</label><br>
-                    <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder">
-                    <label for="time">Time preperation</label><br>
-                    <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder">
-                    <label for="popular">Popularity</label><br></b-col>
-            </b-row> -->
             <b-row>
                 <b-col >
                     <b-button id="searchButton" type="submit" size="lg" v-on:click="pushedSearch=true">Search</b-button>
@@ -110,7 +96,7 @@
 
             <template v-if="pushedSearch">  
                 <div v-if="have">
-                    
+                    hey
                     <b-row>
                         <b-row v-for="(r,index) in recipes" :key="index">
                             <b-col v-for="x in r" :key="x.id">
@@ -177,6 +163,8 @@
                 searchOrder: "none",
                 have: false,
                 searchAlready: false,
+                resultsLastSearch: [],
+                someBoolean: false,
             };
         },
 
@@ -187,8 +175,10 @@
                 let recipesId = []; //recipeID list
                 let recipes=[];
                 let allRecipesInfo = []; //get recipes array from apispooncular to be recognize after try catch block
+
                 try {
                     if(!this.searchAlready){
+
                     this.recipes=[];
                     const response = await this.axios.get(
                         "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
@@ -248,6 +238,8 @@
                 let allDetailsRecipes = [];
                 //if there is username
                 if(this.$root.store.username){
+                //there is no save search
+                // if(!this.alreadySaveToStorage){
                     for (let i = 0; i < recipesId.length; i++) {
                         let idR = recipesId[i];
                         try {
@@ -305,8 +297,11 @@
                             this.have=false;
                         }
 
-                    }//for
-                    //no user-guest
+                        
+                        //save to storage
+                        sessionStorage.setItem(this.$root.store.username, JSON.stringify(this.recipes));
+                        }//for
+
                 }else{
                     let arr = [];
                     let len = Math.ceil(allRecipesInfo.length/5);
@@ -336,6 +331,27 @@
                 }
             },
 
+        },
+        async created(){
+             if(this.$root.store.username){
+                 if(!this.someBoolean){
+                           this.someBoolean=true;
+                        //    const arr=[];
+                        //    arr.push();
+                        //    console.log(arr);
+                        this.resultsLastSearch=sessionStorage.getItem(this.$root.store.username);
+                    console.log(this.resultsLastSearch);
+                    console.log(this.resultsLastSearch[0]);
+                if(this.resultsLastSearch){
+                        this.recipes=this.resultsLastSearch;
+                        this.pushedSearch=true;
+                        this.have=true;
+                  
+                }
+                 }
+                    
+                }
+
         }
     };
 </script>
@@ -346,7 +362,7 @@
         min-height: 400px;
         background:rgba(255, 255, 255, 0.75);
         color:  #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
     }
@@ -356,16 +372,15 @@
     }
     #ccol{
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
     }
     #title{
         align-items: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         color:  #7BB257;
     }
-    
-    
+    option[selected] { background: #f00; }
 </style>

@@ -7,7 +7,7 @@
             <b-col><b-form-input v-model="quantity" placeholder="Quantity">
             </b-form-input></b-col>
             <b-col>
-                <button id="button" v-on:click="updateQuantity"> Go! </button>
+                <button id="button" v-on:click="updateQuantity"> Go</button>
             </b-col>
         </b-row>
         </div>
@@ -65,31 +65,9 @@
                     };
 
                     this.recipeDetails = _recipe;
+
+                    console.log(this.recipeDetails);
                 }
-                // else { //guest
-                //     response = await this.axios.get(
-                //         "https://assignment3-2hilla-shahar.herokuapp.com/recipe/showRecipe/",
-                //         {
-                //             params: { recipe_id: this.$route.params.recipe.id }
-                //         }
-                //     );
-
-                //     // if (response.status !== 200) this.$router.replace("/NotFound");
-                //     console.log(response);
-
-                //     let _recipe = {
-                //         aggregateLikes: response.data[0].aggregateLikes,
-                //         readyInMinutes: response.data[0].readyInMinutes,
-                //         image: response.data[0].image,
-                //         title: response.data[0].title,
-                //         vegan: response.data[0].vegan,
-                //         vegetarian:response.data[0].vegetarian,
-                //         glutenFree:response.data[0].glutenFree,
-                //         servings:response.data[0].servings,
-                //     };
-                //     this.recipeDetails = _recipe;
-                //      console.log(this.recipeDetails);
-                // }
             } catch (error) {
                 console.log("error.response.status", error.response.status);
                 // this.$router.replace("/NotFound");
@@ -111,7 +89,7 @@
                         }
                     );
 
-                    console.log(responseInstruction);
+                    console.log(responseInstruction.data[1][0].steps.steps);
                     if(responseInstruction){
                         this.insertQuantity=true;
 
@@ -128,7 +106,8 @@
                             vegan: recipe.vegan,
                             vegetarian:recipe.vegetarian,
                             glutenFree:recipe.glutenFree,
-                            servings: recipe.servings
+                            servings: recipe.servings,
+                            
                         };
                         // console.log(data);
                         this.recipe=[];
@@ -150,22 +129,23 @@
 <style lang="scss" scoped>
 
     .container {
+        width: 1700px;
         background:rgba(255, 255, 255, 0.75);
         min-height: 400px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         color:  #7a512f;
         font-weight: bold;
     }
     #title{
         align-items: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         color:  #7BB257;
     }
     #button{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         background: #7BB257;
         border: #2c3e50;
         align-content: center;

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div>
-            <input type="checkbox" id="jack" value="Jack" v-model="allSteps">
-            <label for="jack">{{step}}</label>
+            <input type="checkbox" id="st" value="step" v-model="allSteps">
+            <label class="labelStatus" for="st"> {{step}}</label>
         </div>
     </div>
 </template>
@@ -16,12 +16,7 @@
                 required: true
             }
         },
-        
-        async created(){
-            console.log(this.step);
-            this.step=this.step.step;
-        },
-
+    
     };
 </script>
 
@@ -49,15 +44,36 @@
         width: 180px;
         word-wrap: break-word;
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         font-size: 12pt;
     }
-    #values{
-        text-align: center;
-        font-size: 15px;
-        color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    input[type=checkbox]:checked + label.labelStatus{
+        text-decoration: line-through;
+          border-color: #bbb;
+    }
+    input[type=checkbox] {
+        cursor: pointer;
+        margin-right: 10px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+    input[type=checkbox]:after {
+        content: " ";
+        background-color: #7BB257;
+        display: inline-block;
+        position: relative;
+        top: -4px;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+    input[type=checkbox]:checked:after {
+        content: "\00a0\2714";
+    }
+    label{
+        margin: 11px;
+        font-size: 17px;
     }
 </style>

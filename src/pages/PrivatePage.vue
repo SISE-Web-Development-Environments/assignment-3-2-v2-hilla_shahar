@@ -1,15 +1,13 @@
 <template>
     <div  class="container">
+        {{title}}
         <h1 id="title" class="title">Private Page</h1>
         <div v-if="have">
             <b-row>
-                <!--  -->
                 <b-col v-for="r in recipes" :key="r.id">
 
                     <RecipePreviewPersonal class="RecipePreviewPersonal" :recipe="r" />
                 </b-col>
-                <!--  -->
-
             </b-row>
 
         </div>
@@ -24,7 +22,7 @@
 </template>
 
 <script>
-    import RecipePreviewPersonal from "../components/RecipePreviewPersonal.vue";
+    import RecipePreviewPersonal from "../componentsPersonal/RecipePreviewPersonal.vue";
     export default {
         name: "PrivatePage",
         components: {
@@ -71,16 +69,17 @@
     .container {
         background:rgba(255, 255, 255, 0.75);
         min-height: 400px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       font-family: 'Architects Daughter';
         text-align: center;
         color:  #7a512f;
         font-weight: bold;
     }
     #title{
         align-items: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         color:  #7BB257;
     }
+    
 </style>d

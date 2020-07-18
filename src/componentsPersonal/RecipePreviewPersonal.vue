@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="all">
   <router-link
     :to="{ name: 'userRecipe', params: { recipe_id: recipe.id } }"
     class="recipe-preview">
@@ -14,6 +14,19 @@
       <div id="values" class="recipe-overview">
        {{ recipe.readyInMinutes }}  &#9201;
         {{ recipe.aggregateLikes }} &#10084;
+
+                <div v-if="recipe.vegan">
+                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
+                    </div>
+
+                    <div v-if="recipe.vegetarian">
+                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
+                    </div>
+
+                    <div v-if="recipe.glutenFree">
+                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                    </div>
+
       </div>
     </div>
  </div> 
@@ -35,12 +48,15 @@ export default {
 </script>
 
 <style scoped>
-.recipe-preview {
-  width: 180px;
-  height: 280px;
-  position: relative;
-  margin: 10px 10px;
-  background:rgba(255, 255, 255, 0.75);
+.all {
+ width: 200px;
+        height: 320px;
+        position: relative;
+        margin: 10px 10px;
+        background:rgba(255, 255, 255, 0.75);
+        border-color:  #7BB257;
+        border-width: 4px;
+        border-style: solid ;
 }
 
 .recipe-body .recipe-image {
@@ -49,7 +65,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   display: block;
-  width: 200px;
+  width: 192px;
   height: 180px;
 }
  .recipe-footer {
@@ -66,7 +82,7 @@ export default {
   width: 180px;
   word-wrap: break-word;
   color: #7a512f;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Architects Daughter';
   text-align: center;
   font-weight: bold;
   font-size: 12pt;
@@ -75,7 +91,7 @@ export default {
    text-align: center;
   font-size: 15px;
     color: #7BB257;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-family: 'Architects Daughter';
 }
 
 </style>

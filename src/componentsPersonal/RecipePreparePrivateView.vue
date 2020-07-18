@@ -10,7 +10,6 @@
         <!-- <b-col> -->
             <b-col>
                 &#9201; {{ recipe.readyInMinutes }}    
-                &#10084; {{ recipe.aggregateLikes }}  
                     <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{recipe.servings}}
                     <br>
                     <div v-if="recipe.vegan">
@@ -25,25 +24,28 @@
                       <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     </div>
 
-                    <div v-if="$root.store.username">
-                        <div v-if="recipe.loved">
-                            You &#10084; it
-                        </div>
-                    </div>
             </b-col>
         <b-col>
             <br>
             <p id="header">Ingredients:</p>
             <b-row id="col" v-for="ingr in ingredients" :key="ingr.id">
-                <RecipeIngredientsPrepare class="RecipeIngredientsPrepare" :ingredient="ingr"/>
+                <RecipeIngredientsPreparePrivate class="RecipeIngredientsPreparePrivate" :ingredient="ingr"/>
             </b-row>
-<br>
+            <br>
             <p id="header">Steps:</p>
+        
             <b-row id="col" v-for="step in steps" :key="step.id">
-                <RecipeChecklistPrepare class="RecipeChecklistPrepare" :step="step"/>
+                <div v-if="step.length>3">
+                    <div v-if="!parseInt(step.charAt(step.length-1))">
+                        <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :step="step"/>
+                    </div>
+                        <div v-if="parseInt(step.charAt(step.length-1))">
+                        <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :step="step.substring(0,step.length-2)"/>
+                    </div>
+                </div>
             </b-row>
-<br>
-            <p id="header">Progress Bar:</p>
+            <br>
+            <p id="header">Progress Prepare Recipe Bar:</p>
 
             <div>
 
@@ -52,20 +54,21 @@
                     Progress: <strong>{{ value.toFixed(2) }} / {{ steps.length }}</strong>
                 </b-progress-bar>
 
-                <p id="header">until when pleae work</p>
             </div>
+            <br>
+            <br>
         </b-col>
     </div>
 </template>
 
 <script>
-    import RecipeChecklistPrepare from "../components/RecipeChecklistPrepare.vue";
-    import RecipeIngredientsPrepare from "../components/RecipeIngredientsPrepare.vue";
+    import RecipeChecklistPreparePrivate from "../componentsPersonal/RecipeChecklistPreparePrivate.vue";
+    import RecipeIngredientsPreparePrivate from "../componentsPersonal/RecipeIngredientsPreparePrivate.vue";
     export default {
         name: "PreparePageView",
         components: {
-            RecipeChecklistPrepare,
-            RecipeIngredientsPrepare
+            RecipeChecklistPreparePrivate,
+            RecipeIngredientsPreparePrivate
         },
         data() {
             return {
@@ -86,14 +89,33 @@
                 required: true
             }
         },
-        async created(){
-            // console.log("this.recipe");
-            // console.log(this.recipe);
+        async created(){    
+            
             this.recipe=this.recipe[0];
-            console.log(this.recipe);
-            this.steps=this.recipe.steps;
-            this.ingredients=this.recipe.extendedIngredients;
-            // console.log(this.ingredients);
+            this.steps=this.recipe.instructions;
+
+
+            let arrayInfo = [];
+      let newInstructions= this.steps.replace(/<\/?[^>]+(>|$)/g, "").split(".");
+     
+     //remove if there is blank word after last instruction
+     let last=newInstructions[newInstructions.length-1];
+     if(!last || last==="" || last===" " || last=="1"){
+      newInstructions.splice(newInstructions.indexOf(last), 1);
+      
+     }
+
+    //  this.steps=newInstructions;
+
+    let selectedInstructions=[];
+      newInstructions.map((newIns)=>{
+          if(newIns.length>3){
+          selectedInstructions.push(newIns);
+          }
+     });
+
+     this.steps=selectedInstructions;
+    this.ingredients=this.recipe.ingrediants;
         },
 
     };

@@ -7,22 +7,23 @@
             <b-col><b-form-input v-model="quantity" placeholder="Quantity">
             </b-form-input></b-col>
             <b-col>
-                <button id="button" v-on:click="updateQuantity()"> Go</button>
+                <button id="button" v-on:click="updateQuantity()"> Go </button>
             </b-col>
         </b-row>
         </div>
           <div v-if="insertQuantity">
-               <RecipePreparePrivateView class="recipePreview" :recipe="recipe" />
+               <RecipePrepareFamilyView class="recipePreview" :recipe="recipe" />
           </div>
     </div>
 </template>
 
 <script>
- import RecipePreparePrivateView from "../componentsPersonal/RecipePreparePrivateView.vue";
+ import RecipePrepareFamilyView from "../componentsPersonal/RecipePrepareFamilyView.vue";
+ 
     export default {
         name: "PreparePage",
         components: {
-            RecipePreparePrivateView
+            RecipePrepareFamilyView
         },
         data() {
             return {
@@ -70,24 +71,20 @@
                         });
  
                         let recipe=this.$route.params.recipe;
-                        console.log(recipe);
+
                         let data={
-                            instructions: responseInstruction.data[0].instruction,
-                            title: recipe.title,
-                            ingrediants: dataIngrediants,
-                            aggregateLikes: recipe.aggregateLikes,
+                            chef: recipe.chef,
                             image: recipe.image,
-                            readyInMinutes: recipe.readyInMinutes,
                             servings: recipe.servings,
                             id:recipe.id,
-                            vegan: recipe.vegan,
-                            vegetarian:recipe.vegetarian,
-                            glutenFree:recipe.glutenFree,
+                            timeToEat: recipe.timeToEat,
+                            instructions: responseInstruction.data[0].instruction,
+                            ingrediants: dataIngrediants,
+                            title: recipe.title
                         };
-                        console.log(data);
+                       
                         this.recipe=[];
                         this.recipe.push(data);
-                        console.log(this.recipe);
                         this.insertQuantity=true;
                     }
 
@@ -121,7 +118,7 @@
         color:  #7BB257;
     }
     #button{
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         background: #7BB257;
         border: #2c3e50;
         align-content: center;

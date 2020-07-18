@@ -129,14 +129,14 @@ export default {
 }
 form{
   color: #7BB257;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-family: 'Architects Daughter';
    text-align: center;
    font-weight: bold;
 }
 h1{
   color: #7BB257;
   text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  font-family: 'Architects Daughter';
   font-weight: bold;
 }
 #logInButton{

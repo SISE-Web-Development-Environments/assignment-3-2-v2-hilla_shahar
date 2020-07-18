@@ -85,6 +85,7 @@
 
 <script>
     export default {
+        
         data() {
             return {
                 favorite: false,
@@ -147,6 +148,9 @@
 </script>
 
 <style scoped>
+    img:hover {
+        box-shadow: 0 0 3px 1px rgba(28, 250, 39, 0.5);
+    }
     .div{
         overflow: hidden;
     }
@@ -192,7 +196,7 @@
         width: 300px;
         word-wrap: break-word;
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         font-size: 20px;
@@ -203,10 +207,10 @@
         font-size: 14px;
         font-weight: bold;
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
     }
     #buttonFavorites{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         background: #7BB257;
         border: #2c3e50;
         align-content: center;

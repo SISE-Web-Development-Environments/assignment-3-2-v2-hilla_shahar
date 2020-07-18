@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import RecipePreviewFamily from "../components/RecipePreviewFamily.vue";
+    import RecipePreviewFamily from "../componentsPersonal/RecipePreviewFamily.vue";
     export default {
         name: "FamilyPage",
         components: {
@@ -67,14 +67,14 @@
     .container {
         background:rgba(255, 255, 255, 0.75);
         min-height: 400px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         color:  #7a512f;
         font-weight: bold;
     }
     #title{
         align-items: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         color:  #7BB257;

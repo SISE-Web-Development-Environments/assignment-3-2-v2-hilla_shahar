@@ -2,7 +2,8 @@
     <div>
         <div>
             <input type="checkbox" id="jack" value="Jack" v-model="allIngrediants">
-            <label for="jack"> {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}}</label>
+        
+            <label class="labelStatus" for="jack">{{ingredient.quantity}} {{ingredient.unitType}} {{ingredient.ingrediant}}</label>
         </div>
     </div>
 </template>
@@ -55,20 +56,42 @@
         width: 180px;
         word-wrap: break-word;
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
-        font-size: 12pt;
+        font-size: 20px;
     }
     #values{
         text-align: center;
         font-size: 15px;
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
+    }
+        input[type=checkbox]:checked + label.labelStatus{
+        text-decoration: line-through;
+          border-color: #bbb;
+    }
+    input[type=checkbox] {
+        cursor: pointer;
+        margin-right: 10px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+    input[type=checkbox]:after {
+        content: " ";
+        background-color: #7BB257;
+        display: inline-block;
+        position: relative;
+        top: -4px;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
     }
     input[type=checkbox]:checked:after {
-        background: #7BB257 !important;
-        color: black !important;
-        text-decoration: line-through;
+        content: "\00a0\2714";
+    }
+    label{
+        margin: 11px;
+        font-size: 17px;
     }
 </style>

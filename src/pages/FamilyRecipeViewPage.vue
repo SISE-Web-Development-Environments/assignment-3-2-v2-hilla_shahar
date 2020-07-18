@@ -9,8 +9,8 @@
                 <div class="wrapper">
                     <div class="wrapped">
                         <div class="mb-3">
-                            <div>Chef: {{ recipe.chef }} </div>
-                            <div>Time to eat: {{ recipe.timeToEat }} </div>
+                            <div><img src="https://img.icons8.com/wired/80/000000/chef-hat.png"  height="30px" width="30px"/> {{ recipe.chef }} </div>
+                            <div><img src="https://img.icons8.com/wired/64/000000/calendar.png" height="30px" width="30px"/>  {{ recipe.timeToEat }} </div>
                             <div><img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{ recipe.servings }}</div>
                         </div>
                         Ingredients:
@@ -25,6 +25,10 @@
                         <ol id="text">
                             {{ recipe.instructions}}
                         </ol>
+
+                         <router-link id="routerLink" :to="{ name: 'prepareFamilyRecipe', params: { recipe: recipe } }"  >
+                                Click here to Prepare Recipe 
+                            </router-link>
                     </div>
                 </div>
             </div>
@@ -74,11 +78,11 @@
                     title: info.title,
                     chef: info.chef,
                     timeToEat: info.timeToEat,
+                    id: info.id,
                     servings: info.servings,
                 };
 
                 this.recipe = _recipe;
-
                 if (response.status !== 200) this.$router.replace("/NotFound");
             } catch (error) {
                 console.log("error.response.status", error.response.status);
@@ -91,6 +95,7 @@
 </script>
 
 <style scoped>
+
     .wrapper {
         display: flex;
     }
@@ -108,26 +113,31 @@
     }
     h1{
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
     }
     .wrapper{
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: left;
         font-weight: bold;
     }
     li{
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: left;
-        font-weight: 100;
+        font-weight: bold;
     }
     #text{
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: left;
-        font-weight: 100;
+        font-weight: bold;
+    }
+     #routerLink{
+        color: #F70102;
+        font-family: 'Architects Daughter';
+        font-weight: bold;
     }
 </style>

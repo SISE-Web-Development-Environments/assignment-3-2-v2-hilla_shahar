@@ -15,6 +15,18 @@
                                 <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/>
                                  {{ recipe.servings }}</div>
 
+                                  <div id="smallTitle" v-if="recipe.vegan">
+                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> Vegan
+                    </div>
+
+                    <div id="smallTitle" v-if="recipe.vegetarian">
+                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> Vegetarian
+                    </div>
+
+                    <div id="smallTitle" v-if="recipe.glutenFree">
+                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/> GF
+                    </div>
+
                         </div>
                         <div id="smallTitle" >Ingredients:</div>
                         <ul>
@@ -52,6 +64,8 @@
         async created() {
             let response;
             try {
+                 console.log(this.$root.store.username);
+                 console.log(this.$route.params.recipeId);
                 //username exists
                 if (this.$root.store.username) {
                     response = await this.axios.get(
@@ -63,6 +77,7 @@
                         }
                     );
 
+                    console.log(response);
                     let _recipe = {
                         id: response.data[0].recipe[0].id,
                         instructions: response.data[0].recipe[0].instructions,
@@ -74,6 +89,9 @@
                         image: response.data[0].recipe[0].image,
                         title: response.data[0].recipe[0].title,
                         servings: response.data[0].recipe[0].servings,
+                        vegan: response.data[0].recipe[0].vegan,
+                        vegetarian:response.data[0].recipe[0].vegetarian,
+                        glutenFree:response.data[0].recipe[0].glutenFree,
                     };
 
                     this.recipe = _recipe;
@@ -106,6 +124,9 @@
                         image: response.data[0].image,
                         title: response.data[0].title,
                         servings: response.data[0].servings,
+                        vegan: response.data[0].vegan,
+                        vegetarian:response.data[0].vegetarian,
+                        glutenFree:response.data[0].glutenFree,
                     };
                     this.recipe = _recipe;
                 }
@@ -129,13 +150,13 @@
     }
     #smallTitle{
         align-items: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         font-weight: bold;
         color:  #7BB257;
     }
     #head{
         align-items: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         color:  #7BB257;
@@ -143,7 +164,7 @@
     .container{
         background:rgba(255, 255, 255, 0.75);
         color:  #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         font-weight: bold;
     }
     .center {
@@ -154,7 +175,7 @@
     }
     #routerLink{
         color: #F70102;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         font-weight: bold;
     }
 

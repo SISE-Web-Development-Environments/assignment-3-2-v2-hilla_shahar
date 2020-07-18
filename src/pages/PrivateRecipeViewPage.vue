@@ -11,6 +11,18 @@
                         <div class="mb-3">
                             <div>&#9201; {{ recipe.readyInMinutes }} minutes</div>
                             <div><img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{ recipe.servings }}</div>
+
+                             <div v-if="recipe.vegan">
+                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> Vegan
+                    </div>
+
+                    <div v-if="recipe.vegetarian">
+                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> Vegetarian
+                    </div>
+
+                    <div v-if="recipe.glutenFree">
+                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/> GF
+                    </div>
                         </div>
                         Ingredients:
                         <ul>
@@ -78,9 +90,14 @@
                     image: info.image,
                     title: info.title,
                     servings: info.servings,
+                    id:info.id,
+                     vegan: info.vegan,
+                            vegetarian:info.vegetarian,
+                            glutenFree:info.glutenFree,
                 };
 
                 this.recipe = _recipe;
+                console.log(this.recipe);
                 if (response.status !== 200) this.$router.replace("/NotFound");
             } catch (error) {
                 console.log("error.response.status", error.response.status);
@@ -112,26 +129,31 @@
     }
     h1{
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
     }
     .wrapper{
         color: #7BB257;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: left;
         font-weight: bold;
     }
     li{
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         text-align: left;
-        font-weight: 100;
+        font-weight: bold;
     }
     #text{
         color: #7a512f;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       font-family: 'Architects Daughter';
         text-align: left;
-        font-weight: 100;
+        font-weight: bold;
+    }
+    #routerLink{
+        color: #F70102;
+        font-family: 'Architects Daughter';
+        font-weight: bold;
     }
 </style>

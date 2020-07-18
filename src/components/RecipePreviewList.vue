@@ -139,7 +139,7 @@
         align-content: center;
     }
     #random{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         background: #7BB257;
         border: #2c3e50;
         align-content: center;

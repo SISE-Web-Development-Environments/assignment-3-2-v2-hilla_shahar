@@ -32,7 +32,7 @@
 
 <style lang="scss" scoped>
     .RandomRecipes {
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         margin: 10px 0 10px;
 
     }
@@ -52,7 +52,7 @@
     }
     h1{
         color: #ffffff;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         font-size: 70px;
@@ -60,7 +60,7 @@
         text-shadow: 1px 1px 2px #d8a631, 0 0 25px #d8a631, 0 0 5px #d8a631;
     }
     #logIn{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Architects Daughter';
         background: #7BB257;
         border: #2c3e50;
     }

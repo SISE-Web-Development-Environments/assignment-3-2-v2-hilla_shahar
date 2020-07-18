@@ -17,10 +17,10 @@
         <b-form-invalid-feedback v-if="!$v.form.username.required">
           Username is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-else-if="!$v.form.username.length">
+        <b-form-invalid-feedback v-if="$v.form.username.required && $v.form.username.length">
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.username.alpha">
+        <b-form-invalid-feedback  v-if="$v.form.username.required && $v.form.username.alpha">
           Username should be only letters
         </b-form-invalid-feedback>
       </b-form-group>
@@ -99,16 +99,19 @@
           Password is required
         </b-form-invalid-feedback>
 
-        <!-- <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
+        <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
           Your password should be <strong>strong</strong>. <br />
           For that, your password should be also:
-        </b-form-text> -->
+        </b-form-text>
 
-        <b-form-invalid-feedback v-else-if="!$v.form.password.length" >
+        <b-form-invalid-feedback  v-if="$v.form.password.required && !$v.form.password.length" >
           Password length between 5-10 characters long
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-else-if="!$v.form.password.validPass($v.form.password)">
-          Password need to contain at least 1 special character and 1 number
+        <b-form-invalid-feedback  v-if="$v.form.password.required && !$v.form.password.specialLetters" >
+          Password should contain at least one special character
+        </b-form-invalid-feedback>
+         <b-form-invalid-feedback  v-if="$v.form.password.required && !$v.form.password.number" >
+          Password should contain at least one number
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -251,8 +254,9 @@ export default {
       password: {
         required,
         length: (p) => minLength(5)(p) && maxLength(10)(p),
-        validPass: function(password){
-          return password.match(/[!"#$%&'()*+,-.:;<=>?@[\]^_`{|}~]/) && password.match(/\d/);
+        number: (p) => /[0-9]/.test(p),
+        specialLetters: function(password){
+          return /[!"#$%&'()*+,-.:;<=>?@[\]^_`{|}~]/.test(password);
         }
       },
       confirmedPassword: {
@@ -283,7 +287,12 @@ export default {
           "https://assignment3-2hilla-shahar.herokuapp.com/Register",
           {
             username: this.form.username,
-            password: this.form.password
+            password: this.form.password,
+            firstname: this.form.firstName,
+            lastname: this.form.lastName,
+            country: this.form.country,
+            email: this.form.email,
+            profileimage: this.form.urlImage
           }
         );
         // console.log(response);
@@ -291,7 +300,8 @@ export default {
         // console.log(response);
       } catch (err) {
         console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        console.log(err.response.message);
+        this.form.submitError = "Please try to insert another username";
       }
     },
     onRegister() {
@@ -329,12 +339,12 @@ export default {
 h1{
   color: #7BB257;
   text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Architects Daughter';
   font-weight: bold;
 }
 form{
   color: #7a512f;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-family: 'Architects Daughter';
    text-align: center;
    font-weight: bold;
 }
