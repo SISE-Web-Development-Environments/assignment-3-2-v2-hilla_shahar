@@ -7,7 +7,6 @@
             <img :src="recipe.image" height="50" width="50" class="recipe-image" />
         </div>
         <br>
-        <!-- <b-col> -->
         <b-col>
             <div><img src="https://img.icons8.com/wired/80/000000/chef-hat.png"  height="30px" width="30px"/> {{ recipe.chef }} </div>
             <div><img src="https://img.icons8.com/wired/64/000000/calendar.png" height="30px" width="30px"/> {{ recipe.timeToEat }} </div>
@@ -38,13 +37,10 @@
             <p id="header">Progress Prepare Recipe Bar:</p>
 
             <div>
-
                 <b-progress :value="value" :max="steps.length" aria-valuemin="0" aria-valuemax="steps.length" variant="success" show-progress striped :animated="animate"></b-progress>
                 <b-progress-bar :value="value" aria-valuemin="0" aria-valuemax="steps.length"  >
                     Progress: <strong> {{ value }}/{{ steps.length }} </strong>
                 </b-progress-bar>
-
-
             </div>
             <br><br><br>
         </b-col>
@@ -79,12 +75,6 @@
                 required: true
             }
         },
-        // computed:{
-        //     updateProgress(){
-        //         console.log((this.value/this.steps.length)*100);
-        //         return (this.value/this.steps.length)*100;
-        //     }
-        // },
         async created(){
 
             this.recipe=this.recipe[0];
@@ -109,14 +99,12 @@
                 if(newIns.length>3){
                     if(newIns!=="\r\n11" || newIns!=="\r\n7"){
                         selectedInstructions.push(newIns);
-                        console.log("/"+newIns+"/");
                     }
 
                 }
             });
 
             this.steps=selectedInstructions;
-            // console.log( this.steps);
             this.ingredients=this.recipe.ingrediants;
         },
 

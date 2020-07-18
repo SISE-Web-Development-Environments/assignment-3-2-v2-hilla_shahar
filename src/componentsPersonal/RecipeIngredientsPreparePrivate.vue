@@ -10,25 +10,12 @@
 
 <script>
     export default {
-        // data() {
-        //     return {
-        //         // ingerdients: "",
-        //     };
-        // },
         props: {
             ingredient: {
                 type: Object,
                 required: true
             }
         },
-        // async created(){
-        //     console.log(this);
-        //     console.log(this.ingredient);
-
-        //     // if(allIngrediants){
-        //     //      text-decoration: line-through;
-        //     // }
-        // }
     };
 </script>
 

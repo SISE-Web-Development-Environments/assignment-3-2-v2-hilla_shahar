@@ -295,9 +295,7 @@
                             profileimage: this.form.urlImage
                         }
                     );
-                    // console.log(response);
                     this.$router.push("/Login");
-                    // console.log(response);
                 } catch (err) {
                     console.log(err.response);
                     console.log(err.response.message);
@@ -305,7 +303,6 @@
                 }
             },
             onRegister() {
-                // console.log("register method called");
                 this.$v.form.$touch();
                 if (this.$v.form.$anyError) {
                     return;

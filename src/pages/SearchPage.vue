@@ -79,7 +79,6 @@
             </b-row>
 
             <b-row>
-                <!-- <b-col><br></b-col> -->
                 <b-col><input type="radio" id="five" name="resultsNum" value=5 v-model="numResults">
                     <label for="five">5</label><br> <input type="radio" id="ten" name="resultsNum" value=10 v-model="numResults">
                     <label for="ten">10</label><br><input type="radio" id="fifth" name="resultsNum" value=15 v-model="numResults">
@@ -96,7 +95,6 @@
 
             <template v-if="pushedSearch">
                 <div v-if="have">
-                    hey
                     <b-row>
                         <b-row v-for="(r,index) in recipes" :key="index">
                             <b-col v-for="x in r" :key="x.id">
@@ -118,8 +116,6 @@
                             <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder" @change="searchRecipe()">
                             <label for="popular">Popularity</label><br></b-col>
                     </b-row>
-
-
                     Time in minutes:  &#9201; |
                     Likes: &#10084; |
                     Vegan :<img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> |
@@ -145,12 +141,6 @@
         components: {
             RecipePreview
         },
-        // props: {
-        //     title: {
-        //         type: String,
-        //         required: true
-        //     }
-        // },
         data() {
             return {
                 recipes: [],
@@ -164,7 +154,7 @@
                 have: false,
                 searchAlready: false,
                 resultsLastSearch: [],
-                someBoolean: false,
+                showSessionSearch: false,
             };
         },
 
@@ -231,7 +221,6 @@
                         recipesId.push(recipe.id);
                     });
 
-                    console.log(recipesId);
                 } catch (error) {
                     console.log(error);
                 }
@@ -297,7 +286,6 @@
                             this.have=false;
                         }
 
-
                         //save to storage
                         sessionStorage.setItem(this.$root.store.username, JSON.stringify(this.recipes));
                     }//for
@@ -334,14 +322,9 @@
         },
         async created(){
             if(this.$root.store.username){
-                if(!this.someBoolean){
-                    this.someBoolean=true;
-                    //    const arr=[];
-                    //    arr.push();
-                    //    console.log(arr);
-                    this.resultsLastSearch=sessionStorage.getItem(this.$root.store.username);
-                    console.log(this.resultsLastSearch);
-                    console.log(this.resultsLastSearch[0]);
+                if(!this.showSessionSearch){
+                    this.showSessionSearch=true;
+                    this.resultsLastSearch=JSON.parse(sessionStorage.getItem(this.$root.store.username));
                     if(this.resultsLastSearch){
                         this.recipes=this.resultsLastSearch;
                         this.pushedSearch=true;

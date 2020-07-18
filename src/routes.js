@@ -60,12 +60,12 @@ const routes = [
   {
     path: "/prepareRecipe",
     name: "prepareRecipe",
-    component: () => import("./pages/PrepareRecipePage"),
+    component: () => import("./pages/prepareRecipePage"),
   },
   {
     path: "/preparePrivateRecipe",
     name: "preparePrivateRecipe",
-    component: () => import("./pages/PreparePrivateRecipe"),
+    component: () => import("./pages/preparePrivateRecipe"),
   },
   {
     path: "/prepareFamilyRecipe",

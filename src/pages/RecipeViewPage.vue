@@ -64,8 +64,6 @@
         async created() {
             let response;
             try {
-                console.log(this.$root.store.username);
-                console.log(this.$route.params.recipeId);
                 //username exists
                 if (this.$root.store.username) {
                     response = await this.axios.get(
@@ -77,7 +75,6 @@
                         }
                     );
 
-                    console.log(response);
                     let _recipe = {
                         id: response.data[0].recipe[0].id,
                         instructions: response.data[0].recipe[0].instructions,
@@ -95,8 +92,6 @@
                     };
 
                     this.recipe = _recipe;
-                    console.log(this.recipe);
-                    console.log(this.recipe.servings);
                     //add to watch list
                     await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/watchedRecipe/",{
                         params: {

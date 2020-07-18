@@ -70,7 +70,6 @@
                         });
 
                         let recipe=this.$route.params.recipe;
-                        console.log(recipe);
                         let data={
                             instructions: responseInstruction.data[0].instruction,
                             title: recipe.title,
@@ -84,7 +83,6 @@
                             vegetarian:recipe.vegetarian,
                             glutenFree:recipe.glutenFree,
                         };
-                        console.log(data);
                         this.recipe=[];
                         this.recipe.push(data);
                         console.log(this.recipe);

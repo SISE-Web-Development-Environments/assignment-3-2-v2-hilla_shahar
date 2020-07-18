@@ -104,9 +104,6 @@
                 newInstructions.splice(newInstructions.indexOf(last), 1);
 
             }
-
-            //  this.steps=newInstructions;
-
             let selectedInstructions=[];
             newInstructions.map((newIns)=>{
                 if(newIns.length>3){
