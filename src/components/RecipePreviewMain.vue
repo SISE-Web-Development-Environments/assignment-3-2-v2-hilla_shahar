@@ -13,15 +13,15 @@
                     {{ recipe.title }}
                 </div>
                 <div id="values" class="recipe-overview">
-                <div v-if="!favorite">
-                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> 
-                        <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
-                </div>
-                <div v-if="favorite">
-                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')">
-                        <img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/>
+                    <div v-if="!favorite">
+                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">
+                            <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                    </div>
+                    <div v-if="favorite">
+                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')">
+                            <img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/>
                         </button>
-                </div>
+                    </div>
                     {{ recipe.readyInMinutes }} &#9201;
                     {{ recipe.aggregateLikes }} &#10084; <br>
 
@@ -54,14 +54,14 @@
                     {{ recipe.title }}
                 </div>
                 <div id="values" class="recipe-overview">
-                <div v-if="$root.store.username">
-                    <div v-if="!favorite">
-                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                    <div v-if="$root.store.username">
+                        <div v-if="!favorite">
+                            <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                        </div>
+                        <div v-if="favorite">
+                            <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                        </div>
                     </div>
-                    <div v-if="favorite">
-                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
-                    </div>
-                </div>
                     {{ recipe.readyInMinutes }} &#9201;
                     {{ recipe.aggregateLikes }} &#10084; <br>
 
@@ -85,7 +85,7 @@
 
 <script>
     export default {
-        
+
         data() {
             return {
                 favorite: false,

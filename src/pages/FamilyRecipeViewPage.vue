@@ -16,7 +16,7 @@
                         Ingredients:
                         <ul>
                             <li v-for="r in recipe.extendedIngredients" :key="'_' + r.name">
-                                {{r.amount}} {{r.unit}} {{ r.name}} 
+                                {{r.amount}} {{r.unit}} {{ r.name}}
                             </li>
                         </ul>
                     </div>
@@ -26,9 +26,9 @@
                             {{ recipe.instructions}}
                         </ol>
 
-                         <router-link id="routerLink" :to="{ name: 'prepareFamilyRecipe', params: { recipe: recipe } }"  >
-                                Click here to Prepare Recipe 
-                            </router-link>
+                        <router-link id="routerLink" :to="{ name: 'prepareFamilyRecipe', params: { recipe: recipe } }"  >
+                            Click here to Prepare Recipe
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
         text-align: left;
         font-weight: bold;
     }
-     #routerLink{
+    #routerLink{
         color: #F70102;
         font-family: 'Architects Daughter';
         font-weight: bold;

@@ -1,35 +1,51 @@
 <template>
     <div>
         <div>
-            <input type="checkbox" id="jack" value="Jack" v-model="allSteps">
+            <input type="checkbox" id="jack" value="Jack" v-model="allSteps" @input="changeProgress">
             <label class="labelStatus" for="jack">
-                {{step.step}} 
+                {{step.step}}
                 <span v-if="step.equipment.equipment.length>0">
                     ({{step.equipment.equipment[0].name}})<br>
                 </span>
-                </label>
+            </label>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        data(){
+            return {
+                checked: false,
+            };
+        },
         props: {
             step: {
                 type: String,
                 required: true
             }
         },
+        methods:{
+            changeProgress(event){
+                this.checked=!this.checked;
+                if(this.checked){
+                    this.$emit('progressChangeUp');
+                }else{
+                    this.$emit('progressChangeDown');
+                }
 
+
+            }
+        }
     };
 </script>
 
 <style scoped>
 
-        input[type=checkbox]:checked + label.labelStatus{
+    input[type=checkbox]:checked + label.labelStatus{
         text-decoration: line-through;
-          border-color: #bbb;
-           /* vertical-align:middle; */
+        border-color: #bbb;
+        /* vertical-align:middle; */
     }
     input[type=checkbox] {
         cursor: pointer;
@@ -55,6 +71,6 @@
         margin: 11px;
         font-size: 17px;
     }
-    
+
 
 </style>

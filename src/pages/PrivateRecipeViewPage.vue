@@ -12,22 +12,22 @@
                             <div>&#9201; {{ recipe.readyInMinutes }} minutes</div>
                             <div><img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{ recipe.servings }}</div>
 
-                             <div v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> Vegan
-                    </div>
+                            <div v-if="recipe.vegan">
+                                <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> Vegan
+                            </div>
 
-                    <div v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> Vegetarian
-                    </div>
+                            <div v-if="recipe.vegetarian">
+                                <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> Vegetarian
+                            </div>
 
-                    <div v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/> GF
-                    </div>
+                            <div v-if="recipe.glutenFree">
+                                <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/> GF
+                            </div>
                         </div>
                         Ingredients:
                         <ul>
                             <li v-for="r in recipe.extendedIngredients" :key="'_' + r.name">
-                                 {{r.amount}} {{r.unit}} {{ r.name}}
+                                {{r.amount}} {{r.unit}} {{ r.name}}
                             </li>
                         </ul>
                     </div>
@@ -39,8 +39,8 @@
 
 
                         <router-link id="routerLink" :to="{ name: 'preparePrivateRecipe', params: { recipe: recipe } }"  >
-                                Click here to Prepare Recipe 
-                            </router-link>
+                            Click here to Prepare Recipe
+                        </router-link>
 
                     </div>
                 </div>
@@ -91,9 +91,9 @@
                     title: info.title,
                     servings: info.servings,
                     id:info.id,
-                     vegan: info.vegan,
-                            vegetarian:info.vegetarian,
-                            glutenFree:info.glutenFree,
+                    vegan: info.vegan,
+                    vegetarian:info.vegetarian,
+                    glutenFree:info.glutenFree,
                 };
 
                 this.recipe = _recipe;
@@ -147,7 +147,7 @@
     }
     #text{
         color: #7a512f;
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         text-align: left;
         font-weight: bold;
     }

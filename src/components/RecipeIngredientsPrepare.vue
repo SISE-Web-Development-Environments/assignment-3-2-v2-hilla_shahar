@@ -55,11 +55,11 @@
         text-align: center;
         font-size: 15px;
         color: #7BB257;
-font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
     }
-        input[type=checkbox]:checked + label.labelStatus{
+    input[type=checkbox]:checked + label.labelStatus{
         text-decoration: line-through;
-          border-color: #bbb;
+        border-color: #bbb;
     }
     input[type=checkbox] {
         cursor: pointer;

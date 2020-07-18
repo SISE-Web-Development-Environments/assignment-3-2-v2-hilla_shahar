@@ -2,23 +2,23 @@
     <div class="container">
         <h1 id="title" class="title">Prepare Page:</h1>
         <div v-if="!insertQuantity">
-        <b-row>
-            <b-col>Insert quantity:</b-col>
-            <b-col><b-form-input v-model="quantity" placeholder="Quantity">
-            </b-form-input></b-col>
-            <b-col>
-                <button id="button" v-on:click="updateQuantity"> Go</button>
-            </b-col>
-        </b-row>
+            <b-row>
+                <b-col>Insert quantity:</b-col>
+                <b-col><b-form-input v-model="quantity" placeholder="Quantity">
+                </b-form-input></b-col>
+                <b-col>
+                    <button id="button" v-on:click="updateQuantity"> Go</button>
+                </b-col>
+            </b-row>
         </div>
-          <div v-if="insertQuantity">
-               <RecipePrepareView class="recipePreview" :recipe="recipe" />
-          </div>
+        <div v-if="insertQuantity">
+            <RecipePrepareView class="recipePreview" :recipe="recipe" />
+        </div>
     </div>
 </template>
 
 <script>
- import RecipePrepareView from "../components/RecipePrepareView.vue";
+    import RecipePrepareView from "../components/RecipePrepareView.vue";
     export default {
         name: "PreparePage",
         components: {
@@ -107,7 +107,7 @@
                             vegetarian:recipe.vegetarian,
                             glutenFree:recipe.glutenFree,
                             servings: recipe.servings,
-                            
+
                         };
                         // console.log(data);
                         this.recipe=[];

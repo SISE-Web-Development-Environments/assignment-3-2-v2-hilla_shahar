@@ -8,42 +8,43 @@
         </div>
         <br>
         <!-- <b-col> -->
-            <b-col>
-                <div><img src="https://img.icons8.com/wired/80/000000/chef-hat.png"  height="30px" width="30px"/> {{ recipe.chef }} </div>
-                            <div><img src="https://img.icons8.com/wired/64/000000/calendar.png" height="30px" width="30px"/> {{ recipe.timeToEat }} </div>
-                            <div><img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{ recipe.servings }}</div>
+        <b-col>
+            <div><img src="https://img.icons8.com/wired/80/000000/chef-hat.png"  height="30px" width="30px"/> {{ recipe.chef }} </div>
+            <div><img src="https://img.icons8.com/wired/64/000000/calendar.png" height="30px" width="30px"/> {{ recipe.timeToEat }} </div>
+            <div><img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{ recipe.servings }}</div>
 
-            </b-col>
+        </b-col>
         <b-col>
             <br>
             <p id="header">Ingredients:</p>
             <b-row id="col" v-for="ingr in ingredients" :key="ingr.id">
                 <RecipeIngredientsPreparePrivate class="RecipeIngredientsPreparePrivate" :ingredient="ingr"/>
             </b-row>
-<br>
+            <br>
             <p id="header">Steps:</p>
-        
+
             <b-row id="col" v-for="step in steps" :key="step.id">
                 <div v-if="step.length>3">
                     <div v-if="!parseInt(step.charAt(step.length-1))">
-                        <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :step="step"/>
+                        <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :step="step" @progressChangeUp="value++" @progressChangeDown="value--" />
+
                     </div>
-                        <div v-if="parseInt(step.charAt(step.length-1))">
-                        <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :step="step.substring(0,step.length-2)"/>
+                    <div v-if="parseInt(step.charAt(step.length-1))">
+                        <RecipeChecklistPreparePrivate class="RecipeChecklistPreparePrivate" :step="step.substring(0,step.length-2)" @progressChangeUp="value++" @progressChangeDown="value--" />
                     </div>
                 </div>
             </b-row>
-<br>
+            <br>
             <p id="header">Progress Prepare Recipe Bar:</p>
 
             <div>
 
-                <b-progress :value="value" variant="success" show-progress striped :animated="animate"></b-progress>
-                <b-progress-bar :value="value" >
-                    Progress: <strong>{{ value.toFixed(2) }} / {{ steps.length }}</strong>
+                <b-progress :value="value" :max="steps.length" aria-valuemin="0" aria-valuemax="steps.length" variant="success" show-progress striped :animated="animate"></b-progress>
+                <b-progress-bar :value="value" aria-valuemin="0" aria-valuemax="steps.length"  >
+                    Progress: <strong> {{ value }}/{{ steps.length }} </strong>
                 </b-progress-bar>
 
-               
+
             </div>
             <br><br><br>
         </b-col>
@@ -61,7 +62,7 @@
         },
         data() {
             return {
-                value: 25
+                value: 0
             };
         },
         props: {
@@ -78,38 +79,44 @@
                 required: true
             }
         },
-        async created(){    
-            
+        // computed:{
+        //     updateProgress(){
+        //         console.log((this.value/this.steps.length)*100);
+        //         return (this.value/this.steps.length)*100;
+        //     }
+        // },
+        async created(){
+
             this.recipe=this.recipe[0];
             this.steps=this.recipe.instructions;
 
 
             let arrayInfo = [];
-      let newInstructions= this.steps.replace(/<\/?[^>]+(>|$)/g, "").split(".");
-     
-     //remove if there is blank word after last instruction
-     let last=newInstructions[newInstructions.length-1];
-     if(!last || last==="" || last===" " || last=="1"){
-      newInstructions.splice(newInstructions.indexOf(last), 1);
-      
-     }
+            let newInstructions= this.steps.replace(/<\/?[^>]+(>|$)/g, "").split(".");
 
-     let selectedInstructions=[];
-      newInstructions.map((newIns)=>{
-          if(newIns.charAt(0)==" "){
-              newIns=newIns.substring(1);
-          }
-          if(newIns.length>3){
-              if(newIns!=="\r\n11" || newIns!=="\r\n7"){
- selectedInstructions.push(newIns);
- console.log("/"+newIns+"/");
-              }
-               
-          }
-     });
+            //remove if there is blank word after last instruction
+            let last=newInstructions[newInstructions.length-1];
+            if(!last || last==="" || last===" " || last=="1"){
+                newInstructions.splice(newInstructions.indexOf(last), 1);
 
-     this.steps=selectedInstructions;
-    // console.log( this.steps);
+            }
+
+            let selectedInstructions=[];
+            newInstructions.map((newIns)=>{
+                if(newIns.charAt(0)==" "){
+                    newIns=newIns.substring(1);
+                }
+                if(newIns.length>3){
+                    if(newIns!=="\r\n11" || newIns!=="\r\n7"){
+                        selectedInstructions.push(newIns);
+                        console.log("/"+newIns+"/");
+                    }
+
+                }
+            });
+
+            this.steps=selectedInstructions;
+            // console.log( this.steps);
             this.ingredients=this.recipe.ingrediants;
         },
 
@@ -141,14 +148,14 @@
         text-align: center;
         font-weight: bold;
         color:  #7BB257;
-         font-size: 30px;
+        font-size: 30px;
     }
     #header{
         text-align: left;
         font-size: 20px;
         color: #7BB257;
         font-weight: bold;
-         font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
     }
     #col{
         text-align: left;

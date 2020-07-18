@@ -40,7 +40,7 @@
                     <option>Southern</option>
                     <option>Spanish</option>
                     <option>Thai</option>
-                    <option>Vietnamese</option>                                                           
+                    <option>Vietnamese</option>
                 </select></b-col>
 
                 <b-col><select v-model="diet">
@@ -94,7 +94,7 @@
 
             <br><br>
 
-            <template v-if="pushedSearch">  
+            <template v-if="pushedSearch">
                 <div v-if="have">
                     hey
                     <b-row>
@@ -105,32 +105,32 @@
                         </b-row>
                     </b-row>
 
-                                                    <b-row >
-                <b-col colspan="3" align-self="center">
-                    <p align="center">Sorting results by:</p>
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder" @change="searchRecipe()">
-                    <label for="none">none</label><br>
-                    <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder" @change="searchRecipe()">
-                    <label for="time">Time preperation</label><br>
-                    <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder" @change="searchRecipe()">
-                    <label for="popular">Popularity</label><br></b-col>
-            </b-row>
+                    <b-row >
+                        <b-col colspan="3" align-self="center">
+                            <p align="center">Sorting results by:</p>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col><input type="radio" id="none" name="searchOrder" value="none" v-model="searchOrder" @change="searchRecipe()">
+                            <label for="none">none</label><br>
+                            <input type="radio" id="time" name="searchOrder" value="time" v-model="searchOrder" @change="searchRecipe()">
+                            <label for="time">Time preperation</label><br>
+                            <input type="radio" id="popular" name="searchOrder" value="popular" v-model="searchOrder" @change="searchRecipe()">
+                            <label for="popular">Popularity</label><br></b-col>
+                    </b-row>
 
 
-                     Time in minutes:  &#9201; |
+                    Time in minutes:  &#9201; |
                     Likes: &#10084; |
                     Vegan :<img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> |
                     Vegetarian: <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> |
-                    GF:  <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                    Gluten Free:  <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     <br>
                 </div>
                 <div v-if="!have">
                     <b-alert class="mt-2" v-if="!have" variant="warning" dismissible show>
-      There was no recipes for your search
-    </b-alert>
+                        There was no recipes for your search
+                    </b-alert>
                 </div>
             </template>
         </b-form>
@@ -171,7 +171,7 @@
         methods: {
             async searchRecipe() {
                 this.have=true;
-                
+
                 let recipesId = []; //recipeID list
                 let recipes=[];
                 let allRecipesInfo = []; //get recipes array from apispooncular to be recognize after try catch block
@@ -179,34 +179,34 @@
                 try {
                     if(!this.searchAlready){
 
-                    this.recipes=[];
-                    const response = await this.axios.get(
-                        "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
-                        {
-                            params: {
-                                query: this.searchQuery,
-                                cuisine: this.cuisine,
-                                diet: this.diet,
-                                intolerances: this.intolerance,
-                                number: this.numResults,
-                                instructionsRequired: true,
+                        this.recipes=[];
+                        const response = await this.axios.get(
+                            "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
+                            {
+                                params: {
+                                    query: this.searchQuery,
+                                    cuisine: this.cuisine,
+                                    diet: this.diet,
+                                    intolerances: this.intolerance,
+                                    number: this.numResults,
+                                    instructionsRequired: true,
+                                }
                             }
+                        );
+
+                        //no results in query
+                        if(response.length===0){
+                            this.have=false;
                         }
-                    );
 
-                    //no results in query
-                    if(response.length===0){
-                        this.have=false;
-                    }
+                        recipes = response.data;
 
-                    recipes = response.data;
-
-                    this.searchAlready=true;
+                        this.searchAlready=true;
                     }else{
-                
+
                         let allRecipesData=[];
                         let arr= this.recipes;
-                  
+
                         this.recipes=[];
                         //tmp arr that moving on every recipe
                         arr.map((rec)=>{
@@ -215,15 +215,15 @@
 
                         recipes=allRecipesData;
                     }
-                    
+
 
                     if(this.searchOrder==="time"){
-                       recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
+                        recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
                     }
                     if(this.searchOrder==="popular"){
-                       recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
+                        recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
                     }
-  
+
                     //pushing all recipes data into array
                     allRecipesInfo.push(...recipes);
                     //pushing all Ids into array
@@ -238,8 +238,8 @@
                 let allDetailsRecipes = [];
                 //if there is username
                 if(this.$root.store.username){
-                //there is no save search
-                // if(!this.alreadySaveToStorage){
+                    //there is no save search
+                    // if(!this.alreadySaveToStorage){
                     for (let i = 0; i < recipesId.length; i++) {
                         let idR = recipesId[i];
                         try {
@@ -297,10 +297,10 @@
                             this.have=false;
                         }
 
-                        
+
                         //save to storage
                         sessionStorage.setItem(this.$root.store.username, JSON.stringify(this.recipes));
-                        }//for
+                    }//for
 
                 }else{
                     let arr = [];
@@ -333,24 +333,24 @@
 
         },
         async created(){
-             if(this.$root.store.username){
-                 if(!this.someBoolean){
-                           this.someBoolean=true;
-                        //    const arr=[];
-                        //    arr.push();
-                        //    console.log(arr);
-                        this.resultsLastSearch=sessionStorage.getItem(this.$root.store.username);
+            if(this.$root.store.username){
+                if(!this.someBoolean){
+                    this.someBoolean=true;
+                    //    const arr=[];
+                    //    arr.push();
+                    //    console.log(arr);
+                    this.resultsLastSearch=sessionStorage.getItem(this.$root.store.username);
                     console.log(this.resultsLastSearch);
                     console.log(this.resultsLastSearch[0]);
-                if(this.resultsLastSearch){
+                    if(this.resultsLastSearch){
                         this.recipes=this.resultsLastSearch;
                         this.pushedSearch=true;
                         this.have=true;
-                  
+
+                    }
                 }
-                 }
-                    
-                }
+
+            }
 
         }
     };
@@ -362,7 +362,7 @@
         min-height: 400px;
         background:rgba(255, 255, 255, 0.75);
         color:  #7a512f;
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
     }
@@ -377,7 +377,7 @@
     }
     #title{
         align-items: center;
-      font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         color:  #7BB257;

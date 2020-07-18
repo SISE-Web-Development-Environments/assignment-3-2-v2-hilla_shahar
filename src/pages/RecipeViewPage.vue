@@ -11,21 +11,21 @@
                         <div class="mb-3">
                             <div id="smallTitle" >&#9201; {{ recipe.readyInMinutes }} minutes</div>
                             <div id="smallTitle">&#10084; {{ recipe.aggregateLikes }} </div>
-                            <div id="smallTitle"> 
+                            <div id="smallTitle">
                                 <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/>
-                                 {{ recipe.servings }}</div>
+                                {{ recipe.servings }}</div>
 
-                                  <div id="smallTitle" v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> Vegan
-                    </div>
+                            <div id="smallTitle" v-if="recipe.vegan">
+                                <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/> Vegan
+                            </div>
 
-                    <div id="smallTitle" v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> Vegetarian
-                    </div>
+                            <div id="smallTitle" v-if="recipe.vegetarian">
+                                <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/> Vegetarian
+                            </div>
 
-                    <div id="smallTitle" v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/> GF
-                    </div>
+                            <div id="smallTitle" v-if="recipe.glutenFree">
+                                <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/> GF
+                            </div>
 
                         </div>
                         <div id="smallTitle" >Ingredients:</div>
@@ -42,12 +42,12 @@
                         </ol>
 
                         <div v-if="this.$root.store.username">
-                        <router-link id="routerLink" :to="{ name: 'prepareRecipe', params: { recipe: recipe } }"  >
-                                Click here to Prepare Recipe 
+                            <router-link id="routerLink" :to="{ name: 'prepareRecipe', params: { recipe: recipe } }"  >
+                                Click here to Prepare Recipe
                             </router-link>
                         </div>
                     </div>
-                     
+
                 </div>
             </div>
         </div>
@@ -64,8 +64,8 @@
         async created() {
             let response;
             try {
-                 console.log(this.$root.store.username);
-                 console.log(this.$route.params.recipeId);
+                console.log(this.$root.store.username);
+                console.log(this.$route.params.recipeId);
                 //username exists
                 if (this.$root.store.username) {
                     response = await this.axios.get(
@@ -99,10 +99,10 @@
                     console.log(this.recipe.servings);
                     //add to watch list
                     await this.axios.get("https://assignment3-2hilla-shahar.herokuapp.com/user/watchedRecipe/",{
-                            params: { 
-                                recipe_id: this.$route.params.recipeId 
-                                }
-                        });
+                        params: {
+                            recipe_id: this.$route.params.recipeId
+                        }
+                    });
 
                 }
                 else { //guest

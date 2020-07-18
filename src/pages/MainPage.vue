@@ -8,7 +8,7 @@
                 <RecipePreviewList id="wid" title="Explore these Recipes" class="RandomRecipes center" />
             </b-col>
             <b-col v-if="!$root.store.username">
-               <LoginPage id="wid" title="LoginPages" class="LoginPages"/>
+                <LoginPage id="wid" title="LoginPages" class="LoginPages"/>
             </b-col>
             <b-col  v-else-if="$root.store.username">
                 <RecipeLastWatched id="wid" title="Last Watched Recipes" class="LastViewedRecipes center"/>
@@ -52,7 +52,7 @@
     }
     h1{
         color: #ffffff;
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
         font-size: 70px;
@@ -64,6 +64,6 @@
         background: #7BB257;
         border: #2c3e50;
     }
-  
+
 
 </style>

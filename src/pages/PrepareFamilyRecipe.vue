@@ -2,24 +2,24 @@
     <div class="container">
         <h1 id="title" class="title">Prepare Page:</h1>
         <div v-if="!insertQuantity">
-        <b-row>
-            <b-col>Insert quantity:</b-col>
-            <b-col><b-form-input v-model="quantity" placeholder="Quantity">
-            </b-form-input></b-col>
-            <b-col>
-                <button id="button" v-on:click="updateQuantity()"> Go </button>
-            </b-col>
-        </b-row>
+            <b-row>
+                <b-col>Insert quantity:</b-col>
+                <b-col><b-form-input v-model="quantity" placeholder="Quantity">
+                </b-form-input></b-col>
+                <b-col>
+                    <button id="button" v-on:click="updateQuantity()"> Go </button>
+                </b-col>
+            </b-row>
         </div>
-          <div v-if="insertQuantity">
-               <RecipePrepareFamilyView class="recipePreview" :recipe="recipe" />
-          </div>
+        <div v-if="insertQuantity">
+            <RecipePrepareFamilyView class="recipePreview" :recipe="recipe" />
+        </div>
     </div>
 </template>
 
 <script>
- import RecipePrepareFamilyView from "../componentsPersonal/RecipePrepareFamilyView.vue";
- 
+    import RecipePrepareFamilyView from "../componentsPersonal/RecipePrepareFamilyView.vue";
+
     export default {
         name: "PreparePage",
         components: {
@@ -51,8 +51,8 @@
                         }
                     );
 
-                        //INGREDIANTS
-                      let responseIngrediants=  await this.axios.get(
+                    //INGREDIANTS
+                    let responseIngrediants=  await this.axios.get(
                         "https://assignment3-2hilla-shahar.herokuapp.com/user/userRecipeIngrediants/",
                         {
                             params: {
@@ -69,7 +69,7 @@
                         responseIngrediants.data.map((ingr)=>{
                             dataIngrediants.push(ingr);
                         });
- 
+
                         let recipe=this.$route.params.recipe;
 
                         let data={
@@ -82,7 +82,7 @@
                             ingrediants: dataIngrediants,
                             title: recipe.title
                         };
-                       
+
                         this.recipe=[];
                         this.recipe.push(data);
                         this.insertQuantity=true;
@@ -96,7 +96,7 @@
 
             }
         },
-       
+
     };
 </script>
 

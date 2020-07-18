@@ -9,7 +9,7 @@
                 <RecipePreviewMain class="RecipePreviewMain" :recipe="r"/>
             </b-row>
         </b-col>
-            <b-col>
+        <b-col>
             <b-row>
                 <button id="random" v-on:click="updateRecipes" > Random</button>
             </b-row>
@@ -145,6 +145,6 @@
         align-content: center;
     }
     h3{
-   text-shadow: 2px 2px 5px #d8a631;
+        text-shadow: 2px 2px 5px #d8a631;
     }
 </style>

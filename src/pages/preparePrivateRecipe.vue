@@ -2,23 +2,23 @@
     <div class="container">
         <h1 id="title" class="title">Prepare Page:</h1>
         <div v-if="!insertQuantity">
-        <b-row>
-            <b-col>Insert quantity:</b-col>
-            <b-col><b-form-input v-model="quantity" placeholder="Quantity">
-            </b-form-input></b-col>
-            <b-col>
-                <button id="button" v-on:click="updateQuantity()"> Go</button>
-            </b-col>
-        </b-row>
+            <b-row>
+                <b-col>Insert quantity:</b-col>
+                <b-col><b-form-input v-model="quantity" placeholder="Quantity">
+                </b-form-input></b-col>
+                <b-col>
+                    <button id="button" v-on:click="updateQuantity()"> Go</button>
+                </b-col>
+            </b-row>
         </div>
-          <div v-if="insertQuantity">
-               <RecipePreparePrivateView class="recipePreview" :recipe="recipe" />
-          </div>
+        <div v-if="insertQuantity">
+            <RecipePreparePrivateView class="recipePreview" :recipe="recipe" />
+        </div>
     </div>
 </template>
 
 <script>
- import RecipePreparePrivateView from "../componentsPersonal/RecipePreparePrivateView.vue";
+    import RecipePreparePrivateView from "../componentsPersonal/RecipePreparePrivateView.vue";
     export default {
         name: "PreparePage",
         components: {
@@ -50,8 +50,8 @@
                         }
                     );
 
-                        //INGREDIANTS
-                      let responseIngrediants=  await this.axios.get(
+                    //INGREDIANTS
+                    let responseIngrediants=  await this.axios.get(
                         "https://assignment3-2hilla-shahar.herokuapp.com/user/userRecipeIngrediants/",
                         {
                             params: {
@@ -68,7 +68,7 @@
                         responseIngrediants.data.map((ingr)=>{
                             dataIngrediants.push(ingr);
                         });
- 
+
                         let recipe=this.$route.params.recipe;
                         console.log(recipe);
                         let data={
@@ -99,7 +99,7 @@
 
             }
         },
-       
+
     };
 </script>
 
@@ -121,7 +121,7 @@
         color:  #7BB257;
     }
     #button{
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         background: #7BB257;
         border: #2c3e50;
         align-content: center;

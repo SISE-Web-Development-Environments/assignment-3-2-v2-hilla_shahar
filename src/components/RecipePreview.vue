@@ -14,29 +14,29 @@
                 </div>
                 <div id="values" class="recipe-overview">
                     <div v-if="!favorite">
-                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
-                </div>
-                <div v-if="favorite">
-                    <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
-                </div>
-                    {{ recipe.readyInMinutes }} &#9201;   
+                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')"> <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                    </div>
+                    <div v-if="favorite">
+                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                    </div>
+                    {{ recipe.readyInMinutes }} &#9201;
                     {{ recipe.aggregateLikes }} &#10084; <br>
-                     <div v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
+                    <div v-if="recipe.vegan">
+                        <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
                     </div>
 
                     <div v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
                     </div>
 
                     <div v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="recipe-preview-guest" v-else>
-           <router-link
+            <router-link
                     :to="{ name: 'showRecipe', params: { recipeId: recipe.id } }"
             >
                 <div class="recipe-body">
@@ -48,28 +48,28 @@
                     {{ recipe.title }}
                 </div>
                 <div id="values" class="recipe-overview">
-                     <div v-if="$root.store.username">
-                    <div v-if="!favorite">
-                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">
-                            <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/>
-                        </button>
-                    </div>
-                    <div v-if="favorite">
-                        <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
-                    </div>
+                    <div v-if="$root.store.username">
+                        <div v-if="!favorite">
+                            <button v-bind="button" id="buttonFavorites" @click="addToFavorite('true')">
+                                <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" height="20px" width="20px"/>
+                            </button>
                         </div>
-                    {{ recipe.readyInMinutes }} &#9201;   
+                        <div v-if="favorite">
+                            <button v-bind="button" id="buttonFavorites" @click="addToFavorite('false')"><img src="https://img.icons8.com/material-rounded/24/000000/filled-like.png" height="20px" width="20px"/></button>
+                        </div>
+                    </div>
+                    {{ recipe.readyInMinutes }} &#9201;
                     {{ recipe.aggregateLikes }} &#10084; <br>
                     <div v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
+                        <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
                     </div>
 
                     <div v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
                     </div>
 
                     <div v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
             }
 
         },
-         methods: {
+        methods: {
             async addToFavorite(value){
                 let responseFavorites;
                 try{
@@ -128,7 +128,7 @@
                     this.value=!(this.value);
                     this.favorite=!(this.favorite);
 
-                    
+
                     res.send(200);
                 }catch(error){
                     console.log("error.response.status", error.response.status);
@@ -156,7 +156,7 @@
         border-style: solid ;
     }
 
-   .recipe-preview-guest {
+    .recipe-preview-guest {
         width: 180px;
         height: 320px;
         position: relative;

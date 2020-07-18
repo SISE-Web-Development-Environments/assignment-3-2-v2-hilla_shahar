@@ -35,7 +35,7 @@
 
 <style scoped>
     .all {
- width: 200px;
+        width: 200px;
         height: 320px;
         position: relative;
         margin: 10px 10px;
@@ -43,7 +43,7 @@
         border-color:  #7BB257;
         border-width: 4px;
         border-style: solid ;
-}
+    }
 
     .recipe-body .recipe-image {
         margin-left: auto;
@@ -77,6 +77,6 @@
         text-align: center;
         font-size: 15px;
         color: #7BB257;
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
     }
 </style>

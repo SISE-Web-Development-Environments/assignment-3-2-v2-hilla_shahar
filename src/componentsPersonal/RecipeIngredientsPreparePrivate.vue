@@ -2,7 +2,7 @@
     <div>
         <div>
             <input type="checkbox" id="jack" value="Jack" v-model="allIngrediants">
-        
+
             <label class="labelStatus" for="jack">{{ingredient.quantity}} {{ingredient.unitType}} {{ingredient.ingrediant}}</label>
         </div>
     </div>
@@ -67,9 +67,9 @@
         color: #7BB257;
         font-family: 'Architects Daughter';
     }
-        input[type=checkbox]:checked + label.labelStatus{
+    input[type=checkbox]:checked + label.labelStatus{
         text-decoration: line-through;
-          border-color: #bbb;
+        border-color: #bbb;
     }
     input[type=checkbox] {
         cursor: pointer;

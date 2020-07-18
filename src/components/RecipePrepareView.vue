@@ -8,51 +8,50 @@
         </div>
         <br>
         <!-- <b-col> -->
-            <b-col>
-                &#9201; {{ recipe.readyInMinutes }}    
-                &#10084; {{ recipe.aggregateLikes }}  
-                    <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{recipe.servings}}
-                    <br>
-                    <div v-if="recipe.vegan">
-                       <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
-                    </div>
+        <b-col>
+            &#9201; {{ recipe.readyInMinutes }}
+            &#10084; {{ recipe.aggregateLikes }}
+            <img src="https://img.icons8.com/dotty/80/000000/tableware.png" height="30px" width="30px"/> {{recipe.servings}}
+            <br>
+            <div v-if="recipe.vegan">
+                <img src="https://img.icons8.com/metro/26/000000/vegan-symbol.png"  height="17px" width="17px"/>
+            </div>
 
-                    <div v-if="recipe.vegetarian">
-                      <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
-                    </div>
+            <div v-if="recipe.vegetarian">
+                <img src="https://img.icons8.com/color/48/000000/vegetarian-mark.png" height="20px" width="20px"/>
+            </div>
 
-                    <div v-if="recipe.glutenFree">
-                      <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
-                    </div>
+            <div v-if="recipe.glutenFree">
+                <img src="https://img.icons8.com/carbon-copy/100/000000/no-gluten.png" height="20px" width="20px"/>
+            </div>
 
-                    <div v-if="$root.store.username">
-                        <div v-if="recipe.loved">
-                            You &#10084; it
-                        </div>
-                    </div>
-            </b-col>
+            <div v-if="$root.store.username">
+                <div v-if="recipe.loved">
+                    You &#10084; it
+                </div>
+            </div>
+        </b-col>
         <b-col>
             <br>
             <p id="header">Ingredients:</p>
             <b-row id="col" v-for="ingr in ingredients" :key="ingr.id">
                 <RecipeIngredientsPrepare class="RecipeIngredientsPrepare" :ingredient="ingr"/>
             </b-row>
-<br>
+            <br>
             <p id="header">Steps:</p>
             <b-row id="col" v-for="step in steps" :key="step.id">
-                <RecipeChecklistPrepare class="RecipeChecklistPrepare" :step="step"/>
+                <RecipeChecklistPrepare class="RecipeChecklistPrepare" :step="step"  @progressChangeUp="value++" @progressChangeDown="value--"/>
             </b-row>
-<br>
+            <br>
             <p id="header">Progress Bar:</p>
 
             <div>
 
-                <b-progress :value="value" variant="success" show-progress striped :animated="animate"></b-progress>
-                <b-progress-bar :value="value" >
-                    Progress: <strong>{{ value.toFixed(2) }} / {{ steps.length }}</strong>
+                <b-progress :value="value" :max="steps.length" aria-valuemin="0" aria-valuemax="steps.length" variant="success" show-progress striped :animated="animate"></b-progress>
+                <b-progress-bar :value="value" aria-valuemin="0" aria-valuemax="steps.length"  >
+                    Progress: <strong> {{ value }}/{{ steps.length }} </strong>
                 </b-progress-bar>
 
-                <p id="header">until when pleae work</p>
             </div>
         </b-col>
     </div>
@@ -69,7 +68,7 @@
         },
         data() {
             return {
-                value: 25
+                value: 0
             };
         },
         props: {
@@ -124,7 +123,7 @@
         text-align: center;
         font-weight: bold;
         color:  #7BB257;
-         font-size: 30px;
+        font-size: 30px;
     }
     #header{
         text-align: left;

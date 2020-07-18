@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <input type="checkbox" id="st" value="step" v-model="allSteps">
+            <input type="checkbox" id="st" value="step" v-model="allSteps" @input="changeProgress">
             <label class="labelStatus" for="st"> {{step}}</label>
         </div>
     </div>
@@ -9,14 +9,30 @@
 
 <script>
     export default {
-        
+        data(){
+            return {
+                checked: false,
+            };
+        },
         props: {
             step: {
                 type: String,
                 required: true
             }
         },
-    
+        methods:{
+            changeProgress(event){
+                this.checked=!this.checked;
+                if(this.checked){
+                    this.$emit('progressChangeUp');
+                }else{
+                    this.$emit('progressChangeDown');
+                }
+
+
+            }
+        }
+
     };
 </script>
 
@@ -51,7 +67,7 @@
     }
     input[type=checkbox]:checked + label.labelStatus{
         text-decoration: line-through;
-          border-color: #bbb;
+        border-color: #bbb;
     }
     input[type=checkbox] {
         cursor: pointer;

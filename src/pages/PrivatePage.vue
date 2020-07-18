@@ -69,7 +69,7 @@
     .container {
         background:rgba(255, 255, 255, 0.75);
         min-height: 400px;
-       font-family: 'Architects Daughter';
+        font-family: 'Architects Daughter';
         text-align: center;
         color:  #7a512f;
         font-weight: bold;
@@ -81,5 +81,5 @@
         font-weight: bold;
         color:  #7BB257;
     }
-    
+
 </style>d
