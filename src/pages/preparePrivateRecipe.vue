@@ -110,6 +110,10 @@
         text-align: center;
         color:  #7a512f;
         font-weight: bold;
+        display: flex;
+        font-size: 20px;
+        align-items: left;
+        font-display: left;
     }
     #title{
         align-items: center;

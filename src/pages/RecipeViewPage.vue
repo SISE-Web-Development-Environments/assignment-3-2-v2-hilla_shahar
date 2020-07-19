@@ -5,7 +5,7 @@
                 <h1 id="head">{{ recipe.title }}</h1>
                 <img :src="recipe.image" class="center" />
             </div>
-            <div class="recipe-body">
+            <div class="recipe-body" id="content">
                 <div class="wrapper">
                     <div class="wrapped">
                         <div class="mb-3">
@@ -137,11 +137,24 @@
 </script>
 
 <style scoped>
+    #content{
+        font-size: 20px;
+        font-weight: bold;
+        align-items: left;
+        font-display: left;
+    }
     .wrapper {
         display: flex;
+        font-size: 20px;
+        font-weight: bold;
+        align-items: left;
+        font-display: left;
     }
     .wrapped {
         width: 50%;
+        font-weight: bold;
+        align-items: left;
+        font-display: left;
     }
     #smallTitle{
         align-items: center;
@@ -160,6 +173,13 @@
         background:rgba(255, 255, 255, 0.75);
         color:  #7a512f;
         font-family: 'Architects Daughter';
+        font-weight: bold;
+        font-size: 20px;
+        font-display: left;
+    }
+    .recipe-body{
+        font-size: 20px;
+        font-display: left;
         font-weight: bold;
     }
     .center {

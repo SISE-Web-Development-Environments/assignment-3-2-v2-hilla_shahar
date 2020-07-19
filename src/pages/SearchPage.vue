@@ -348,6 +348,7 @@
         font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
+        font-size: 20px;
     }
     #searchButton{
         background: #7BB257;

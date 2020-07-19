@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div :title="recipe.title" class="recipe-title">
             {{ recipe.title }}
         </div>
@@ -99,6 +99,9 @@
 </script>
 
 <style scoped>
+    .container{
+        font-size: 20px;
+    }
     .recipe-preview {
         width: 180px;
         height: 280px;

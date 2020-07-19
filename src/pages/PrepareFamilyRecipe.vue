@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-        <h1 id="title" class="title">Prepare Page:</h1>
+        <h1 id="title" class="title">Prepare Page:<br></h1>
         <div v-if="!insertQuantity">
+            <br>
             <b-row>
                 <b-col>Insert quantity:</b-col>
                 <b-col><b-form-input v-model="quantity" placeholder="Quantity">
@@ -109,6 +110,10 @@
         text-align: center;
         color:  #7a512f;
         font-weight: bold;
+        display: flex;
+        font-size: 20px;
+        align-items: left;
+        font-display: left;
     }
     #title{
         align-items: center;

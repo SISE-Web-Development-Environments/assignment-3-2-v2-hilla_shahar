@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 id="title" class="title">Prepare Page:</h1>
+        <h1 id="title" class="title">Prepare Page: <br></h1>
         <div v-if="!insertQuantity">
             <b-row>
                 <b-col>Insert quantity:</b-col>
@@ -133,9 +133,13 @@
         background:rgba(255, 255, 255, 0.75);
         min-height: 400px;
         font-family: 'Architects Daughter';
-        text-align: center;
+        text-align: left;
         color:  #7a512f;
         font-weight: bold;
+        display: flex;
+        font-size: 20px;
+        align-items: left;
+        font-display: left;
     }
     #title{
         align-items: center;

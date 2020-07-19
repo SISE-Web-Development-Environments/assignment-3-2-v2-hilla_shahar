@@ -110,6 +110,11 @@
     }
     .container{
         background:rgba(255, 255, 255, 0.75);
+        display: flex;
+        font-size: 20px;
+        font-weight: bold;
+        align-items: left;
+        font-display: left;
     }
     h1{
         color: #7BB257;
