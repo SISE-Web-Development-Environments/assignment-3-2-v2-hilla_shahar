@@ -156,7 +156,7 @@
     }
     .recipe-preview {
         width: 300px;
-        height: 360px;
+        height: 400px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
@@ -167,7 +167,7 @@
 
     .recipe-preview-guest {
         width: 300px;
-        height: 360px;
+        height: 400px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);

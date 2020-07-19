@@ -143,6 +143,7 @@
         background: #7BB257;
         border: #2c3e50;
         align-content: center;
+        font-size: 20px;
     }
     h3{
         text-shadow: 2px 2px 5px #d8a631;

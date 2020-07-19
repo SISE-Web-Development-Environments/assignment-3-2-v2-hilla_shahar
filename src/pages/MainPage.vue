@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <br>
-        <h1 class="title">Shahar & Hilla Recipes site</h1>
+        <h1 class="title">Shahar & Hilla's Food Recipes site</h1>
         <br>
         <b-row>
             <b-col>
