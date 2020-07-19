@@ -46,7 +46,6 @@
         },
         async created() {
             let response;
-
             try {
                 response = await this.axios.get(
                     "https://assignment3-2hilla-shahar.herokuapp.com/user/showFamilyRecipes/",
@@ -55,13 +54,9 @@
                         }
                     }
                 );
-
-
                 let info=response.data[0];
-
                 let arrayInfo = [];
                 let ingrediants=info.ingrediants;
-
                 ingrediants.map((ingr)=>{
                     let data ={
                         name: ingr.ingradient,
@@ -70,7 +65,6 @@
                     }
                     arrayInfo.push(data);
                 });
-
                 let _recipe={
                     instructions: info.instructions,
                     extendedIngredients:arrayInfo,
@@ -81,7 +75,6 @@
                     id: info.id,
                     servings: info.servings,
                 };
-
                 this.recipe = _recipe;
                 if (response.status !== 200) this.$router.replace("/NotFound");
             } catch (error) {
@@ -89,13 +82,11 @@
                 this.$router.replace("/NotFound");
                 return;
             }
-
         }
     };
 </script>
 
 <style scoped>
-
     .wrapper {
         display: flex;
     }
@@ -110,11 +101,6 @@
     }
     .container{
         background:rgba(255, 255, 255, 0.75);
-        display: flex;
-        font-size: 20px;
-        font-weight: bold;
-        align-items: left;
-        font-display: left;
     }
     h1{
         color: #7BB257;

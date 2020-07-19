@@ -19,7 +19,6 @@
 
 <script>
     import RecipePreviewMain from "./RecipePreviewMain.vue";
-
     export default {
         name: "RecipePreviewList",
         components: {
@@ -48,20 +47,16 @@
                         //"https://test-for-3-2.herokuapp.com/recipes/random"
                         "https://assignment3-2hilla-shahar.herokuapp.com/recipe/random"
                     );
-
                     const recipes = response.data;
-
                     //pushing all recipes data into array
                     allRecipesInfo.push(...recipes);
                     //pushing all Ids into array 
                     recipes.map((recipe) => {
                         recipesId.push(recipe.id);
                     });
-
                 } catch (error) {
                     console.log(error);
                 }
-
                 let allDetailsRecipes = [];
                 //moving on list or recipesID
                 for (let i = 0; i < recipesId.length; i++) {
@@ -75,7 +70,6 @@
                                 }
                             }
                         );
-
                         //user data-loved, watched
                         let userData = user_response.data[0].user_info[0];
                         //all other information from apispooncular
@@ -94,7 +88,6 @@
                             glutenFree:info.glutenFree,
                             // user: true
                         };
-
                         allDetailsRecipes.push(_recipe);
                     } catch (error) {
                         //moving on array of all recipes data, looking for the recipe with same id to get it details
@@ -116,14 +109,12 @@
                         }
                     }
                 }//for
-
                 console.log(allDetailsRecipes);
                 //pushing into array with 3 chunks
                 let data = [];
                 for (let i = 0; i < 3; i++) {
                     data.push(allDetailsRecipes.pop());
                 }
-
                 this.recipes = [];
                 this.recipes.push(...data);
                 console.log(this.recipes);
@@ -143,7 +134,6 @@
         background: #7BB257;
         border: #2c3e50;
         align-content: center;
-        font-size: 20px;
     }
     h3{
         text-shadow: 2px 2px 5px #d8a631;

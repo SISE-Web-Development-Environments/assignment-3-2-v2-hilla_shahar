@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <br>
-        <h1 class="title">Shahar & Hilla's Food Recipes site</h1>
+        <h1 class="title">Shahar & Hilla's food Recipes site</h1>
         <br>
         <b-row>
             <b-col>
@@ -34,7 +34,6 @@
     .RandomRecipes {
         font-family: 'Architects Daughter';
         margin: 10px 0 10px;
-
     }
     .blur {
         -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
@@ -64,6 +63,4 @@
         background: #7BB257;
         border: #2c3e50;
     }
-
-
 </style>

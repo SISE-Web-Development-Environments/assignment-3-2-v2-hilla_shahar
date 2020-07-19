@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 id="title" class="title">Prepare Page: <br></h1>
+        <h1 id="title" class="title">Prepare Page:</h1>
         <div v-if="!insertQuantity">
             <b-row>
                 <b-col>Insert quantity:</b-col>
@@ -50,7 +50,6 @@
                             }
                         }
                     );
-
                     let _recipe = {
                         loved: response.data[0].user_info[0].loved,
                         watched: response.data[0].user_info[0].watched,
@@ -63,9 +62,7 @@
                         glutenFree:response.data[0].recipe[0].glutenFree,
                         servings:response.data[0].recipe[0].servings,
                     };
-
                     this.recipeDetails = _recipe;
-
                     console.log(this.recipeDetails);
                 }
             } catch (error) {
@@ -88,11 +85,9 @@
                             }
                         }
                     );
-
                     console.log(responseInstruction.data[1][0].steps.steps);
                     if(responseInstruction){
                         this.insertQuantity=true;
-
                         let recipe=this.recipeDetails;
                         let data={
                             steps: responseInstruction.data[1][0].steps.steps,
@@ -107,39 +102,31 @@
                             vegetarian:recipe.vegetarian,
                             glutenFree:recipe.glutenFree,
                             servings: recipe.servings,
-
                         };
                         // console.log(data);
                         this.recipe=[];
                         this.recipe.push(data);
                         console.log(this.recipe);
                     }
-
                 }catch(error){
                     console.log("error.response.status", error.response.status);
                     // this.$router.replace("/NotFound");
                     return;
                 }
-
             }
         }
     };
 </script>
 
 <style lang="scss" scoped>
-
     .container {
         width: 1700px;
         background:rgba(255, 255, 255, 0.75);
         min-height: 400px;
         font-family: 'Architects Daughter';
-        text-align: left;
+        text-align: center;
         color:  #7a512f;
         font-weight: bold;
-        display: flex;
-        font-size: 20px;
-        align-items: left;
-        font-display: left;
     }
     #title{
         align-items: center;

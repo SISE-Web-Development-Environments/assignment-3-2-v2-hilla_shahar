@@ -171,10 +171,11 @@
     }
     .container{
         background:rgba(255, 255, 255, 0.75);
-        color:  #7a512f;
-        font-family: 'Architects Daughter';
-        font-weight: bold;
+        display: flex;
+        color: #7a512f;
         font-size: 20px;
+        font-weight: bold;
+        align-items: left;
         font-display: left;
     }
     .recipe-body{
@@ -193,5 +194,16 @@
         font-family: 'Architects Daughter';
         font-weight: bold;
     }
-
+    li{
+        color: #7a512f;
+        font-family: 'Architects Daughter';
+        text-align: left;
+        font-weight: bold;
+    }
+    ol{
+        color: #7a512f;
+        font-family: 'Architects Daughter';
+        text-align: left;
+        font-weight: bold;
+    }
 </style>

@@ -85,7 +85,6 @@
 
 <script>
     export default {
-
         data() {
             return {
                 favorite: false,
@@ -109,7 +108,6 @@
                     }
                 );
                 console.log(responseFavorite);
-
                 if(responseFavorite.data){
                     this.favorite=true;
                 }else{
@@ -118,7 +116,6 @@
             }catch(error){
                 console.log(error);
             }
-
         },
         methods: {
             async addToFavorite(value){
@@ -134,14 +131,12 @@
                     );
                     this.value=!(this.value);
                     this.favorite=!(this.favorite);
-
                     res.send(200);
                 }catch(error){
                     console.log("error.response.status", error.response.status);
                     this.$router.replace("/NotFound");
                     return;
                 }
-
             }
         },
     };
@@ -156,7 +151,7 @@
     }
     .recipe-preview {
         width: 300px;
-        height: 400px;
+        height: 360px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
@@ -164,10 +159,9 @@
         border-width: 4px;
         border-style: solid ;
     }
-
     .recipe-preview-guest {
         width: 300px;
-        height: 400px;
+        height: 360px;
         position: relative;
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
@@ -189,7 +183,6 @@
         width: 300px;
         display: inline-block;
         word-break: break-all;
-
     }
     .recipe-title {
         padding: 10px 10px;
@@ -201,7 +194,6 @@
         font-weight: bold;
         font-size: 20px;
     }
-
     #values{
         text-align: center;
         font-size: 14px;

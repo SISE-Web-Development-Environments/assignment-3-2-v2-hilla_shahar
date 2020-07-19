@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <div :title="recipe.title" class="recipe-title">
             {{ recipe.title }}
         </div>
@@ -94,14 +94,10 @@
             this.ingredients=this.recipe.extendedIngredients;
             // console.log(this.ingredients);
         },
-
     };
 </script>
 
 <style scoped>
-    .container{
-        font-size: 20px;
-    }
     .recipe-preview {
         width: 180px;
         height: 280px;
@@ -109,7 +105,6 @@
         margin: 10px 10px;
         background:rgba(255, 255, 255, 0.75);
     }
-
     .recipe-body .recipe-image {
         margin-left: auto;
         margin-right: auto;
@@ -119,7 +114,6 @@
         width: 400px;
         height: 280px;
     }
-
     .recipe-title {
         align-items: center;
         font-family: 'Architects Daughter';

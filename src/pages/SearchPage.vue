@@ -157,18 +157,14 @@
                 showSessionSearch: false,
             };
         },
-
         methods: {
             async searchRecipe() {
                 this.have=true;
-
                 let recipesId = []; //recipeID list
                 let recipes=[];
                 let allRecipesInfo = []; //get recipes array from apispooncular to be recognize after try catch block
-
                 try {
                     if(!this.searchAlready){
-
                         this.recipes=[];
                         const response = await this.axios.get(
                             "https://assignment3-2hilla-shahar.herokuapp.com/recipe/search",
@@ -183,44 +179,34 @@
                                 }
                             }
                         );
-
                         //no results in query
                         if(response.length===0){
                             this.have=false;
                         }
-
                         recipes = response.data;
-
                         this.searchAlready=true;
                     }else{
-
                         let allRecipesData=[];
                         let arr= this.recipes;
-
                         this.recipes=[];
                         //tmp arr that moving on every recipe
                         arr.map((rec)=>{
                             allRecipesData.push(rec[0]);
                         });
-
                         recipes=allRecipesData;
                     }
-
-
                     if(this.searchOrder==="time"){
                         recipes.sort((a, b) => (a.readyInMinutes > b.readyInMinutes) ? 1 : -1);
                     }
                     if(this.searchOrder==="popular"){
                         recipes.sort((a, b) => (a.aggregateLikes > b.aggregateLikes) ? 1 : -1);
                     }
-
                     //pushing all recipes data into array
                     allRecipesInfo.push(...recipes);
                     //pushing all Ids into array
                     recipes.map((recipe) => {
                         recipesId.push(recipe.id);
                     });
-
                 } catch (error) {
                     console.log(error);
                 }
@@ -240,7 +226,6 @@
                                     }
                                 }
                             );
-
                             /********** pick relevance data  ***********/
                                 //user data-loved, watched
                             let userData = user_response.data[0].user_info[0];
@@ -261,35 +246,27 @@
                             };
                             // this.isUserConnection=true;
                             allDetailsRecipes.push(_recipe);
-
                             //insert into arary of 5
                             let arr = [];
                             let len = Math.ceil(allDetailsRecipes.length/5);
                             for(let i = 0; i < len; i++) {
                                 for(let j = 0; allDetailsRecipes.length > 0 && j < 5; j++) {
                                     let info=allDetailsRecipes.pop();
-
                                     arr.push(info);
                                 }
                                 this.recipes.push(arr);
-
                                 arr = [];
                             }
-
                         } catch (error) {
                             console.log(error);
                         }
-
                         console.log(this.recipes);
-
                         if(this.recipes.length==0){
                             this.have=false;
                         }
-
                         //save to storage
                         sessionStorage.setItem(this.$root.store.username, JSON.stringify(this.recipes));
                     }//for
-
                 }else{
                     let arr = [];
                     let len = Math.ceil(allRecipesInfo.length/5);
@@ -318,7 +295,6 @@
                     this.have=false;
                 }
             },
-
         },
         async created(){
             if(this.$root.store.username){
@@ -329,12 +305,9 @@
                         this.recipes=this.resultsLastSearch;
                         this.pushedSearch=true;
                         this.have=true;
-
                     }
                 }
-
             }
-
         }
     };
 </script>
@@ -348,7 +321,6 @@
         font-family: 'Architects Daughter';
         text-align: center;
         font-weight: bold;
-        font-size: 20px;
     }
     #searchButton{
         background: #7BB257;

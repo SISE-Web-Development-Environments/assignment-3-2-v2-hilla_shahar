@@ -58,7 +58,6 @@
         },
         async created() {
             let response;
-
             try {
                 response = await this.axios.get(
                     "https://assignment3-2hilla-shahar.herokuapp.com/user/showPersonalRecipes/",
@@ -67,11 +66,9 @@
                         }
                     }
                 );
-
                 let info=response.data[0];
                 let arrayInfo = [];
                 let ingrediants=info.ingrediants;
-
                 ingrediants.map((ingr)=>{
                     let data ={
                         name: ingr.ingradient,
@@ -79,9 +76,7 @@
                         amount: ingr.quantity,
                     }
                     arrayInfo.push(data);
-
                 });
-
                 let _recipe={
                     instructions: info.instructions,
                     extendedIngredients:arrayInfo,
@@ -95,7 +90,6 @@
                     vegetarian:info.vegetarian,
                     glutenFree:info.glutenFree,
                 };
-
                 this.recipe = _recipe;
                 console.log(this.recipe);
                 if (response.status !== 200) this.$router.replace("/NotFound");
@@ -104,9 +98,6 @@
                 this.$router.replace("/NotFound");
                 return;
             }
-
-
-
         }
     };
 </script>
@@ -123,15 +114,9 @@
         margin-left: auto;
         margin-right: auto;
         width: 50%;
-        display: flex;
     }
     .container{
         background:rgba(255, 255, 255, 0.75);
-        display: flex;
-        font-size: 20px;
-        font-weight: bold;
-        align-items: left;
-        font-display: left;
     }
     h1{
         color: #7BB257;

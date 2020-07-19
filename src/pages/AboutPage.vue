@@ -45,9 +45,7 @@
         min-height: 400px;
         font-family: 'Architects Daughter';
         text-align: center;
-        color:  #7a512f;    
-        font-size: 20px;
-        font-weight: bold;
+        color:  #7a512f;
     }
     #title{
         align-items: center;
