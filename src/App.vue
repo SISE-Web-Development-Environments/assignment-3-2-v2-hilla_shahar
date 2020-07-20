@@ -54,7 +54,7 @@
                         "https://assignment3-2hilla-shahar.herokuapp.com/Logout");
                     console.log(response);
                     
-                    sessionStorage.clear;
+                    sessionStorage.clear();
                     if (response.status !== 200) this.$router.replace("/NotFound");
                 } catch (error) {
                     console.log("error.response.status", error.response.status);
